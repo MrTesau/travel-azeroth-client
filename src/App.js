@@ -25,9 +25,11 @@ import tb from "./tb/tbluff.gif";
 import battleSound from "./wrathgate/wrath.mp3";
 // Ashenvale
 import forestbg from "./ashenvale/magic2.jpg";
-import forest from "./ashenvale/forestgif.gif";
+//import forest from "./ashenvale/forestgif.gif";
+import forest from "./ashenvale/magicAlt.jpg";
 import nelf from "./ashenvale/nelf.png";
 import magicForest from "./ashenvale/magic.mp3";
+
 const App = () => {
   return (
     <div

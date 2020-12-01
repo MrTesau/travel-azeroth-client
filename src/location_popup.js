@@ -49,6 +49,7 @@ You can simply include that normal CSS file in your main index.html file.
 // music
 // comment section
 // avatars of toons here
+// Accepts props of toons to use in avatars
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
