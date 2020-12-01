@@ -38,17 +38,13 @@ function getModalStyle() {
   };
 }
 
-/* Mobile Responsive Modal
-You can just add class/ID to your Modal and/or its child DOM, then use a normal CSS file, 
-with @media declaration, and style your component responsively as you wish!
-You can simply include that normal CSS file in your main index.html file.
-*/
-//props
-// background image
-// header image
-// music
-// comment section
-// avatars of toons here
+// Create a generalized version with
+// background
+// Avatars
+// description/name
+// card color
+// Video/iframe url
+
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);

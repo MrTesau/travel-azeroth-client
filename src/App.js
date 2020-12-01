@@ -42,6 +42,7 @@ const App = () => {
         // paddingTop: "1rem",
       }}
     >
+      {/* This is going into a Map Component */}
       <div>
         <MapInteractionCSS showControls={true} minScale={0.7} maxScale={10}>
           <div
@@ -108,6 +109,7 @@ const App = () => {
           </div>
         </MapInteractionCSS>
       </div>
+      {/* ^ ^ This is going into a Map Component */}
     </div>
   );
 };
