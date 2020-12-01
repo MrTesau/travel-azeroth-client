@@ -56,12 +56,12 @@ export default function SimpleModal(props) {
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 450,
+      maxWidth: 370,
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 700,
+      width: 750,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -106,6 +106,7 @@ export default function SimpleModal(props) {
     setOpen(false);
   };
 
+  // Tab panel for Travel log/comments
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Card className={classes.root}>
@@ -120,7 +121,7 @@ export default function SimpleModal(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {`The City of ${props.city}`}
+              {props.notCity ? `${props.city}` : `The City of ${props.city}`}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.cityDescription}
@@ -144,7 +145,7 @@ export default function SimpleModal(props) {
         </CardActions>
       </Card>
       <img
-        style={{ maxWidth: "30%", maxHeight: "45%" }}
+        style={{ maxWidth: "30%", maxHeight: "45%", paddingLeft: "25px" }}
         src={props.residentImage}
         alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
       ></img>

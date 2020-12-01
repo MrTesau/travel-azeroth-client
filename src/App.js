@@ -18,12 +18,16 @@ import orc from "./Orgrimmar/orc.png";
 import city from "./Orgrimmar/gates.gif";
 // Thunderbluff Resources
 import tbSounds from "./tb/thebluff.mp3";
-import tauren from "./tb/tauren.png";
+import tauren from "./tb/t2.png";
 import tbbg from "./tb/tbbg.jpg";
 import tb from "./tb/tbluff.gif";
 // battle imports
 import battleSound from "./wrathgate/wrath.mp3";
-
+// Ashenvale
+import forestbg from "./ashenvale/magic2.jpg";
+import forest from "./ashenvale/forestgif.gif";
+import nelf from "./ashenvale/nelf.png";
+import magicForest from "./ashenvale/magic.mp3";
 const App = () => {
   return (
     <div
@@ -73,6 +77,18 @@ const App = () => {
                 }
                 residentImage={tauren}
                 cityImage={tb}
+              />
+            </div>
+            <div style={{ position: "absolute", top: "23rem", left: "28rem" }}>
+              <SimpleModal
+                notCity={true}
+                city={"Ashenvale Forest"}
+                bg={forestbg}
+                citySounds={magicForest}
+                cardColor={"#acccfb"}
+                cityDescription={" My all time favorite location in Azeroth"}
+                residentImage={nelf}
+                cityImage={forest}
               />
             </div>
             <div style={{ position: "absolute", top: "8rem", left: "53rem" }}>
