@@ -14,14 +14,14 @@ import Typography from "@material-ui/core/Typography";
 import PersonItem from "./orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 
-// thumbnails
-import wooggy from "./Orgrimmar/woogy.gif";
-import diablo from "./Orgrimmar/diablo.gif";
-
-// Modal bg
-// map marker city
+// Icons
 import { mdiMapMarker } from "@mdi/js";
 import Icon from "@mdi/react";
+import { mdiCommentOutline } from "@mdi/js";
+import { mdiArrowLeftBold } from "@mdi/js";
+import { mdiHome } from "@mdi/js";
+
+import LogEntryForm from "./LogEntryForm.js";
 
 /*
 function rand() {
@@ -54,21 +54,23 @@ export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [displayComments, setDisplayComments] = React.useState(false);
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 370,
+      maxWidth: 450,
+      // minHeight: "90% !important",
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 750,
+      width: 900,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: theme.spacing(2, 4, 3),
+      padding: theme.spacing(1, 2, 1),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -76,7 +78,7 @@ export default function SimpleModal(props) {
     },
     divider: {
       backgroundColor: "#d9e2ee",
-      margin: "0 20px",
+      margin: "10px 10px",
     },
     text: {
       fontFamily: "Barlow, san-serif",
@@ -110,44 +112,126 @@ export default function SimpleModal(props) {
   // Tab panel for Travel log/comments
   const body = (
     <div style={modalStyle} className={classes.paper}>
+      <img
+        style={{ width: "25%", height: "40%", paddingRight: "20px" }}
+        src={props.residentImage1}
+        alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
+      ></img>
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            height="270"
-            image={props.cityImage}
-            title="City"
-            style={{ background: props.cardColor }}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.notCity ? `${props.city}` : `The City of ${props.city}`}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.cityDescription}
-            </Typography>
-            <PersonItem
-              name={"Woogy"}
-              travelDescription={"Favourite Hangout"}
-              src={wooggy}
+          {!displayComments ? (
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="230"
+              image={props.cityImage}
+              title="City"
+              style={{ background: props.cardColor }}
             />
-            <Divider variant={"middle"} className={classes.divider} />
-            <PersonItem
-              name={"Diablo Spawn"}
-              travelDescription={"City of Birth"}
-              src={diablo}
-            />
-            <Divider variant={"middle"} className={classes.divider} />
+          ) : (
+            ""
+          )}
+          <CardContent style={{ background: "#fff1e0 " }}>
+            {!displayComments ? (
+              <>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {props.notCity
+                    ? `${props.city}`
+                    : `The City of ${props.city}`}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {props.cityDescription}
+                </Typography>
+                <Divider variant={"top"} className={classes.divider} />
+
+                <PersonItem
+                  name={props.avatarName}
+                  travelDescription={props.avatarDescription}
+                  src={props.avatarImg}
+                />
+                <Divider variant={"middle"} className={classes.divider} />
+                <PersonItem
+                  name={props.avatarName2}
+                  travelDescription={props.avatarDescription2}
+                  src={props.avatarImg2}
+                />
+
+                <Divider variant={"bottom"} className={classes.divider} />
+              </>
+            ) : (
+              <>
+                <Typography gutterBottom variant="subtitle2" component="h5">
+                  Been to {props.city}? Or Just enjoying the journey? Leave a
+                  comment!
+                </Typography>
+                <Divider variant={"top"} className={classes.divider} />
+                <LogEntryForm />
+                <Divider variant={"bottom"} className={classes.divider} />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+              </>
+            )}
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button onClick={() => handleClose()}>Continue the Journey</Button>
+          <Button
+            outlined
+            onClick={() => {
+              setDisplayComments(false);
+              handleClose();
+            }}
+          >
+            <Icon
+              path={mdiArrowLeftBold}
+              title="Orgrimmar"
+              size={1}
+              color={"black"}
+            />{" "}
+            <span>&nbsp; Contine the Journey </span>
+          </Button>
+          <Button outlined onClick={() => setDisplayComments(!displayComments)}>
+            {displayComments ? (
+              <>
+                <Icon
+                  path={mdiHome}
+                  title="Orgrimmar"
+                  size={1}
+                  color={"black"}
+                />
+                <span>&nbsp; {`Back to ${props.city}`} </span>
+              </>
+            ) : (
+              <>
+                <Icon
+                  path={mdiCommentOutline}
+                  title="Orgrimmar"
+                  size={1}
+                  color={"black"}
+                />
+                <span>&nbsp; Comment </span>
+              </>
+            )}
+          </Button>
         </CardActions>
       </Card>
+
       <img
-        style={{ maxWidth: "30%", maxHeight: "45%", paddingLeft: "25px" }}
-        src={props.residentImage}
+        style={{ maxWidth: "25%", maxHeight: "40%", paddingLeft: "20px" }}
+        src={props.residentImage2}
         alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
       ></img>
     </div>
@@ -156,7 +240,12 @@ export default function SimpleModal(props) {
   return (
     <div>
       <div onClick={handleOpen}>
-        <Icon path={mdiMapMarker} title="Orgrimmar" size={1} color="red" />
+        <Icon
+          path={mdiMapMarker}
+          title="Orgrimmar"
+          size={1}
+          color={props.faction === "Horde" ? "red" : "blue"}
+        />
       </div>
       <Modal
         open={open}

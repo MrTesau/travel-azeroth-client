@@ -12,13 +12,15 @@ import SimpleModal from "./location_popup.js";
 import BattleModal from "./battleModal.js";
 import gate from "./wrathgate/wrathgate.jpg";
 // orgimmar resources
-import example from "./Orgrimmar/durotar.jpg";
+import durotarArt from "./Orgrimmar/durotar.jpg";
 import orgSounds from "./Orgrimmar/org.mp3";
-import orc from "./Orgrimmar/orc.png";
+import orc2 from "./Orgrimmar/orc.png";
+import orc1 from "./Orgrimmar/orc3.png";
 import city from "./Orgrimmar/gates.gif";
 // Thunderbluff Resources
 import tbSounds from "./tb/thebluff.mp3";
-import tauren from "./tb/t2.png";
+import tauren1 from "./tb/t2.png";
+import tauren2 from "./tb/tauren.png";
 import tbbg from "./tb/tbbg.jpg";
 import tb from "./tb/tbluff.gif";
 // battle imports
@@ -27,8 +29,19 @@ import battleSound from "./wrathgate/wrath.mp3";
 import forestbg from "./ashenvale/magic2.jpg";
 //import forest from "./ashenvale/forestgif.gif";
 import forest from "./ashenvale/magicAlt.jpg";
-import nelf from "./ashenvale/nelf.png";
+import nelf1 from "./ashenvale/n2.png";
+import nelf2 from "./ashenvale/nelf.png";
 import magicForest from "./ashenvale/magic.mp3";
+// Stormmwind
+import stormwindGates from "./stormwind/gates2.gif";
+import stormwindBg from "./stormwind/stormwindBg.jpg";
+import human from "./stormwind/human.gif";
+import banner from "./stormwind/banner.png";
+import entrance from "./stormwind/entrance.mp3";
+// Travel Avatars
+// thumbnails
+import wooggy from "./Orgrimmar/woogy.gif";
+import diablo from "./Orgrimmar/diablo.gif";
 
 const App = () => {
   return (
@@ -39,76 +52,130 @@ const App = () => {
           "url(https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
         backgroundSize: "cover",
         height: "105vh",
-        // paddingTop: "1rem",
+        //paddingTop: "50rem",
       }}
     >
       {/* This is going into a Map Component */}
-      <div>
-        <MapInteractionCSS showControls={true} minScale={0.7} maxScale={10}>
-          <div
-            style={{
-              backgroundImage: `url(${currentBG})`,
-              backgroundBlendMode: "multiply",
-              backgroundSize: "75% 100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              height: "50rem",
-              width: "105rem",
-            }}
-          >
-            <div style={{ position: "absolute", top: "24rem", left: "34rem" }}>
-              <SimpleModal
-                city={"Orgrimmar"}
-                bg={example}
-                citySounds={orgSounds}
-                cardColor={"#FFD6AE"}
-                cityDescription={
-                  " Orgimmar, The savage home of the orcs. The first major city I visited in Azeroth and one of my favorites."
-                }
-                residentImage={orc}
-                cityImage={city}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "29rem", left: "26rem" }}>
-              <SimpleModal
-                city={"Thunder Bluff"}
-                bg={tbbg}
-                citySounds={tbSounds}
-                cardColor={"#ccffb3"}
-                cityDescription={
-                  " Thunder Bluff. High above the serene plaines of Mulgore lies this beautiful city. My all time favorite location in Azeroth"
-                }
-                residentImage={tauren}
-                cityImage={tb}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "23rem", left: "28rem" }}>
-              <SimpleModal
-                notCity={true}
-                city={"Ashenvale Forest"}
-                bg={forestbg}
-                citySounds={magicForest}
-                cardColor={"#acccfb"}
-                cityDescription={" My all time favorite location in Azeroth"}
-                residentImage={nelf}
-                cityImage={forest}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "8rem", left: "53rem" }}>
-              <BattleModal
-                city={"Battle"}
-                bg={gate}
-                cardColor={"#b0bec5"}
-                cityDescription={
-                  "The Infamous battle of the Wrathgate. Rest in Peace Highlord Bolvar and Saurfang the Younger"
-                }
-                cityImage={tb}
-                citySounds={battleSound}
-              />
-            </div>
+
+      <MapInteractionCSS showControls={false} minScale={0.7} maxScale={10}>
+        <div
+          style={{
+            backgroundImage: `url(${currentBG})`,
+            backgroundBlendMode: "multiply",
+            backgroundSize: "75% 100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            height: "50rem",
+            width: "105rem",
+          }}
+        >
+          <div style={{ position: "absolute", top: "24rem", left: "34rem" }}>
+            <SimpleModal
+              //Avatar Props
+              avatarName={"Wooggy"}
+              avatarDescription={"Favourite Hangout"}
+              avatarImg={wooggy}
+              avatarName2={"Diablo Spawn"}
+              avatarDescription2={"City of Birth"}
+              avatarImg2={diablo}
+              // Faction and city
+              faction={"Horde"}
+              city={"Orgrimmar"}
+              bg={durotarArt}
+              citySounds={orgSounds}
+              cardColor={"#FFD6AE"}
+              cityDescription={
+                " Orgimmar, The savage home of the orcs. The first major city I visited in Azeroth and one of my favorites."
+              }
+              // Images
+              residentImage1={orc1}
+              residentImage2={orc2}
+              cityImage={city}
+            />
           </div>
-        </MapInteractionCSS>
-      </div>
+          <div style={{ position: "absolute", top: "29rem", left: "26rem" }}>
+            <SimpleModal
+              //Avatar Props
+              avatarName={"Wooggy"}
+              avatarDescription={"City of Birth"}
+              avatarImg={wooggy}
+              avatarName2={"Diablo Spawn"}
+              avatarDescription2={"Refuge from relentless Barrens Chat"}
+              avatarImg2={diablo}
+              // Faction / city
+              faction={"Horde"}
+              city={"Thunder Bluff"}
+              bg={tbbg}
+              citySounds={tbSounds}
+              cardColor={"#ccffb3"}
+              cityDescription={
+                "Thunder Bluff. High above the serene plaines of Mulgore lies this beautiful city. My all time favorite location in Azeroth"
+              }
+              // Images
+              residentImage1={tauren1}
+              residentImage2={tauren2}
+              cityImage={tb}
+            />
+          </div>
+          <div style={{ position: "absolute", top: "23rem", left: "28rem" }}>
+            <SimpleModal
+              //Avatar Props
+              avatarName={"Wooggy"}
+              avatarDescription={"City of Birth"}
+              avatarImg={wooggy}
+              avatarName2={"Diablo Spawn"}
+              avatarDescription2={"Refuge from relentless Barrens Chat"}
+              avatarImg2={diablo}
+              notCity={true}
+              city={"Ashenvale Forest"}
+              bg={forestbg}
+              citySounds={magicForest}
+              cardColor={"#acccfb"}
+              cityDescription={
+                "The magical forest of Ashenvale. Words cannot describe the wonder of entering the deep groves for the first time. A dangerous place for recent Horde Barrens graduates."
+              }
+              residentImage1={nelf1}
+              residentImage2={nelf2}
+              cityImage={forest}
+            />
+          </div>
+          <div style={{ position: "absolute", top: "36rem", left: "73rem" }}>
+            <SimpleModal
+              //Avatar Props
+              avatarName={"Wooggy"}
+              avatarDescription={"City of Birth"}
+              avatarImg={wooggy}
+              avatarName2={"Diablo Spawn"}
+              avatarDescription2={"Refuge from relentless Barrens Chat"}
+              avatarImg2={diablo}
+              notCity={false}
+              city={"Stormwind"}
+              bg={stormwindBg}
+              citySounds={entrance}
+              cardColor={"#324873"}
+              cityDescription={
+                "The capital city of the Alliance. A Majestic city seated in the foothills above GoldShire. Deep feelings of awe greet you as you enter the gates."
+              }
+              residentImage1={human}
+              residentImage2={banner}
+              cityImage={stormwindGates}
+            />
+          </div>
+          <div style={{ position: "absolute", top: "8rem", left: "53rem" }}>
+            <BattleModal
+              city={"Battle Of the Wrathgate"}
+              bg={gate}
+              cardColor={"#FFE4C4"}
+              cityDescription={
+                "The Infamous battle of the Wrathgate. Rest in Peace Highlord Bolvar and Saurfang the Younger"
+              }
+              cityImage={tb}
+              citySounds={battleSound}
+            />
+          </div>
+        </div>
+      </MapInteractionCSS>
+
       {/* ^ ^ This is going into a Map Component */}
     </div>
   );

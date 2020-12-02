@@ -40,7 +40,7 @@ const PersonItem = ({ src, name, travelDescription }) => {
   const avatarStyles = useDynamicAvatarStyles({ size: 56 });
   const styles = usePersonStyles();
   return (
-    <Row gap={2} p={0.5}>
+    <Row gap={2} p={0.1}>
       <Item>
         <Avatar classes={avatarStyles} src={src} />
       </Item>

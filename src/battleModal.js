@@ -52,12 +52,12 @@ export default function SimpleModal(props) {
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 450,
+      maxWidth: 420,
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 700,
+      width: 650,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -109,21 +109,24 @@ export default function SimpleModal(props) {
         <CardActionArea>
           <CardMedia>
             <iframe
-              width="450"
-              height="315"
+              width="420"
+              height="280"
               src="https://www.youtube.com/embed/LwngFEIg8Kw"
-              frameborder="0"
+              frameborder="none"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
           </CardMedia>
-          <CardContent>
+          <CardContent style={{ background: "#F8F9F9" }}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {`${props.city}`}
+            </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.cityDescription}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions style={{ background: props.cardColor }}>
           <Button onClick={() => handleClose()}>Continue the Journey</Button>
         </CardActions>
       </Card>
