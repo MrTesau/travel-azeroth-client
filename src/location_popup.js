@@ -207,7 +207,7 @@ export default function SimpleModal(props) {
               size={1}
               color={"black"}
             />{" "}
-            <span>&nbsp; Contine the Journey </span>
+            <span>&nbsp; Continue the Journey </span>
           </Button>
           <Button outlined onClick={() => setDisplayComments(!displayComments)}>
             {displayComments ? (

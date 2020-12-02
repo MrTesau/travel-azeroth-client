@@ -117,7 +117,7 @@ const App = () => {
           }}
           defaultScale={1}
           defaultTranslation={{ x: 0, y: 0 }}
-          minScale={1}
+          minScale={0.95}
           maxScale={5}
           showControls
         >
@@ -136,6 +136,11 @@ const App = () => {
               //margin: "-100px",
             }}
           >
+            <div style={{ position: "absolute", left: 300, top: 30 }}>
+              <SimpleModal
+              //..intro Modal and instructions, tech stack etc
+              />
+            </div>
             {cities.map((location) => {
               return (
                 <div
@@ -168,146 +173,7 @@ const App = () => {
                 </div>
               );
             })}
-            <div style={{ position: "absolute", left: 300, top: 30 }}>
-              <SimpleModal
-                // Intro/Helper Modal
-                avatarName={"Wooggy"}
-                avatarDescription={"Favourite Hangout"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"City of Birth"}
-                avatarImg2={diablo}
-                // Faction and city
-                faction={"Horde"}
-                city={"Orgrimmar"}
-                bg={durotarArt}
-                citySounds={orgSounds}
-                cardColor={"#FFD6AE"}
-                cityDescription={
-                  " Orgimmar, The savage home of the orcs. The first major city I visited in Azeroth and one of my favorites."
-                }
-                // Images
-                residentImage1={orc1}
-                residentImage2={orc2}
-                cityImage={city}
-              />
-            </div>
-            <div
-              style={{ position: "absolute", top: "24rem", left: "34rem" }}
-            ></div>
-            <div style={{ position: "absolute", top: "29rem", left: "26rem" }}>
-              <SimpleModal
-                //Avatar Props
-                avatarName={"Wooggy"}
-                avatarDescription={"City of Birth"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"Refuge from relentless Barrens Chat"}
-                avatarImg2={diablo}
-                // Faction / city
-                faction={"Horde"}
-                city={"Thunder Bluff"}
-                bg={tbbg}
-                citySounds={tbSounds}
-                cardColor={"#ccffb3"}
-                cityDescription={
-                  "Thunder Bluff. High above the serene plaines of Mulgore lies this beautiful city. My all time favorite location in Azeroth"
-                }
-                // Images
-                residentImage1={tauren1}
-                residentImage2={tauren2}
-                cityImage={tb}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "23rem", left: "28rem" }}>
-              <SimpleModal
-                //Avatar Props
-                avatarName={"Wooggy"}
-                avatarDescription={"City of Birth"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"Refuge from relentless Barrens Chat"}
-                avatarImg2={diablo}
-                notCity={true}
-                city={"Ashenvale Forest"}
-                bg={forestbg}
-                citySounds={magicForest}
-                cardColor={"#acccfb"}
-                cityDescription={
-                  "The magical forest of Ashenvale. Words cannot describe the wonder of entering the deep groves for the first time. A dangerous place for recent Horde Barrens graduates."
-                }
-                residentImage1={nelf1}
-                residentImage2={nelf2}
-                cityImage={forest}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "36rem", left: "73rem" }}>
-              <SimpleModal
-                //Avatar Props
-                avatarName={"Wooggy"}
-                avatarDescription={"City of Birth"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"Refuge from relentless Barrens Chat"}
-                avatarImg2={diablo}
-                notCity={false}
-                city={"Stormwind"}
-                bg={stormwindBg}
-                citySounds={entrance}
-                cardColor={"#324873"}
-                cityDescription={
-                  "The capital city of the Alliance. A Majestic city seated in the foothills above GoldShire. Deep feelings of awe greet you as you enter the gates."
-                }
-                residentImage1={human}
-                residentImage2={banner}
-                cityImage={stormwindGates}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "29rem", left: "75rem" }}>
-              <SimpleModal
-                //Avatar Props
-                avatarName={"Wooggy"}
-                avatarDescription={"City of Birth"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"Refuge from relentless Barrens Chat"}
-                avatarImg2={diablo}
-                notCity={false}
-                city={"Ironforge"}
-                bg={ironforgeBg}
-                cardColor={"#DEB887"}
-                cityDescription={
-                  " The great capital of the Dwarves.Located deep beneath a mountain it was very visually appealing. During the Burning Crusade most high level players would loiter here to duel outside or in one of the glitched areas in the city."
-                }
-                residentImage1={dwarf1}
-                residentImage2={dwarf2}
-                cityImage={ironforgeInside}
-                citySounds={ironEntrance}
-              />
-            </div>
-            <div style={{ position: "absolute", top: "19rem", left: "73rem" }}>
-              <SimpleModal
-                //Avatar Props
-                avatarName={"Wooggy"}
-                avatarDescription={"City of Birth"}
-                avatarImg={wooggy}
-                avatarName2={"Diablo Spawn"}
-                avatarDescription2={"Refuge from relentless Barrens Chat"}
-                avatarImg2={diablo}
-                faction={"Horde"}
-                notCity={true}
-                city={"The Undercity"}
-                bg={undercityBg}
-                cardColor={"#2F4F4F"}
-                cityDescription={
-                  "Deep under the ruins of Lordaeron lies the forsaken capital Undercity. Bizarre experiments and undead creatures found here bring less terror than getting stuck in a small tunnel as a Tauren."
-                }
-                residentImage2={forsaken}
-                residentImage1={forsaken2}
-                cityImage={undercard}
-                citySounds={undercityEntrance}
-              />
-            </div>
+
             <div style={{ position: "absolute", top: "10rem", left: "21rem" }}>
               <SimpleModal
                 //Avatar Props
