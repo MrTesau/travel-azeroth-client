@@ -43,13 +43,20 @@ You can just add class/ID to your Modal and/or its child DOM, then use a normal 
 with @media declaration, and style your component responsively as you wish!
 You can simply include that normal CSS file in your main index.html file.
 */
-//props
+
+// Object with Modal props:
 // background image
-// header image
+// card header image
 // music
-// comment section
-// avatars of toons here
-// Accepts props of toons to use in avatars
+// residentimg1
+//residentimg2
+// comment section -> internal API request, filter other card responses => display comments
+// avatars of toons (name,image,description of visit)
+// location on page (wrapper div) {string : absolute, top: num, left: num}
+// notCity Boolean
+// cityName
+// card color -> hexstring
+// faction "Horde" : alliance
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -70,7 +77,7 @@ export default function SimpleModal(props) {
       backgroundSize: "cover",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: theme.spacing(1, 2, 1),
+      padding: theme.spacing(1, 1, 1),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -126,7 +133,6 @@ export default function SimpleModal(props) {
               height="230"
               image={props.cityImage}
               title="City"
-              style={{ background: props.cardColor }}
             />
           ) : (
             ""
@@ -181,7 +187,7 @@ export default function SimpleModal(props) {
                   Been to {props.city}? Or Just enjoying the journey? Leave a
                   comment!
                 </Typography>
-                <Divider variant={"top"} className={classes.divider} />
+
                 <LogEntryForm />
               </>
             )}
