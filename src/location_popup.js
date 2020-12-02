@@ -58,7 +58,7 @@ export default function SimpleModal(props) {
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 450,
+      maxWidth: 440,
       // minHeight: "90% !important",
       background: props.cardColor,
     },
@@ -160,29 +160,29 @@ export default function SimpleModal(props) {
               </>
             ) : (
               <>
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <PersonItem
+                  name={"Anonymous"}
+                  travelDescription={"Great City 10/10"}
+                />
+                <Divider variant={"bottom"} className={classes.divider} />
                 <Typography gutterBottom variant="subtitle2" component="h5">
                   Been to {props.city}? Or Just enjoying the journey? Leave a
                   comment!
                 </Typography>
                 <Divider variant={"top"} className={classes.divider} />
                 <LogEntryForm />
-                <Divider variant={"bottom"} className={classes.divider} />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
               </>
             )}
           </CardContent>
@@ -230,7 +230,7 @@ export default function SimpleModal(props) {
       </Card>
 
       <img
-        style={{ maxWidth: "25%", maxHeight: "40%", paddingLeft: "20px" }}
+        style={{ width: "25%", height: "40%", paddingLeft: "20px" }}
         src={props.residentImage2}
         alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
       ></img>
