@@ -247,11 +247,16 @@ export default function SimpleModal(props) {
   return (
     <div>
       <div onClick={handleOpen}>
-        <Button variant="contained" size="small" color="primary">
+        <Button
+          variant="default"
+          variant="contained"
+          size="small"
+          color="primary"
+        >
           <Icon
             path={mdiHome}
             title={props.city}
-            size={1}
+            size={0.8}
             color={props.faction === "Horde" ? "red" : "white"}
           />
         </Button>

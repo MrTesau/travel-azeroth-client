@@ -7,17 +7,11 @@ import currentBG from "./azeroth1.jpg";
 import "./App.css";
 // City Modal
 import SimpleModal from "./location_popup.js";
-// Make Modal for battles eg wrathgate
-// different layout, iframe of yt Wrathgate battle perhaps
 import BattleModal from "./battleModal.js";
-
 import HomeModal from "./homeModal.js";
-
-// battle imports
-
+// Location data imports
 import cities from "./locations.js";
 import battlesArr from "./battles.js";
-
 const wood_desk =
   "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
 
@@ -71,7 +65,7 @@ const App = () => {
             style={{
               backgroundImage: `url(${currentBG})`,
               backgroundBlendMode: "multiply",
-              backgroundSize: "100% 125%",
+              backgroundSize: "100% 121%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               height: "60rem",
@@ -95,6 +89,7 @@ const App = () => {
                     position: "absolute",
                     left: `${location.left_pos}rem`,
                     top: `${location.top_pos}rem`,
+                    zIndex: 99,
                   }}
                 >
                   <SimpleModal
