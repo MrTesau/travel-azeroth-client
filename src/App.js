@@ -11,6 +11,8 @@ import SimpleModal from "./location_popup.js";
 // different layout, iframe of yt Wrathgate battle perhaps
 import BattleModal from "./battleModal.js";
 
+import HomeModal from "./homeModal.js";
+
 // battle imports
 
 import cities from "./locations.js";
@@ -46,6 +48,11 @@ const App = () => {
         backgroundSize: "cover",
       }}
     >
+      <div style={{ position: "fixed", left: 20, top: 20, zIndex: 99 }}>
+        <HomeModal
+        //..intro Modal and instructions, tech stack etc
+        />
+      </div>
       <div style={style}>
         <MapInteractionCSS
           scale={scale}
@@ -80,11 +87,7 @@ const App = () => {
             Add Comments to Battles Modal
             Server Comments handling
             intro Card */}
-            <div style={{ position: "absolute", left: 300, top: 30 }}>
-              <SimpleModal
-              //..intro Modal and instructions, tech stack etc
-              />
-            </div>
+
             {cities.map((location) => {
               return (
                 <div
