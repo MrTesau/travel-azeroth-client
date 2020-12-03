@@ -248,8 +248,8 @@ export default function SimpleModal(props) {
       <div onClick={handleOpen}>
         <Icon
           path={mdiMapMarker}
-          title="Orgrimmar"
-          size={1}
+          title={props.city}
+          size={1.5}
           color={props.faction === "Horde" ? "red" : "blue"}
         />
       </div>

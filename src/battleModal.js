@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button } from "@material-ui/core";
-
 //import card
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -20,6 +19,7 @@ import diablo from "./Orgrimmar/diablo.gif";
 
 // Modal bg
 // map marker Battle
+import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiAlertCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 
@@ -71,7 +71,7 @@ export default function SimpleModal(props) {
     },
     divider: {
       backgroundColor: "#d9e2ee",
-      margin: "0 20px",
+      margin: "10px 10px",
     },
     text: {
       fontFamily: "Barlow, san-serif",
@@ -92,7 +92,7 @@ export default function SimpleModal(props) {
   }));
   const classes = useStyles();
   const handleOpen = () => {
-    let audio = new Audio(props.citySounds);
+    let audio = new Audio(props.battleSounds);
     //audio.volume = 0.05;
     audio.play();
     setOpen(true);
@@ -105,29 +105,53 @@ export default function SimpleModal(props) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Card className={classes.root}>
-        {" "}
         <CardActionArea>
-          <CardMedia>
-            <iframe
-              width="420"
-              height="280"
-              src="https://www.youtube.com/embed/LwngFEIg8Kw"
-              frameborder="none"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </CardMedia>
+          {props.cardVid ? (
+            <CardMedia>
+              <iframe
+                width="420"
+                height="280"
+                src={props.cardVid}
+                frameborder="none"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </CardMedia>
+          ) : (
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="230"
+              image={props.battleImage}
+              title="City"
+            />
+          )}
           <CardContent style={{ background: "#F8F9F9" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              {`${props.city}`}
+              {`${props.battleName}`}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.cityDescription}
+              {props.battleDescription}
             </Typography>
+            <Divider variant={"top"} className={classes.divider} />
+            <PersonItem
+              name={props.avatarName}
+              travelDescription={props.avatarDescription}
+              src={props.avatarImg}
+            />
           </CardContent>
         </CardActionArea>
         <CardActions style={{ background: props.cardColor }}>
-          <Button onClick={() => handleClose()}>Continue the Journey</Button>
+          <Button onClick={() => handleClose()}>
+            {" "}
+            <Icon
+              path={mdiArrowLeftBold}
+              title="Orgrimmar"
+              size={1}
+              color={"black"}
+            />{" "}
+            <span>&nbsp; Continue the Journey </span>
+          </Button>
         </CardActions>
       </Card>
     </div>
@@ -136,7 +160,7 @@ export default function SimpleModal(props) {
   return (
     <div>
       <div onClick={handleOpen}>
-        <Icon path={mdiAlertCircle} title="Orgrimmar" size={0.8} color="red" />
+        <Icon path={mdiAlertCircle} title="Orgrimmar" size={1.5} color="red" />
       </div>
       <Modal
         open={open}

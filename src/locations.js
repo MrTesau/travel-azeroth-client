@@ -9,8 +9,6 @@ import tauren1 from "./tb/t2.png";
 import tauren2 from "./tb/tauren.png";
 import tbbg from "./tb/tbbg.jpg";
 import tb from "./tb/tbluff.gif";
-// battle imports
-import battleSound from "./wrathgate/wrath.mp3";
 // Ashenvale
 import forestbg from "./ashenvale/magic2.jpg";
 //import forest from "./ashenvale/forestgif.gif";
@@ -49,6 +47,22 @@ import diablo from "./Orgrimmar/diablo.gif";
 import starindas from "./Orgrimmar/starindas.png";
 import rimeria from "./Orgrimmar/rimeria.png";
 
+// crossraods
+import barrensBg from "./crossroads/barrensbg.png";
+import crosscard from "./crossroads/crossraodsCard.jpg";
+import troll from "./crossroads/troll.gif";
+import quill from "./crossroads/quill.png";
+import bones from "./crossroads/bones.mp3";
+// Ratchet
+import ratbgBg from "./ratchet/ratchetbg.jpg";
+import ratcard from "./ratchet/ratchetCard.jpg";
+import pirate from "./ratchet/pirate.png";
+import pirate2 from "./ratchet/pirate2.png";
+import stv1 from "./ratchet/stv1.mp3";
+//STV
+import stvbg from "./stv/stvbg.jpg";
+import stvcard from "./stv/stvcard.jpg";
+
 // Object with Modal props:
 // background image
 // card header image
@@ -64,6 +78,74 @@ import rimeria from "./Orgrimmar/rimeria.png";
 // faction "Horde" : alliance
 
 const locations_arr = [
+  // Stranglethorn Vale/Booty BAy
+  // Ratchet
+  {
+    city_name: "Stranglethorn Vale/Booty Bay",
+    description:
+      "The mid-high level jungle questing area. Strangely accessible by low levels via Ratchet. The Goblin city 'Booty Bay' in the South had a unique faction neutral auction house.",
+    not_city: true,
+    background_img: stvbg,
+    card_header_img: stvcard,
+    card_color: "#ccffb3",
+    city_music: stv1,
+    resident_img_1: pirate,
+    resident_img_2: pirate2,
+    avatar_img_1: wooggy,
+    avatar_img_2: starindas,
+    avatar_name_1: "Wooggy",
+    avatar_name_2: "Starindas",
+    avatar_description_1: "Fought in the Gurubashi arena.",
+    avatar_description_2: "Sent items via auction house to Horde toons.",
+    top_pos: 54,
+    left_pos: 84,
+    faction: "Horde",
+  },
+  {
+    city_name: "Ratchet",
+    description:
+      "Near the Crossroads lies the Goblin town of Ratchet. A special place as low level heroes may jump the ship here to Booty Bay in curiosity. This action will rarely end well.",
+    not_city: true,
+    background_img: ratbgBg,
+    card_header_img: ratcard,
+    card_color: "#FFD6AE",
+    city_music: stv1,
+    resident_img_1: pirate,
+    resident_img_2: pirate2,
+    avatar_img_1: wooggy,
+    avatar_img_2: diablo,
+    avatar_name_1: "Wooggy",
+    avatar_name_2: "Diablo Spawn",
+    avatar_description_1: "Took the ship to Booty Bay often.",
+    avatar_description_2: "First settlement spotted from starting zone.",
+    top_pos: 36,
+    left_pos: 29,
+    faction: "Horde",
+  },
+
+  // daCrossroads
+  {
+    city_name: "The Crossroads",
+    description:
+      "In the center of the Barrens lies the Crossroads. A hub for intermediate Horde heroes and a common point of attack for high level Alliance enemies.",
+    not_city: true,
+    background_img: barrensBg,
+    card_header_img: crosscard,
+    card_color: "#FFD6AE",
+    city_music: bones,
+    resident_img_1: troll,
+    resident_img_2: quill,
+    avatar_img_1: wooggy,
+    avatar_img_2: diablo,
+    avatar_name_1: "Wooggy",
+    avatar_name_2: "Diablo Spawn",
+    avatar_description_1: "Location for finding tanking jobs.",
+    avatar_description_2: "Major quest hub. Battled local Quillboar",
+    top_pos: 34,
+    left_pos: 25,
+    faction: "Horde",
+  },
+
   // Org
   {
     city_name: "Orgrimmar",
@@ -195,6 +277,28 @@ const locations_arr = [
     top_pos: 21,
     left_pos: 84,
     faction: "Horde",
+  },
+  // Teldrassil
+  {
+    city_name: " Teldrassil",
+    description:
+      "Teldrassil is an island and great tree off Kalimdor's northern coast.It was the home of the night elves and a stunning testament to the power of their magic.",
+    not_city: true,
+    background_img: telbg,
+    card_header_img: telcard,
+    card_color: "#acccfb",
+    city_music: telEntrance,
+    resident_img_1: tel1,
+    resident_img_2: nelf2,
+    avatar_img_1: starindas,
+    avatar_img_2: diablo,
+    avatar_name_1: "Starindas",
+    avatar_name_2: "Diablo",
+    avatar_description_1: "Place of birth. Completed early training.",
+    avatar_description_2: "Once swam here from Darkshore. Drowned.",
+    top_pos: 10,
+    left_pos: 15,
+    faction: "Alliance",
   },
 ];
 export default locations_arr;
