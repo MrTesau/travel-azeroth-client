@@ -24,6 +24,7 @@ const wood_desk =
   
             Mobile responsive -> after Portfolio preview section
             Server Comments handling
+            Play with pan/translate map options for better layout
 
 
 
@@ -56,7 +57,13 @@ const App = () => {
       }}
     >
       <div style={{ position: "fixed", left: 20, top: 20, zIndex: 99 }}>
-        <HomeModal bg={wood_desk} volume={volume} disableScrollLock={true} />
+        <HomeModal
+          bg={wood_desk}
+          volume={volume}
+          disableScrollLock={true}
+          volume={volume}
+          setVolume={setVolume}
+        />
       </div>
       <div style={{ position: "fixed", left: 20, top: 55, zIndex: 99 }}>
         <Button
@@ -99,6 +106,15 @@ const App = () => {
           minScale={0.95}
           maxScale={5}
           showControls
+          /*
+          translationBounds={{
+            xMin: 0,
+            xMax: 1000,
+            yMin: 0,
+            yMax: 1000,
+          }}
+          */
+          //disablePan={true}
         >
           <div
             style={{

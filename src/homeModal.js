@@ -19,9 +19,11 @@ import Divider from "@material-ui/core/Divider";
 import { mdiHome } from "@mdi/js";
 import { mdiMapMarker } from "@mdi/js";
 import Icon from "@mdi/react";
-import { mdiCommentOutline } from "@mdi/js";
+//import { mdiCommentOutline } from "@mdi/js";
 import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiStar } from "@mdi/js";
+import { mdiVolumeOff } from "@mdi/js";
+import { mdiVolumeHigh } from "@mdi/js";
 
 import { mdiAlertCircle } from "@mdi/js";
 import LogEntryForm from "./LogEntryForm.js";
@@ -65,7 +67,7 @@ export default function SimpleModal(props) {
     },
     paper: {
       position: "absolute",
-      width: "50vw",
+      width: "55vw",
       backgroundImage: `url(${paper})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -120,7 +122,7 @@ export default function SimpleModal(props) {
         <CardActionArea>
           <CardContent style={{ background: "#EEEADC" }}>
             <>
-              <Typography align="center" variant="body1" component="h5">
+              <Typography align="center" variant="h5" component="h5">
                 My Journey through Azeroth
               </Typography>
               <Divider variant={"top"} className={classes.divider} />
@@ -205,8 +207,8 @@ export default function SimpleModal(props) {
                 Map-like functionality.
                 <br />
                 <strong>Back End:</strong> Node.js and MongoDb/Mongoose - A
-                basic full stack Application with CRUD (create Read Update
-                Delete) functionality.
+                basic server and database with CRUD (create Read Update Delete)
+                functionality.
               </Typography>
               <Divider variant={"middle"} className={classes.divider} />
               {/*
@@ -223,7 +225,7 @@ export default function SimpleModal(props) {
                 component="p"
                 style={{ fontSize: "8.5px" }}
               >
-                FAIR USE NOTICE: This work is non-profit and serves to provide
+                FAIR USE NOTICE: This work is non-profit provide
                 commentary/educational critique on themes involving the
                 intellectual property of Activision Blizzard. This site may
                 contain copyrighted material the use of which has not been
@@ -231,17 +233,18 @@ export default function SimpleModal(props) {
                 available for commentary and education. It is believed this
                 constitutes a 'fair use' of such copyrighted material provided
                 for in section 107 of the US Copyright Law. In accordance with
-                Title 17 U.S.C. Section 107, this site's material is provided
-                without profit for commentary/research/education.
+                Title 17 U.S.C. Section 107, material is used without profit for
+                commentary/research/education.
                 <br />
                 Info: http://www.law.cornell.edu/uscode/17/107.shtml
                 <br />
                 Any fan made art depicting Blizzard themes/intellectual property
                 displays their identyfying logos/signatures to credit the
-                artist.As this art is under the sole ownership of Activision
-                Blizzard to my knowledge no specific permissions are required.
-                If your art has been featured against your wishes please email
-                mrtthewebd@gmail.com for its immediate removal.
+                artist.As all warcraft intellectual content is under the
+                ownership of Activision Blizzard to my knowledge no specific
+                permissions for these pieces are required. If your art has been
+                featured against your wishes email mrtthewebd@gmail.com for its
+                immediate removal.
               </Typography>
             </>
           </CardContent>
@@ -249,6 +252,8 @@ export default function SimpleModal(props) {
         <CardActions>
           <Button
             outlined
+            variant="contained"
+            color="primary"
             onClick={() => {
               setDisplayComments(false);
               handleClose();
@@ -258,9 +263,35 @@ export default function SimpleModal(props) {
               path={mdiArrowLeftBold}
               title="Orgrimmar"
               size={1}
-              color={"black"}
+              color={"white"}
             />{" "}
             <span>&nbsp; Take me to Azeroth </span>
+          </Button>
+          <Button
+            //variant="default"
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => {
+              props.setVolume(!props.volume);
+              // audio.muted = true;
+            }}
+          >
+            {props.volume ? (
+              <Icon
+                path={mdiVolumeHigh}
+                title="volume"
+                size={0.8}
+                color={"white"}
+              />
+            ) : (
+              <Icon
+                path={mdiVolumeOff}
+                title="volume"
+                size={0.8}
+                color={"white"}
+              />
+            )}
           </Button>
         </CardActions>
       </Card>
@@ -271,7 +302,7 @@ export default function SimpleModal(props) {
     <div>
       <div onClick={handleOpen}>
         <Button
-          variant="default"
+          //variant="default"
           variant="contained"
           size="small"
           color="primary"

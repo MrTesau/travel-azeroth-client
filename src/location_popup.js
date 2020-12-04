@@ -45,19 +45,11 @@ with @media declaration, and style your component responsively as you wish!
 You can simply include that normal CSS file in your main index.html file.
 */
 
-// Object with Modal props:
-// background image
-// card header image
-// music
-// residentimg1
-//residentimg2
-// comment section -> internal API request, filter other card responses => display comments
-// avatars of toons (name,image,description of visit)
-// location on page (wrapper div) {string : absolute, top: num, left: num}
-// notCity Boolean
-// cityName
-// card color -> hexstring
-// faction "Horde" : alliance
+// Comments:
+// Load Modal
+// Request Server
+// filter out comments not related to Modal
+
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -85,7 +77,7 @@ export default function SimpleModal(props) {
       outline: "none",
     },
     divider: {
-      backgroundColor: "#d9e2ee",
+      backgroundColor: "#a8964d",
       margin: "10px 10px",
     },
     text: {
@@ -200,14 +192,16 @@ export default function SimpleModal(props) {
                   comment!
                 </Typography>
 
-                <LogEntryForm />
+                <LogEntryForm
+                //..pass a unique modal identifier to each form
+                />
               </>
             )}
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button
-            outlined
+            variant="contained"
             onClick={() => {
               setDisplayComments(false);
               handleClose();
@@ -221,7 +215,10 @@ export default function SimpleModal(props) {
             />{" "}
             <span>&nbsp; Continue the Journey </span>
           </Button>
-          <Button outlined onClick={() => setDisplayComments(!displayComments)}>
+          <Button
+            variant="contained"
+            onClick={() => setDisplayComments(!displayComments)}
+          >
             {displayComments ? (
               <>
                 <Icon

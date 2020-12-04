@@ -293,7 +293,7 @@ const locations_arr = [
     not_city: true,
     background_img: telbg,
     card_header_img: telcard,
-    card_color: "#acccfb",
+    card_color: "#324873",
     city_music: telEntrance,
     resident_img_1: tel1,
     resident_img_2: nelf2,

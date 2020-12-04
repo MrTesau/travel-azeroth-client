@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// OnSubmit attack a unique ID of modal comment came from
+// pass in a prop.name from each modal
+// onsubmit add name to submit -> submit to server
+// allows filtering from modal
 const LogEntryForm = ({ location, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,8 +26,6 @@ const LogEntryForm = ({ location, onClose }) => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      data.latitude = location.latitude;
-      data.longitude = location.longitude;
       await createLogEntry(data);
       onClose();
     } catch (error) {

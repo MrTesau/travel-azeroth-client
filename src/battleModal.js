@@ -151,7 +151,7 @@ export default function SimpleModal(props) {
             </CardContent>
           </CardActionArea>
           <CardActions style={{ background: props.cardColor }}>
-            <Button onClick={() => handleClose()}>
+            <Button variant="contained" onClick={() => handleClose()}>
               {" "}
               <Icon
                 path={mdiArrowLeftBold}
@@ -162,7 +162,7 @@ export default function SimpleModal(props) {
               <span>&nbsp; Continue the Journey </span>
             </Button>
             <Button
-              outlined
+              variant="contained"
               onClick={() => setDisplayComments(!displayComments)}
             >
               <>
@@ -205,8 +205,8 @@ export default function SimpleModal(props) {
               <LogEntryForm />
             </CardContent>
           </CardActionArea>
-          <CardActions style={{ background: props.cardColor }}>
-            <Button onClick={() => handleClose()}>
+          <CardActions>
+            <Button variant="contained" onClick={() => handleClose()}>
               {" "}
               <Icon
                 path={mdiArrowLeftBold}
@@ -217,7 +217,7 @@ export default function SimpleModal(props) {
               <span>&nbsp; Continue the Journey </span>
             </Button>
             <Button
-              outlined
+              variant="contained"
               onClick={() => setDisplayComments(!displayComments)}
             >
               <>
