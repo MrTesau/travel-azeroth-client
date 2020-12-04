@@ -66,13 +66,13 @@ export default function SimpleModal(props) {
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 500,
+      maxWidth: 510,
       // minHeight: "90% !important",
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 790,
+      width: 890,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",

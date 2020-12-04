@@ -56,7 +56,7 @@ const App = () => {
       }}
     >
       <div style={{ position: "fixed", left: 20, top: 20, zIndex: 99 }}>
-        <HomeModal bg={wood_desk} volume={volume} />
+        <HomeModal bg={wood_desk} volume={volume} disableScrollLock={true} />
       </div>
       <div style={{ position: "fixed", left: 20, top: 55, zIndex: 99 }}>
         <Button

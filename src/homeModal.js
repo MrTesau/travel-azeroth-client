@@ -65,14 +65,14 @@ export default function SimpleModal(props) {
     },
     paper: {
       position: "absolute",
-      width: "35vw",
+      width: "50vw",
       backgroundImage: `url(${paper})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       borderRadius: "15px",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: theme.spacing(2, 1, 2),
+      padding: theme.spacing(1, 0.5, 1),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -124,68 +124,99 @@ export default function SimpleModal(props) {
                 My Journey through Azeroth
               </Typography>
               <Divider variant={"top"} className={classes.divider} />
-              <br />
               <Typography variant="caption" display="block" gutterBottom>
-                Join me as I retrace my journey through azeroth and discuss why
-                I personally resonate with some of the wonderful locations found
+                Join me as I retrace my journey through azeroth and share why I
+                personally resonate with some of the wonderful locations found
                 here.
                 <br />
-                <strong>Background</strong> <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <strong>Background</strong>
+                </div>
                 This massive multiplayer online role playing game held me in its
                 grasp from the ages of 15 to 21. Through great effort I finally
                 left the world of Azeroth for good by the time I attended
                 university. To this day I still love and miss this game.
-                <br />I will be assigning the various marked locations with
+                <br />I assigned the various marked locations with{" "}
                 <Icon
                   path={mdiStar}
                   title="Orgrimmar"
                   size={0.5}
                   color={"red"}
-                />
+                />{" "}
                 icons rating them on my subjective experience and how well they
-                translated the given fantasy culture they portray. Included will
-                also be comments in the style of travel logs from my personal
-                Warcraft characters from who's eyes I experienced the world.
+                translated the given fantasy themes they portray. Included are
+                comments in the style of travel logs from my personal Warcraft
+                characters who's eyes I experienced the world through.
                 <Divider variant={"middle"} className={classes.divider} />
-                <Icon
-                  path={mdiMapMarker}
-                  title={props.city}
-                  size={1}
-                  color={"red"}
-                />{" "}
-                Horde city/location of interest
-                <Icon
-                  path={mdiMapMarker}
-                  title={props.city}
-                  size={1}
-                  color={"blue"}
-                />{" "}
-                Alliance city/location of interest
-                <br />
-                <Icon
-                  path={mdiAlertCircle}
-                  title="Orgrimmar"
-                  size={1}
-                  color="red"
-                />{" "}
-                Battle/important lore locations of interest
-                <br />
-                Mousewheel or control buttons to zoom, click and drag to
-                navigate..Enjoy!
+                <Typography
+                  align="center"
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                >
+                  <Icon
+                    path={mdiMapMarker}
+                    title={props.city}
+                    size={1}
+                    color={"red"}
+                  />{" "}
+                  Horde city/location of interest
+                  <Icon
+                    path={mdiMapMarker}
+                    title={props.city}
+                    size={1}
+                    color={"blue"}
+                  />{" "}
+                  Alliance city/location of interest
+                  <br />
+                  <Icon
+                    path={mdiAlertCircle}
+                    title="Orgrimmar"
+                    size={1}
+                    color="red"
+                  />{" "}
+                  Battle/important lore locations of interest
+                  <br />
+                  Mousewheel or control buttons to zoom, click and drag to
+                  navigate..Enjoy!
+                </Typography>
                 <Divider variant={"middle"} className={classes.divider} />
-                <strong>Technical stuff</strong>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <strong>Technical Stuff</strong>
+                </div>
+                <strong>Front End:</strong> React, css, materialUI. The map
+                functionality was a particular challenge as common libraries
+                such as MapboxGL or Leaflet did not easily allow for
+                custom/fantasy images to substitute real world maps. I finally
+                landed on a solution in the form of MapInteractionCSS, a custom
+                library that allows the transformation of regular elements into
+                Map-like functionality.
                 <br />
-                Front End: React, css, materialUI. The map functionality was a
-                particular challenge as common libraries such as MapboxGL or
-                Leaflet did not easily allow for custom/fantasy images to
-                substitute real world maps. I finally landed on a solution in
-                the form of MapInteractionCSS, a custom library that allows the
-                transformation of regular elements into Map-like functionality.
-                <br />
-                Back End: Node.js and MongoDb/Mongoose - A basic full stack
-                Application with CRUD (create Read Update Delete) functionality.
+                <strong>Back End:</strong> Node.js and MongoDb/Mongoose - A
+                basic full stack Application with CRUD (create Read Update
+                Delete) functionality.
               </Typography>
               <Divider variant={"middle"} className={classes.divider} />
+              {/*
+              FaIr uSe:
+              https://www.google.com/
+              search?q=fair+use+is+any+copying+of+copyrighted+material+done+for+a+limited+and+%E2%80%9C
+              transformative%E2%80%9D+purpose&oq=fair+use+is+any+copying+of+copyrighted
+              +material+done+for+a+limited+and+%E2%80%9C
+              transformative%E2%80%9D+purpose&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8
+              */}
               <Typography
                 gutterBottom
                 variant="subtitle2"
@@ -209,6 +240,8 @@ export default function SimpleModal(props) {
                 displays their identyfying logos/signatures to credit the
                 artist.As this art is under the sole ownership of Activision
                 Blizzard to my knowledge no specific permissions are required.
+                If your art has been featured against your wishes please email
+                mrtthewebd@gmail.com for its immediate removal.
               </Typography>
             </>
           </CardContent>
