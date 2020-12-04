@@ -62,7 +62,6 @@ import stv1 from "./ratchet/stv1.mp3";
 //STV
 import stvbg from "./stv/stvbg.jpg";
 import stvcard from "./stv/stvcard.jpg";
-
 // Object with Modal props:
 // background image
 // card header image
@@ -76,7 +75,6 @@ import stvcard from "./stv/stvcard.jpg";
 // cityName
 // card color -> hexstring
 // faction "Horde" : alliance
-
 const locations_arr = [
   // Stranglethorn Vale/Booty BAy
   // Ratchet
@@ -100,6 +98,7 @@ const locations_arr = [
     top_pos: 54,
     left_pos: 84,
     faction: "Horde",
+    rating: [1, 1, 1],
   },
   {
     city_name: "Ratchet",
@@ -121,6 +120,7 @@ const locations_arr = [
     top_pos: 36,
     left_pos: 29,
     faction: "Horde",
+    rating: [1],
   },
 
   // daCrossroads
@@ -144,6 +144,7 @@ const locations_arr = [
     top_pos: 34,
     left_pos: 25,
     faction: "Horde",
+    rating: [1, 1, 1, 1],
   },
 
   // Org
@@ -167,6 +168,7 @@ const locations_arr = [
     top_pos: 29,
     left_pos: 30,
     faction: "Horde",
+    rating: [1, 1, 1],
   },
   //Thunder Bluff
   {
@@ -189,6 +191,7 @@ const locations_arr = [
     top_pos: 36,
     left_pos: 20,
     faction: "Horde",
+    rating: [1, 1, 1, 1, 1],
   },
   // Ashenvale
   {
@@ -211,6 +214,7 @@ const locations_arr = [
     top_pos: 27,
     left_pos: 25,
     faction: "Alliance",
+    rating: [1, 1, 1],
   },
   // Stormwind
   {
@@ -233,6 +237,7 @@ const locations_arr = [
     top_pos: 46,
     left_pos: 83,
     faction: "Alliance",
+    rating: [1, 1, 1],
   },
   // Ironforge
   {
@@ -255,6 +260,7 @@ const locations_arr = [
     top_pos: 37,
     left_pos: 87,
     faction: "Alliance",
+    rating: [1],
   },
   // Undercity
   {
@@ -277,6 +283,7 @@ const locations_arr = [
     top_pos: 21,
     left_pos: 84,
     faction: "Horde",
+    rating: [1],
   },
   // Teldrassil
   {
@@ -299,6 +306,7 @@ const locations_arr = [
     top_pos: 10,
     left_pos: 15,
     faction: "Alliance",
+    rating: [1, 1],
   },
 ];
 export default locations_arr;

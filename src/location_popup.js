@@ -20,6 +20,7 @@ import Icon from "@mdi/react";
 import { mdiCommentOutline } from "@mdi/js";
 import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiHome } from "@mdi/js";
+import { mdiStar } from "@mdi/js";
 
 import LogEntryForm from "./LogEntryForm.js";
 
@@ -65,13 +66,13 @@ export default function SimpleModal(props) {
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 440,
+      maxWidth: 500,
       // minHeight: "90% !important",
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 900,
+      width: 790,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -105,10 +106,13 @@ export default function SimpleModal(props) {
     },
   }));
   const classes = useStyles();
-  const handleOpen = () => {
+  const playSound = () => {
     let audio = new Audio(props.citySounds);
     //audio.volume = 0.05;
     audio.play();
+  };
+  const handleOpen = () => {
+    if (props.volume) playSound();
     setOpen(true);
   };
 
@@ -120,7 +124,7 @@ export default function SimpleModal(props) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <img
-        style={{ width: "25%", height: "40%", paddingRight: "20px" }}
+        style={{ width: "25%", height: "38%", paddingRight: "15px" }}
         src={props.residentImage1}
         alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
       ></img>
@@ -143,7 +147,15 @@ export default function SimpleModal(props) {
                 <Typography gutterBottom variant="h5" component="h2">
                   {props.notCity
                     ? `${props.city}`
-                    : `The City of ${props.city}`}
+                    : `The City of ${props.city}`}{" "}
+                  {props.rating.map(() => (
+                    <Icon
+                      path={mdiStar}
+                      title={props.city}
+                      size={0.5}
+                      color={props.faction === "Horde" ? "red" : "blue"}
+                    />
+                  ))}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                   {props.cityDescription}
@@ -236,7 +248,7 @@ export default function SimpleModal(props) {
       </Card>
 
       <img
-        style={{ width: "25%", height: "40%", paddingLeft: "20px" }}
+        style={{ width: "25%", height: "38%", paddingLeft: "15px" }}
         src={props.residentImage2}
         alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
       ></img>

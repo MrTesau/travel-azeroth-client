@@ -12,13 +12,27 @@ import HomeModal from "./homeModal.js";
 // Location data imports
 import cities from "./locations.js";
 import battlesArr from "./battles.js";
+import { mdiVolumeOff } from "@mdi/js";
+import { mdiVolumeHigh } from "@mdi/js";
+import Icon from "@mdi/react";
+import { Button } from "@material-ui/core";
+
 const wood_desk =
   "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
+
+/*     To Do :
+  
+            Mobile responsive -> after Portfolio preview section
+            Server Comments handling
+
+
+
+*/
 
 const App = () => {
   const [scale, setScale] = React.useState(1);
   const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
-
+  const [volume, setVolume] = React.useState(true);
   const offset = 1;
   const style = {
     position: "absolute",
@@ -32,7 +46,6 @@ const App = () => {
   // inner wrapper div -> style object
   // MapInteractionCss
   // div with bg as map, pointers rendered here
-
   return (
     <div
       style={{
@@ -43,9 +56,35 @@ const App = () => {
       }}
     >
       <div style={{ position: "fixed", left: 20, top: 20, zIndex: 99 }}>
-        <HomeModal
-        //..intro Modal and instructions, tech stack etc
-        />
+        <HomeModal bg={wood_desk} volume={volume} />
+      </div>
+      <div style={{ position: "fixed", left: 20, top: 55, zIndex: 99 }}>
+        <Button
+          variant="default"
+          variant="contained"
+          size="small"
+          color="primary"
+          onClick={() => {
+            setVolume(!volume);
+            // audio.muted = true;
+          }}
+        >
+          {volume ? (
+            <Icon
+              path={mdiVolumeHigh}
+              title="volume"
+              size={0.8}
+              color={"white"}
+            />
+          ) : (
+            <Icon
+              path={mdiVolumeOff}
+              title="volume"
+              size={0.8}
+              color={"white"}
+            />
+          )}
+        </Button>
       </div>
       <div style={style}>
         <MapInteractionCSS
@@ -76,12 +115,6 @@ const App = () => {
               //margin: "-100px",
             }}
           >
-            {/* To Do :
-            Battle Styles/Colors
-            Add Comments to Battles Modal
-            Server Comments handling
-            intro Card */}
-
             {cities.map((location) => {
               return (
                 <div
@@ -112,6 +145,8 @@ const App = () => {
                     residentImage1={location.resident_img_1}
                     residentImage2={location.resident_img_2}
                     cityImage={location.card_header_img}
+                    rating={location.rating}
+                    volume={volume}
                   />
                 </div>
               );
@@ -140,6 +175,7 @@ const App = () => {
                   avatarName={battle.avatar_name}
                   avatarDescription={battle.avatar_description}
                   avatarImg={battle.avatar_img}
+                  volume={volume}
                 />
               </div>
             ))}

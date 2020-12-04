@@ -12,6 +12,9 @@ import starindas from "./Orgrimmar/starindas.png";
 import rimeria from "./Orgrimmar/rimeria.png";
 
 import syl from "./undercity/syl.mp3";
+import scar from "./undercity/sc.webp";
+import cull from "./undercity/maxresdefault.gif";
+import flood from "./undercity/flood.mp3";
 
 const battlesArr = [
   // Wrathgate
@@ -47,12 +50,12 @@ const battlesArr = [
   },
   {
     battleName: "The Culling of Strathholme",
-    battleBg: gate,
+    battleBg: cull,
     battleCardImg: "",
-    battleSounds: "",
+    battleSounds: flood,
     battleDescription:
-      "Attempting to halt the plague of Lordareon prince Arthas commits genocide. This series of events took place before the time period of World of Warcraft but is relived by going back in time with the help of the Bronze Dragons.",
-    cardColor: "grey",
+      "Attempting to halt the plague of Lordareon prince Arthas commits genocide on Stratholme. This series of events took place before the time period of World of Warcraft but is relived by going back in time with the help of the Bronze Dragons.",
+    cardColor: "#324873",
     posTop: 18,
     posLeft: 91,
     cardVid: "https://www.youtube.com/embed/Ie7M4WeC8nA",
@@ -62,17 +65,17 @@ const battlesArr = [
   },
   {
     battleName: "The Path of the Damned",
-    battleBg: gate,
+    battleBg: scar,
     battleCardImg: "",
     battleSounds: syl,
     battleDescription:
-      "The High Elves face the fury of Arthas's undead army. Lady Sylvannas fight bravely but falls and is risen as a slave of undeath. Years later returning her necklace to her will result in the events being recounted in song.",
-    cardColor: "grey",
+      "The High Elves face the fury of Arthas's undead army. Lady Sylvannas fights bravely but falls and is risen as a slave of undeath. Years later returning her necklace will result in the events being recounted in song.",
+    cardColor: "#2F4F4F",
     posTop: 13,
     posLeft: 94,
     cardVid: "https://www.youtube.com/embed/yAdXwEz5NTI",
     avatar_name: "Diablo Spawn",
-    avatar_description: 'Shed tears at The "Lament of the Highborne"',
+    avatar_description: "Shed tears at The Queen's song",
     avatar_img: diablo,
   },
 ];

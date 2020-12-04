@@ -17,8 +17,11 @@ import Divider from "@material-ui/core/Divider";
 import wooggy from "./Orgrimmar/woogy.gif";
 import diablo from "./Orgrimmar/diablo.gif";
 
+import LogEntryForm from "./LogEntryForm.js";
 // Modal bg
 // map marker Battle
+import { mdiHome } from "@mdi/js";
+import { mdiCommentOutline } from "@mdi/js";
 import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiAlertCircle } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -49,15 +52,16 @@ export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [displayComments, setDisplayComments] = React.useState(false);
   //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 420,
+      maxWidth: 400,
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      width: 650,
+      width: 850,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -91,10 +95,14 @@ export default function SimpleModal(props) {
     },
   }));
   const classes = useStyles();
-  const handleOpen = () => {
+
+  const playSound = () => {
     let audio = new Audio(props.battleSounds);
     //audio.volume = 0.05;
     audio.play();
+  };
+  const handleOpen = () => {
+    if (props.volume) playSound();
     setOpen(true);
   };
 
@@ -104,56 +112,127 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Card className={classes.root}>
-        <CardActionArea>
-          {props.cardVid ? (
-            <CardMedia>
-              <iframe
-                width="420"
-                height="280"
-                src={props.cardVid}
-                frameborder="none"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </CardMedia>
-          ) : (
-            <CardMedia
-              component="img"
-              alt="Contemplative Reptile"
-              height="230"
-              image={props.battleImage}
-              title="City"
-            />
-          )}
-          <CardContent style={{ background: "#F8F9F9" }}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {`${props.battleName}`}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.battleDescription}
-            </Typography>
-            <Divider variant={"top"} className={classes.divider} />
-            <PersonItem
-              name={props.avatarName}
-              travelDescription={props.avatarDescription}
-              src={props.avatarImg}
-            />
-          </CardContent>
-        </CardActionArea>
-        <CardActions style={{ background: props.cardColor }}>
-          <Button onClick={() => handleClose()}>
-            {" "}
-            <Icon
-              path={mdiArrowLeftBold}
-              title="Orgrimmar"
-              size={1}
-              color={"black"}
-            />{" "}
-            <span>&nbsp; Continue the Journey </span>
-          </Button>
-        </CardActions>
-      </Card>
+      {!displayComments ? (
+        <Card className={classes.root}>
+          <CardActionArea style={{ background: "white" }}>
+            {props.cardVid ? (
+              <CardMedia>
+                <iframe
+                  width="420"
+                  height="280"
+                  src={props.cardVid}
+                  frameborder="none"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </CardMedia>
+            ) : (
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                height="230"
+                image={props.battleImage}
+                title="City"
+              />
+            )}
+            <CardContent style={{ background: "#F8F9F9" }}>
+              <Typography gutterBottom variant="h5" component="h2">
+                {`${props.battleName}`}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {props.battleDescription}
+              </Typography>
+              <Divider variant={"top"} className={classes.divider} />
+              <PersonItem
+                name={props.avatarName}
+                travelDescription={props.avatarDescription}
+                src={props.avatarImg}
+              />
+            </CardContent>
+          </CardActionArea>
+          <CardActions style={{ background: props.cardColor }}>
+            <Button onClick={() => handleClose()}>
+              {" "}
+              <Icon
+                path={mdiArrowLeftBold}
+                title="Orgrimmar"
+                size={1}
+                color={"black"}
+              />{" "}
+              <span>&nbsp; Continue the Journey </span>
+            </Button>
+            <Button
+              outlined
+              onClick={() => setDisplayComments(!displayComments)}
+            >
+              <>
+                <Icon
+                  path={mdiCommentOutline}
+                  title="Orgrimmar"
+                  size={1}
+                  color={"black"}
+                />
+                <span>&nbsp; Comment </span>
+              </>
+            </Button>
+          </CardActions>
+        </Card>
+      ) : (
+        <Card className={classes.root}>
+          <CardActionArea style={{ background: "white" }}>
+            <CardContent style={{ background: "#F8F9F9" }}>
+              <PersonItem
+                name={"Anonymous"}
+                travelDescription={"Great City 10/10"}
+              />
+              <PersonItem
+                name={"Anonymous"}
+                travelDescription={"Great City 10/10"}
+              />
+              <PersonItem
+                name={"Anonymous"}
+                travelDescription={"Great City 10/10"}
+              />
+              <PersonItem
+                name={"Anonymous"}
+                travelDescription={"Great City 10/10"}
+              />
+              <Divider variant={"bottom"} className={classes.divider} />
+              <Typography gutterBottom variant="subtitle2" component="h5">
+                Fought at this battle? Or Just enjoying the journey? Leave a
+                comment!
+              </Typography>
+              <LogEntryForm />
+            </CardContent>
+          </CardActionArea>
+          <CardActions style={{ background: props.cardColor }}>
+            <Button onClick={() => handleClose()}>
+              {" "}
+              <Icon
+                path={mdiArrowLeftBold}
+                title="Orgrimmar"
+                size={1}
+                color={"black"}
+              />{" "}
+              <span>&nbsp; Continue the Journey </span>
+            </Button>
+            <Button
+              outlined
+              onClick={() => setDisplayComments(!displayComments)}
+            >
+              <>
+                <Icon
+                  path={mdiHome}
+                  title="Orgrimmar"
+                  size={1}
+                  color={"black"}
+                />
+                <span>&nbsp; {`Back `} </span>
+              </>
+            </Button>
+          </CardActions>
+        </Card>
+      )}
     </div>
   );
 
