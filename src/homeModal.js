@@ -48,9 +48,13 @@ function getModalStyle() {
 }
 
 /* Mobile Responsive Modal
-You can just add class/ID to your Modal and/or its child DOM, then use a normal CSS file, 
-with @media declaration, and style your component responsively as you wish!
-You can simply include that normal CSS file in your main index.html file.
+Dont render Fair Use on Mobile views
+dont render tech stack/ render reduced tech stack
+increase width -> to near 100% screen width
+
+
+
+
 */
 
 export default function SimpleModal(props) {
@@ -67,7 +71,7 @@ export default function SimpleModal(props) {
     },
     paper: {
       position: "absolute",
-      width: "55vw",
+      width: "95vw", // 55vs = larger
       backgroundImage: `url(${paper})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
@@ -119,6 +123,158 @@ export default function SimpleModal(props) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Card className={classes.root}>
+        <CardActionArea>
+          <CardContent style={{ background: "#EEEADC" }}>
+            <>
+              <Typography align="center" variant="body1" component="p">
+                My Journey through Azeroth
+              </Typography>
+              <Divider variant={"top"} className={classes.divider} />
+              <Typography
+                variant="caption"
+                display="block"
+                style={{
+                  fontSize: "0.7rem", // changed for mobile-> remove
+                }}
+                gutterBottom
+              >
+                Join me as I retrace my journey through azeroth and share why I
+                personally resonate with some of the wonderful locations found
+                here.
+                <br />
+                <br />I assigned the marked locations with{" "}
+                <Icon
+                  path={mdiStar}
+                  title="Orgrimmar"
+                  size={0.5}
+                  color={"red"}
+                />{" "}
+                icons rating them on my experience and how well they translated
+                the fantasy themes they portray. Included are comments in the
+                style of travel logs from my personal Warcraft characters who's
+                eyes I experienced the world through.
+                <Divider variant={"middle"} className={classes.divider} />
+                <Typography
+                  align="center"
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  style={{
+                    fontSize: "0.7rem", // changed for mobile-> remove
+                  }}
+                >
+                  <Icon
+                    path={mdiMapMarker}
+                    title={props.city}
+                    size={1}
+                    color={"red"}
+                  />{" "}
+                  Horde city/location of interest
+                  <Icon
+                    path={mdiMapMarker}
+                    title={props.city}
+                    size={1}
+                    color={"blue"}
+                  />{" "}
+                  Alliance city/location of interest
+                  <br />
+                  <Icon
+                    path={mdiAlertCircle}
+                    title="Orgrimmar"
+                    size={1}
+                    color="red"
+                  />{" "}
+                  Battle/important lore locations of interest
+                  <br />
+                  Mousewheel or control buttons to zoom, click and drag to
+                  navigate..Enjoy!
+                </Typography>
+                <Divider variant={"bottom"} className={classes.divider} />
+              </Typography>
+            </>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button
+            outlined
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setDisplayComments(false);
+              handleClose();
+            }}
+            style={{
+              fontSize: "0.7rem", // changed for mobile-> remove
+            }}
+          >
+            <Icon
+              path={mdiArrowLeftBold}
+              title="Orgrimmar"
+              size={0.6}
+              color={"white"}
+            />{" "}
+            <span>&nbsp; Take me to Azeroth </span>
+          </Button>
+          <Button
+            //variant="default"
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={() => {
+              props.setVolume(!props.volume);
+              // audio.muted = true;
+            }}
+          >
+            {props.volume ? (
+              <Icon
+                path={mdiVolumeHigh}
+                title="volume"
+                size={0.6}
+                color={"white"}
+              />
+            ) : (
+              <Icon
+                path={mdiVolumeOff}
+                title="volume"
+                size={0.6}
+                color={"white"}
+              />
+            )}
+          </Button>
+        </CardActions>
+      </Card>
+      ;
+    </div>
+  );
+
+  return (
+    <div>
+      <div onClick={handleOpen}>
+        <Button
+          //variant="default"
+          variant="contained"
+          size="small"
+          color="primary"
+        >
+          <Icon path={mdiHome} title={props.city} size={0.8} color={"white"} />
+        </Button>
+      </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {body}
+      </Modal>
+    </div>
+  );
+}
+
+/*   Big card
+
+     <Card className={classes.root}>
         <CardActionArea>
           <CardContent style={{ background: "#EEEADC" }}>
             <>
@@ -211,14 +367,7 @@ export default function SimpleModal(props) {
                 functionality.
               </Typography>
               <Divider variant={"middle"} className={classes.divider} />
-              {/*
-              FaIr uSe:
-              https://www.google.com/
-              search?q=fair+use+is+any+copying+of+copyrighted+material+done+for+a+limited+and+%E2%80%9C
-              transformative%E2%80%9D+purpose&oq=fair+use+is+any+copying+of+copyrighted
-              +material+done+for+a+limited+and+%E2%80%9C
-              transformative%E2%80%9D+purpose&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8
-              */}
+           
               <Typography
                 gutterBottom
                 variant="subtitle2"
@@ -268,13 +417,13 @@ export default function SimpleModal(props) {
             <span>&nbsp; Take me to Azeroth </span>
           </Button>
           <Button
-            //variant="default"
+     
             variant="contained"
             size="large"
             color="primary"
             onClick={() => {
               props.setVolume(!props.volume);
-              // audio.muted = true;
+        
             }}
           >
             {props.volume ? (
@@ -294,30 +443,14 @@ export default function SimpleModal(props) {
             )}
           </Button>
         </CardActions>
-      </Card>
-    </div>
-  );
-
-  return (
-    <div>
-      <div onClick={handleOpen}>
-        <Button
-          //variant="default"
-          variant="contained"
-          size="small"
-          color="primary"
-        >
-          <Icon path={mdiHome} title={props.city} size={0.8} color={"white"} />
-        </Button>
-      </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
-    </div>
-  );
+      </Card> */
+{
+  /*
+              FaIr uSe:
+              https://www.google.com/
+              search?q=fair+use+is+any+copying+of+copyrighted+material+done+for+a+limited+and+%E2%80%9C
+              transformative%E2%80%9D+purpose&oq=fair+use+is+any+copying+of+copyrighted
+              +material+done+for+a+limited+and+%E2%80%9C
+              transformative%E2%80%9D+purpose&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8
+              */
 }

@@ -49,6 +49,8 @@ You can simply include that normal CSS file in your main index.html file.
 // Load Modal
 // Request Server
 // filter out comments not related to Modal
+// API calls:
+// https://www.youtube.com/watch?v=RnKSA-51kpI&ab_channel=NorthClarian  at roughly 33mins
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -118,7 +120,7 @@ export default function SimpleModal(props) {
       <img
         style={{ width: "25%", height: "38%", paddingRight: "15px" }}
         src={props.residentImage1}
-        alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
+        alt="Orc Clipart"
       ></img>
       <Card className={classes.root}>
         <CardActionArea>
@@ -194,6 +196,8 @@ export default function SimpleModal(props) {
 
                 <LogEntryForm
                 //..pass a unique modal identifier to each form
+                // submit identifier with form to db
+                // use this to filter API response comments for each Modal
                 />
               </>
             )}
@@ -247,7 +251,7 @@ export default function SimpleModal(props) {
       <img
         style={{ width: "25%", height: "38%", paddingLeft: "15px" }}
         src={props.residentImage2}
-        alt="Orc Clipart Frost - Orcs Must Die Orc@nicepng.com"
+        alt="Orc Clipart"
       ></img>
     </div>
   );

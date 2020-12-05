@@ -56,7 +56,7 @@ const App = () => {
         backgroundSize: "cover",
       }}
     >
-      <div style={{ position: "fixed", left: 20, top: 20, zIndex: 99 }}>
+      <div style={{ position: "fixed", left: 20, top: 45, zIndex: 99 }}>
         <HomeModal
           bg={wood_desk}
           volume={volume}
@@ -65,7 +65,7 @@ const App = () => {
           setVolume={setVolume}
         />
       </div>
-      <div style={{ position: "fixed", left: 20, top: 55, zIndex: 99 }}>
+      <div style={{ position: "fixed", left: 20, top: 80, zIndex: 99 }}>
         <Button
           variant="default"
           variant="contained"
@@ -103,7 +103,7 @@ const App = () => {
           }}
           defaultScale={1}
           defaultTranslation={{ x: 0, y: 0 }}
-          minScale={0.95}
+          minScale={0.5} // 0.95 desktop min
           maxScale={5}
           showControls
           /*
