@@ -1,10 +1,7 @@
 import React from "react";
-//import { useState, useEffect } from "react";
 import { MapInteractionCSS } from "react-map-interaction";
 //import { listLogEntries } from "./API";
 //import LogEntryForm from "./LogEntryForm";
-import currentBG from "./azeroth1.jpg";
-import "./App.css";
 // City Modal
 import SimpleModal from "./location_popup.js";
 import BattleModal from "./battleModal.js";
@@ -12,24 +9,23 @@ import HomeModal from "./homeModal.js";
 // Location data imports
 import cities from "./locations.js";
 import battlesArr from "./battles.js";
+// Icons
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Button } from "@material-ui/core";
-
-const wood_desk =
-  "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
-
-/*     To Do :
-  
-            Mobile responsive -> after Portfolio preview section
-            Server Comments handling
-            Play with pan/translate map options for better layout
-
-
+// Assets/styles
+import wood_desk from "./wood.jpg";
+import currentBG from "./azeroth1.jpg";
+import "./App.css";
+//"https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
+/*     
+To Do :
+Mobile responsive -> after Portfolio preview section
+Server Comments handling
+Play with pan/translate map options for better layout
 
 */
-
 const App = () => {
   const [scale, setScale] = React.useState(1);
   const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
@@ -61,13 +57,12 @@ const App = () => {
           bg={wood_desk}
           volume={volume}
           disableScrollLock={true}
-          volume={volume}
           setVolume={setVolume}
         />
       </div>
       <div style={{ position: "fixed", left: 20, top: 80, zIndex: 99 }}>
         <Button
-          variant="default"
+          //variant="default"
           variant="contained"
           size="small"
           color="primary"

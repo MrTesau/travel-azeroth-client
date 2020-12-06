@@ -163,8 +163,10 @@ const locations_arr = [
     avatar_img_2: diablo,
     avatar_name_1: "Wooggy",
     avatar_name_2: "Diablo Spawn",
-    avatar_description_1: "A common hangout at higher levels.",
-    avatar_description_2: "Explored at level 1.",
+    avatar_description_1:
+      "A common hangout at higher levels. A great place to find pick up groups in need of a tank.",
+    avatar_description_2:
+      "Explored at level 1. The first city in Azeroth I saw. Amazing experience.",
     top_pos: 29,
     left_pos: 30,
     faction: "Horde",
@@ -232,8 +234,10 @@ const locations_arr = [
     avatar_img_2: rimeria,
     avatar_name_1: "Starindas",
     avatar_name_2: "Rimeria",
-    avatar_description_1: "Migrated from Teldrassil to level with friends",
-    avatar_description_2: "Followed Starindas and the Light here.",
+    avatar_description_1:
+      "Migrated from Teldrassil to level with real life friends.",
+    avatar_description_2:
+      "Followed Starindas and the guidance of the Light here.",
     top_pos: 46,
     left_pos: 83,
     faction: "Alliance",
@@ -256,7 +260,8 @@ const locations_arr = [
     avatar_name_1: "Starindas",
     avatar_name_2: "Rimeria",
     avatar_description_1: "High level hangout and dueling arena.",
-    avatar_description_2: "Arrived later, left due to its low population.",
+    avatar_description_2:
+      "Arrived later, left due to its low population in later years.",
     top_pos: 37,
     left_pos: 87,
     faction: "Alliance",
@@ -278,8 +283,10 @@ const locations_arr = [
     avatar_img_2: diablo,
     avatar_name_1: "Wooggy",
     avatar_name_2: "Diablo",
-    avatar_description_1: "Avoided mostly. Big body so got stuck easily.",
-    avatar_description_2: "Often took the zepplin from Durotar for visits.",
+    avatar_description_1:
+      "Avoided mostly. Big body so got stuck in the small tunnels easily.",
+    avatar_description_2:
+      "Often took the zepplin from Durotar for visits. Enjoyed the general gothic atmosphere",
     top_pos: 21,
     left_pos: 84,
     faction: "Horde",
@@ -289,7 +296,7 @@ const locations_arr = [
   {
     city_name: " Teldrassil",
     description:
-      "Teldrassil is an island and great tree off Kalimdor's northern coast.It was the home of the night elves and a stunning testament to the power of their magic.",
+      "Teldrassil is an island and great tree off Kalimdor's northern coast.It was the home of the night elves and a testament to the power of their magic.",
     not_city: true,
     background_img: telbg,
     card_header_img: telcard,
@@ -300,8 +307,9 @@ const locations_arr = [
     avatar_img_1: starindas,
     avatar_img_2: diablo,
     avatar_name_1: "Starindas",
-    avatar_name_2: "Diablo",
-    avatar_description_1: "Place of birth. Completed early training.",
+    avatar_name_2: "Diablo Spawn",
+    avatar_description_1:
+      "Place of birth. Completed early training. Failed to find a suitable pet here.",
     avatar_description_2: "Once swam here from Darkshore. Drowned.",
     top_pos: 10,
     left_pos: 15,

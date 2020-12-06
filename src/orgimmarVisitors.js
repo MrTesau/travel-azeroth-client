@@ -1,31 +1,31 @@
 import React from "react";
 import cx from "clsx";
-import NoSsr from "@material-ui/core/NoSsr";
+//import NoSsr from "@material-ui/core/NoSsr";
 //import GoogleFontLoader from "react-google-font-loader";
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import Link from "@material-ui/core/Link";
+//import Button from "@material-ui/core/Button";
+//import Divider from "@material-ui/core/Divider";
+//import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
-import { Column, Row, Item } from "@mui-treasury/components/flex";
+import { /*Column,*/ Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";
 
 const usePersonStyles = makeStyles(() => ({
   text: {
     fontFamily: "Arial",
-    whiteSpace: "nowrap",
+    whiteSpace: "wrap",
     textOverflow: "ellipsis",
     overflow: "hidden",
   },
   name: {
     fontWeight: 500,
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     color: "#122740",
   },
   caption: {
-    fontSize: "0.875rem",
+    fontSize: "0.75rem",
     color: "#122740",
-    marginTop: 4,
+    marginTop: 1,
     fontFamily: "Arial",
   },
   btn: {
@@ -44,9 +44,10 @@ const PersonItem = ({ src, name, travelDescription }) => {
       <Item>
         <Avatar classes={avatarStyles} src={src} />
       </Item>
-      <Row wrap gap={0.1} minWidth={0}>
+      <Row wrap gap={0.1} minWidth={2}>
         <Item minWidth={0}>
           <div className={cx(styles.name, styles.text)}>{name}</div>
+
           <div className={cx(styles.caption, styles.text)}>
             {travelDescription}
           </div>
@@ -55,7 +56,7 @@ const PersonItem = ({ src, name, travelDescription }) => {
     </Row>
   );
 };
-
+/*
 const useStyles = makeStyles(() => ({
   card: {
     width: "100%",
@@ -85,14 +86,15 @@ const useStyles = makeStyles(() => ({
     margin: "0 20px",
   },
 }));
-
+*/
+/* Full Social Card (Might need later)
 const SocialCardDemo = React.memo(function SocialCard() {
   const styles = useStyles();
   return (
     <>
-      {/*<NoSsr>
+    <NoSsr>
         <GoogleFontLoader fonts={[{ font: "Barlow", weights: [400, 600] }]} />
-      </NoSsr> */}
+      </NoSsr> 
       <Column p={0} gap={0} className={styles.card}>
         <PersonItem
           name={"Woogy"}
@@ -117,4 +119,5 @@ const SocialCardDemo = React.memo(function SocialCard() {
     </>
   );
 });
+*/
 export default PersonItem;
