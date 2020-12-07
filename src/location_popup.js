@@ -42,8 +42,10 @@ function getModalStyle() {
 // Load Modal
 // Request Server
 // filter out comments not related to Modal
+// Limit number of comments displayed -> newest 2 on mobile, newest 3 on desktop (for size concerns)(map to state, then grab the last 2 entries in array)
 // API calls:
 // https://www.youtube.com/watch?v=RnKSA-51kpI&ab_channel=NorthClarian  at roughly 33mins
+
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   //const [modalStyle] = React.useState(getModalStyle);
@@ -223,6 +225,7 @@ export default function SimpleModal(props) {
                 style={{
                   background: props.cardColor,
                   filter: "brightness(135%)",
+                  fontSize: "0.6rem",
                 }}
                 variant="contained"
                 size="small"
@@ -234,7 +237,7 @@ export default function SimpleModal(props) {
                 <Icon
                   path={mdiArrowLeftBold}
                   title="Orgrimmar"
-                  size={0.7}
+                  size={0.6}
                   color={"black"}
                 />{" "}
                 <span>&nbsp; Continue the Journey </span>
@@ -243,6 +246,7 @@ export default function SimpleModal(props) {
                 style={{
                   background: props.cardColor,
                   filter: "brightness(135%)",
+                  fontSize: "0.6rem",
                 }}
                 variant="contained"
                 size="small"
@@ -253,7 +257,7 @@ export default function SimpleModal(props) {
                     <Icon
                       path={mdiHome}
                       title="Orgrimmar"
-                      size={0.7}
+                      size={0.6}
                       color={"black"}
                     />
                     <span>&nbsp; {`Back to ${props.city}`} </span>
@@ -263,7 +267,7 @@ export default function SimpleModal(props) {
                     <Icon
                       path={mdiCommentOutline}
                       title="Orgrimmar"
-                      size={0.7}
+                      size={0.6}
                       color={"black"}
                     />
                     <span>&nbsp; Comment </span>
@@ -279,7 +283,7 @@ export default function SimpleModal(props) {
           ></img>
         </Hidden>
         {/* Mobile Card */}
-        <Hidden mdUp>
+        <Hidden smUp>
           <Card className={classes.root}>
             <CardActionArea>
               {!displayComments ? (

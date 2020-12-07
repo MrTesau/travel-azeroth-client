@@ -49,9 +49,11 @@ const LogEntryForm = ({ location, onClose }) => {
         label="Name"
         name="name"
         ref={register}
+        style={{ fontSize: "0.6rem" }}
       />
 
       <TextField
+        style={{ fontSize: "0.6rem" }}
         id="standard-basic"
         required
         label="Comments"

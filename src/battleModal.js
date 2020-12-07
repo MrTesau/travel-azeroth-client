@@ -40,13 +40,6 @@ function getModalStyle() {
   };
 }
 
-// Create a generalized version with
-// background
-// Avatars
-// description/name
-// card color
-// Video/iframe url
-
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -116,27 +109,20 @@ export default function SimpleModal(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid
-        item
-        xs={11}
-        md={4}
-        /* style={{
-          backgroundImage: `url(${paper})`,
-          backgroundBlendMode: "multiply",
-          backgroundSize: "cover",
-          padding: "10px",
-        }}
-        */
-
-        className={classes.paper}
-        // Need to add padding for larger screen sizes
-      >
-        {!displayComments ? (
+      <Hidden smDown>
+        <Grid
+          item
+          md={6}
+          lg={5}
+          xl={4}
+          className={classes.paper}
+          style={{ padding: "100px" }}
+        >
           <Card className={classes.root}>
             <CardActionArea style={{ background: "white" }}>
-              {props.cardVid ? (
-                <>
-                  <Hidden xsDown>
+              {!displayComments ? (
+                props.cardVid ? (
+                  <>
                     <CardMedia>
                       <iframe
                         title={props.battleName}
@@ -148,24 +134,9 @@ export default function SimpleModal(props) {
                         allowfullscreen
                       ></iframe>
                     </CardMedia>
-                  </Hidden>
-                  <Hidden mdUp>
-                    <CardMedia>
-                      <iframe
-                        title={props.battleName}
-                        width="100%"
-                        height="180"
-                        src={props.cardVid}
-                        frameborder="none"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      ></iframe>
-                    </CardMedia>
-                  </Hidden>
-                </>
-              ) : (
-                <>
-                  <Hidden xsDown>
+                  </>
+                ) : (
+                  <>
                     <CardMedia
                       component="img"
                       alt="Contemplative Reptile"
@@ -173,41 +144,68 @@ export default function SimpleModal(props) {
                       image={props.battleImage}
                       title="City"
                     />
-                  </Hidden>
-                  <Hidden mdUp>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      height="130"
-                      image={props.battleImage}
-                      title="City"
-                    />
-                  </Hidden>
-                </>
+                  </>
+                )
+              ) : (
+                ""
               )}
               <CardContent style={{ background: "#F8F9F9" }}>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h2"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  {`${props.battleName}`}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                  style={{ fontSize: "0.7rem" }}
-                >
-                  {props.battleDescription}
-                </Typography>
-                <Divider variant={"top"} className={classes.divider} />
-                <PersonItem
-                  name={props.avatarName}
-                  travelDescription={props.avatarDescription}
-                  src={props.avatarImg}
-                />
+                {!displayComments ? (
+                  <>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="h6"
+                      // style={{ fontSize: "0.8rem" }}
+                    >
+                      {`${props.battleName}`}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                      style={{ fontSize: "0.9rem" }}
+                    >
+                      {props.battleDescription}
+                    </Typography>
+                    <Divider variant={"top"} className={classes.divider} />
+                    <PersonItem
+                      name={props.avatarName}
+                      travelDescription={props.avatarDescription}
+                      src={props.avatarImg}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <Divider variant={"bottom"} className={classes.divider} />
+                    <Typography
+                      gutterBottom
+                      variant="subtitle2"
+                      component="p"
+                      color="textPrimary"
+                    >
+                      Fought at this battle? Or Just enjoying the journey? Leave
+                      a comment!
+                    </Typography>
+                    <LogEntryForm />
+                  </>
+                )}
               </CardContent>
             </CardActionArea>
             <CardActions style={{ background: props.cardColor }}>
@@ -232,52 +230,130 @@ export default function SimpleModal(props) {
                 onClick={() => setDisplayComments(!displayComments)}
                 style={{ fontSize: "0.6rem" }}
               >
-                <>
-                  <Icon
-                    path={mdiCommentOutline}
-                    title="Orgrimmar"
-                    size={0.6}
-                    color={"black"}
-                  />
-                  <span>&nbsp; Comment </span>
-                </>
+                {" "}
+                {!displayComments ? (
+                  <>
+                    <Icon
+                      path={mdiCommentOutline}
+                      title="Orgrimmar"
+                      size={0.7}
+                      color={"black"}
+                    />
+                    <span>&nbsp; Comment </span>
+                  </>
+                ) : (
+                  <>
+                    <Icon
+                      path={mdiHome}
+                      title="Orgrimmar"
+                      size={0.7}
+                      color={"black"}
+                    />
+                    <span>&nbsp; {`Back `} </span>
+                  </>
+                )}
               </Button>
             </CardActions>
           </Card>
-        ) : (
+        </Grid>
+      </Hidden>
+      {/* Small Screen Grid */}
+      <Hidden mdUp>
+        <Grid
+          item
+          sm={7}
+          xs={11}
+          className={classes.paper}
+          // Need to add padding for larger screen sizes
+        >
           <Card className={classes.root}>
             <CardActionArea style={{ background: "white" }}>
+              {!displayComments ? (
+                props.cardVid ? (
+                  <>
+                    <CardMedia>
+                      <iframe
+                        title={props.battleName}
+                        width="100%"
+                        height="180"
+                        src={props.cardVid}
+                        frameborder="none"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </CardMedia>
+                  </>
+                ) : (
+                  <>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      height="230"
+                      image={props.battleImage}
+                      title="City"
+                    />
+                  </>
+                )
+              ) : (
+                ""
+              )}
               <CardContent style={{ background: "#F8F9F9" }}>
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <PersonItem
-                  name={"Anonymous"}
-                  travelDescription={"Great City 10/10"}
-                />
-                <Divider variant={"bottom"} className={classes.divider} />
-                <Typography gutterBottom variant="subtitle2" component="h5">
-                  Fought at this battle? Or Just enjoying the journey? Leave a
-                  comment!
-                </Typography>
-                <LogEntryForm />
+                {!displayComments ? (
+                  <>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      style={{ fontSize: "0.8rem" }}
+                    >
+                      {`${props.battleName}`}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                      style={{ fontSize: "0.7rem" }}
+                    >
+                      {props.battleDescription}
+                    </Typography>
+                    <Divider variant={"top"} className={classes.divider} />
+                    <PersonItem
+                      name={props.avatarName}
+                      travelDescription={props.avatarDescription}
+                      src={props.avatarImg}
+                    />{" "}
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <PersonItem
+                      name={"Anonymous"}
+                      travelDescription={"Great City 10/10"}
+                    />
+                    <Divider variant={"bottom"} className={classes.divider} />
+                    <Typography
+                      gutterBottom
+                      variant="subtitle2"
+                      component="p"
+                      style={{ fontSize: "0.7rem" }}
+                    >
+                      Fought at this battle? Leave a comment!
+                    </Typography>
+                    <LogEntryForm />
+                  </>
+                )}
               </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions style={{ background: props.cardColor }}>
               <Button
+                size="small"
                 variant="contained"
                 onClick={() => handleClose()}
-                style={{ fontSize: "0.7rem" }}
-                size="small"
+                style={{ fontSize: "0.6rem" }}
               >
                 {" "}
                 <Icon
@@ -290,24 +366,37 @@ export default function SimpleModal(props) {
               </Button>
               <Button
                 size="small"
-                style={{ fontSize: "0.7rem" }}
                 variant="contained"
                 onClick={() => setDisplayComments(!displayComments)}
+                style={{ fontSize: "0.6rem" }}
               >
-                <>
-                  <Icon
-                    path={mdiHome}
-                    title="Orgrimmar"
-                    size={0.6}
-                    color={"black"}
-                  />
-                  <span>&nbsp; {`Back `} </span>
-                </>
+                {" "}
+                {!displayComments ? (
+                  <>
+                    <Icon
+                      path={mdiCommentOutline}
+                      title="Orgrimmar"
+                      size={0.6}
+                      color={"black"}
+                    />
+                    <span>&nbsp; Comment </span>
+                  </>
+                ) : (
+                  <>
+                    <Icon
+                      path={mdiHome}
+                      title="Orgrimmar"
+                      size={0.6}
+                      color={"black"}
+                    />
+                    <span>&nbsp; {`Back `} </span>
+                  </>
+                )}
               </Button>
             </CardActions>
           </Card>
-        )}
-      </Grid>
+        </Grid>
+      </Hidden>
     </Grid>
   );
 
