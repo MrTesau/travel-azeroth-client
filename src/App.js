@@ -103,8 +103,8 @@ const App = () => {
           showControls
           /*
           translationBounds={{
-            xMin: 0,
-            xMax: 1000,
+            xMin: 0, xmin at normal -(map height* zoom)
+            xMax: 1000, xmax at normal+(map height * zoom)(at 2X zoom you should be able to scroll 2x more)
             yMin: 0,
             yMax: 1000,
           }}
