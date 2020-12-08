@@ -112,13 +112,13 @@ export default function SimpleModal(props) {
       <Hidden smDown>
         <Grid
           item
-          md={6}
-          lg={5}
-          xl={4}
+          md={7}
+          lg={7}
+          xl={7}
           className={classes.paper}
           style={{ padding: "100px" }}
         >
-          <Card className={classes.root}>
+          <Card className={classes.root} style={{ width: "65%" }}>
             <CardActionArea style={{ background: "white" }}>
               {!displayComments ? (
                 props.cardVid ? (
@@ -267,7 +267,7 @@ export default function SimpleModal(props) {
           // Need to add padding for larger screen sizes
         >
           <Card className={classes.root}>
-            <CardActionArea style={{ background: "white" }}>
+            <CardActionArea style={{ width: "90%" }}>
               {!displayComments ? (
                 props.cardVid ? (
                   <>

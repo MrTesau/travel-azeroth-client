@@ -193,7 +193,7 @@ const locations_arr = [
     top_pos: 36,
     left_pos: 20,
     faction: "Horde",
-    rating: [1, 1, 1, 1, 1],
+    rating: [1, 1, 1, 1],
   },
   // Ashenvale
   {

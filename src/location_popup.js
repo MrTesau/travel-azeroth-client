@@ -31,7 +31,7 @@ function rand() {
 function getModalStyle() {
   const top = 50; //+ rand();
   const left = 50; //+ rand();
-  return {
+  return { 
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
@@ -51,10 +51,11 @@ export default function SimpleModal(props) {
   //const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-  //const [modalBG] = React.useState(example)[0];
+
+  const audioRef = React.useRef(null);
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 510,
+      width: "50%",
       // minHeight: "90% !important",
       background: props.cardColor,
     },
@@ -95,9 +96,9 @@ export default function SimpleModal(props) {
   }));
   const classes = useStyles();
   const playSound = () => {
-    let audio = new Audio(props.citySounds);
     //audio.volume = 0.05;
-    audio.play();
+    audioRef.current.currentTime = 0;
+    audioRef.current.play();
   };
   const handleOpen = () => {
     if (props.volume) playSound();
@@ -105,9 +106,27 @@ export default function SimpleModal(props) {
   };
 
   const handleClose = () => {
+    audioRef.current.pause();
     setOpen(false);
   };
+  /*
+import React, { useRef} from 'react'
 
+function myComponent(props) {
+  const vidRef = useRef(null);
+  const handlePlayVideo = () => {
+    vidRef.current.play();
+  }
+  return (
+    <video ref={vidRef}>
+      <source src={[YOUR_SOURCE]} type="video/mp4" />
+    </video>
+  )
+}
+
+
+
+*/
   // Tab panel for Travel log/comments
   const body = (
     <Grid
@@ -119,7 +138,8 @@ export default function SimpleModal(props) {
       <Grid
         item
         xs={11}
-        md={6}
+        sm={8}
+        md={7}
         /* style={{
           backgroundImage: `url(${paper})`,
           backgroundBlendMode: "multiply",
@@ -284,7 +304,7 @@ export default function SimpleModal(props) {
         </Hidden>
         {/* Mobile Card */}
         <Hidden smUp>
-          <Card className={classes.root}>
+          <Card className={classes.root} style={{ width: "95%" }}>
             <CardActionArea>
               {!displayComments ? (
                 <CardMedia
@@ -438,6 +458,11 @@ export default function SimpleModal(props) {
 
   return (
     <div>
+      <audio
+        ref={audioRef}
+        src={props.citySounds}
+        style={{ display: "none" }}
+      />
       <div onClick={handleOpen}>
         <Icon
           path={mdiMapMarker}
