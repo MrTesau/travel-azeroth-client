@@ -243,8 +243,8 @@ function myComponent(props) {
             <CardActions>
               <Button
                 style={{
-                  background: props.cardColor,
-                  filter: "brightness(135%)",
+                  // background: props.cardColor,
+                  // filter: "brightness(135%)",
                   fontSize: "0.6rem",
                 }}
                 variant="contained"
@@ -264,8 +264,8 @@ function myComponent(props) {
               </Button>
               <Button
                 style={{
-                  background: props.cardColor,
-                  filter: "brightness(135%)",
+                  // background: props.cardColor,
+                  // filter: "brightness(135%)",
                   fontSize: "0.6rem",
                 }}
                 variant="contained"
@@ -404,8 +404,8 @@ function myComponent(props) {
                   handleClose();
                 }}
                 style={{
-                  background: props.cardColor,
-                  filter: "brightness(115%)",
+                  // background: props.cardColor,
+                  // filter: "brightness(115%)",
                   fontSize: "0.6rem", // changed for mobile-> remove
                 }}
               >
@@ -419,8 +419,8 @@ function myComponent(props) {
               </Button>
               <Button
                 style={{
-                  background: props.cardColor,
-                  filter: "brightness(115%)",
+                  //background: props.cardColor,
+                  //filter: "brightness(115%)",
                   fontSize: "0.6rem", // changed for mobile-> remove
                 }}
                 variant="contained"

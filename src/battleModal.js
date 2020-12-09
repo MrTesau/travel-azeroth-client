@@ -266,8 +266,8 @@ export default function SimpleModal(props) {
           className={classes.paper}
           // Need to add padding for larger screen sizes
         >
-          <Card className={classes.root}>
-            <CardActionArea style={{ width: "90%" }}>
+          <Card className={classes.root} style={{ width: "95%" }}>
+            <CardActionArea style={{ background: "white" }}>
               {!displayComments ? (
                 props.cardVid ? (
                   <>
