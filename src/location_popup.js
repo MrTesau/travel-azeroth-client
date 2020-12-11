@@ -24,40 +24,41 @@ import LogEntryForm from "./LogEntryForm.js";
 // Responsive tools
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-/*
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-function getModalStyle() {
-  const top = 50; //+ rand();
-  const left = 50; //+ rand();
-  return { 
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-*/
-// Comments:
-// Load Modal
-// Request Server
-// filter out comments not related to Modal
-// Limit number of comments displayed -> newest 2 on mobile, newest 3 on desktop (for size concerns)(map to state, then grab the last 2 entries in array)
-// API calls:
-// https://www.youtube.com/watch?v=RnKSA-51kpI&ab_channel=NorthClarian  at roughly 33mins
+import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:1337/api/logs"
+    : "https://travel-log-hazel.vercel.app/api/logs";
 
 export default function SimpleModal(props) {
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  //const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-
+  // Form input state
+  const [commentForm, setCommentForm] = React.useState({
+    city: props.city,
+    name: "",
+    comments: "",
+  });
+  // Audio Control
   const audioRef = React.useRef(null);
+  const playSound = () => {
+    audioRef.current.currentTime = 0;
+    audioRef.current.play();
+  };
+  // Styles
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "50%",
       // minHeight: "90% !important",
       background: props.cardColor,
+    },
+    rootForm: {
+      "& > *": {
+        margin: theme.spacing(1),
+        width: "25ch",
+      },
     },
     paper: {
       position: "absolute",
@@ -95,39 +96,42 @@ export default function SimpleModal(props) {
     },
   }));
   const classes = useStyles();
-  const playSound = () => {
-    //audio.volume = 0.05;
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
-  };
+  // Modal Controls
   const handleOpen = () => {
     if (props.volume) playSound();
     setOpen(true);
   };
-
   const handleClose = () => {
     audioRef.current.pause();
     setOpen(false);
   };
-  /*
-import React, { useRef} from 'react'
-
-function myComponent(props) {
-  const vidRef = useRef(null);
-  const handlePlayVideo = () => {
-    vidRef.current.play();
-  }
-  return (
-    <video ref={vidRef}>
-      <source src={[YOUR_SOURCE]} type="video/mp4" />
-    </video>
-  )
-}
-
-
-
-*/
-  // Tab panel for Travel log/comments
+  // Submit Form Comment to Server
+  // Make new Get Request to recieve updated comments
+  // setComments in App.js
+  // Comments passed back to location_popup
+  const postComment = (e) => {
+    console.log(commentForm);
+    e.preventDefault();
+    axios
+      .post(`${API_URL}`, { ...commentForm })
+      .then(function postedComment(res) {
+        // reset commentForm
+        // setCommentForm({ city: props.city, name: "", comments:"" })
+        // Call get again ( passed down from APP) to get new comment list
+        /*
+          axios.get(`${API_URL}`).then(function (res) {
+            props.setComments(res);
+          });
+          */
+      });
+  };
+  // Form Input HAndler
+  const handleFormChange = (e) => {
+    setCommentForm({
+      ...commentForm,
+      [e.target.name]: e.target.value,
+    });
+  };
   const body = (
     <Grid
       container
@@ -135,20 +139,7 @@ function myComponent(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid
-        item
-        xs={11}
-        sm={8}
-        md={7}
-        /* style={{
-          backgroundImage: `url(${paper})`,
-          backgroundBlendMode: "multiply",
-          backgroundSize: "cover",
-          padding: "10px",
-        }}
-        */
-        className={classes.paper}
-      >
+      <Grid item xs={11} sm={9} md={8} lg={7} xl={6} className={classes.paper}>
         <Hidden xsDown>
           <img
             style={{ width: "25%", height: "38%", paddingRight: "15px" }}
@@ -209,33 +200,49 @@ function myComponent(props) {
                   </>
                 ) : (
                   <>
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
+                    {props.comments.map((comment) => {
+                      comment.city === props.city ? (
+                        <>
+                          <PersonItem
+                            name={comment.name}
+                            travelDescription={comment.comments}
+                          />
+                        </>
+                      ) : (
+                        ""
+                      );
+                    })}
                     <Divider variant={"bottom"} className={classes.divider} />
                     <Typography gutterBottom variant="subtitle2" component="h5">
                       Been to {props.city}? Or Just enjoying the journey? Leave
                       a comment!
                     </Typography>
-
-                    <LogEntryForm
-                    //..pass a unique modal identifier to each form
-                    // submit identifier with form to db
-                    // use this to filter API response comments for each Modal
-                    />
+                    <form className={classes.rootForm}>
+                      <TextField
+                        id="standard-basic"
+                        required
+                        label="Name"
+                        name="name"
+                        style={{ fontSize: "0.6rem" }}
+                        onChange={(e) => handleFormChange(e)}
+                      />
+                      <TextField
+                        style={{ fontSize: "0.6rem" }}
+                        id="standard-basic"
+                        required
+                        label="Comments"
+                        name="comments"
+                        onChange={(e) => handleFormChange(e)}
+                      />
+                      <br />
+                      <button
+                        onClick={(e) => {
+                          postComment(e);
+                        }}
+                      >
+                        Submit
+                      </button>
+                    </form>
                   </>
                 )}
               </CardContent>
@@ -406,7 +413,7 @@ function myComponent(props) {
                 style={{
                   // background: props.cardColor,
                   // filter: "brightness(115%)",
-                  fontSize: "0.6rem", // changed for mobile-> remove
+                  fontSize: "0.6rem",
                 }}
               >
                 <Icon
@@ -421,7 +428,7 @@ function myComponent(props) {
                 style={{
                   //background: props.cardColor,
                   //filter: "brightness(115%)",
-                  fontSize: "0.6rem", // changed for mobile-> remove
+                  fontSize: "0.6rem",
                 }}
                 variant="contained"
                 size="small"
@@ -482,6 +489,17 @@ function myComponent(props) {
     </div>
   );
 }
+
+// getModalStyle is not a pure function, we roll the style only on the first render
+//const [modalStyle] = React.useState(getModalStyle);
+
+// Comments:
+// Load Modal
+// Request Server
+// filter out comments not related to Modal
+// Limit number of comments displayed -> newest 2 on mobile, newest 3 on desktop (for size concerns)(map to state, then grab the last 2 entries in array)
+// API calls:
+// https://www.youtube.com/watch?v=RnKSA-51kpI&ab_channel=NorthClarian  at roughly 33mins
 
 /* Old Non-responsive Modal 
 

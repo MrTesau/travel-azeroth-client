@@ -250,9 +250,7 @@ export default function SimpleModal(props) {
                       is made available for commentary and education. It is
                       believed this constitutes a 'fair use' of such copyrighted
                       material provided for in section 107 of the US Copyright
-                      Law. In accordance with Title 17 U.S.C. Section 107,
-                      material is used without profit for
-                      commentary/research/education.
+                      Law.
                       <br />
                       Info: http://www.law.cornell.edu/uscode/17/107.shtml
                       <br />

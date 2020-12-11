@@ -18,6 +18,12 @@ import { Button } from "@material-ui/core";
 import wood_desk from "./wood.jpg";
 import currentBG from "./azeroth1.jpg";
 import "./App.css";
+import axios from "axios";
+// URL of server
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:1337/api/logs"
+    : "https://travel-log-hazel.vercel.app/api/logs";
 
 /*     
 To Do :
@@ -30,6 +36,9 @@ const App = () => {
   const [scale, setScale] = React.useState(1);
   const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
   const [volume, setVolume] = React.useState(true);
+  // container for comments
+  const [comments, setComments] = React.useState([]);
+
   const offset = 1;
   const style = {
     position: "absolute",
@@ -39,6 +48,17 @@ const App = () => {
     height: `calc(100vh - ${offset}px)`,
     //border: "1px solid blue",
   };
+
+  // Grab comments from server
+  /*
+React.useEffect(() => {
+  axios.get(`${API_URL}`).then(function (res) {
+    console.log(res); 
+
+}),[]});
+
+*/
+
   // Outer wood bg div -> custom added
   // inner wrapper div -> style object
   // MapInteractionCss
@@ -135,6 +155,9 @@ const App = () => {
                   }}
                 >
                   <SimpleModal
+                    // comments
+                    comments={comments}
+                    setComments={setComments}
                     //Avatar Props
                     avatarName={location.avatar_name_1}
                     avatarDescription={location.avatar_description_1}
