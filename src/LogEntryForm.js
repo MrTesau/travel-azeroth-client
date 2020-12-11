@@ -3,6 +3,12 @@ import { useForm } from "react-hook-form";
 import { createLogEntry } from "./API";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:1337/api/logs"
+    : "https://travel-log-hazel.vercel.app/api/logs";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,53 +21,69 @@ const useStyles = makeStyles((theme) => ({
 
 // OnSubmit attack a unique ID of modal comment came from
 // pass in a prop.name from each modal
-// onsubmit add name to submit -> submit to server
-// allows filtering from modal
-const LogEntryForm = ({ location, onClose }) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
+
+const LogEntryForm = (props) => {
+  // Form input state
+  const [commentForm, setCommentForm] = React.useState({
+    city: props.city,
+    name: "",
+    comments: "",
+  });
   const classes = useStyles();
 
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      await createLogEntry(data);
-      onClose();
-    } catch (error) {
-      console.error(error);
-      setError(error.message);
-      setLoading(false);
-    }
+  // Form Input HAndler
+  const handleFormChange = (e) => {
+    setCommentForm({
+      ...commentForm,
+      [e.target.name]: e.target.value,
+    });
   };
-
+  // Submit Form Comment to Server
+  // Make new Get Request to recieve updated comments
+  // setComments in App.js
+  // Comments passed back to location_popup
+  const postComment = (e) => {
+    console.log(commentForm);
+    e.preventDefault();
+    axios
+      .post(`${API_URL}`, { ...commentForm })
+      .then(function postedComment(res) {
+        // reset commentForm
+        // setCommentForm({ city: props.city, name: "", comments:"" })
+        // Call get again ( passed down from APP) to get new comment list
+        /*
+          axios.get(`${API_URL}`).then(function (res) {
+            props.setComments(res);
+          });
+          */
+      });
+  };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
-      {error ? <h3 className="error">{error}</h3> : null}
+    <form className={classes.root}>
       <TextField
         id="standard-basic"
         required
         label="Name"
         name="name"
-        ref={register}
         style={{ fontSize: "0.6rem" }}
+        onChange={(e) => handleFormChange(e)}
       />
-
       <TextField
         style={{ fontSize: "0.6rem" }}
         id="standard-basic"
         required
         label="Comments"
-        name="name"
-        ref={register}
+        name="comments"
+        onChange={(e) => handleFormChange(e)}
       />
-
-      <button disabled={loading}>{loading ? "Loading..." : "Submit"}</button>
+      <br />
+      <button
+        onClick={(e) => {
+          postComment(e);
+        }}
+      >
+        Submit
+      </button>
     </form>
   );
 };

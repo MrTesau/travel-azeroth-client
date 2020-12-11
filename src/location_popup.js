@@ -25,22 +25,11 @@ import LogEntryForm from "./LogEntryForm.js";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import TextField from "@material-ui/core/TextField";
-import axios from "axios";
-
-const API_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:1337/api/logs"
-    : "https://travel-log-hazel.vercel.app/api/logs";
 
 export default function SimpleModal(props) {
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-  // Form input state
-  const [commentForm, setCommentForm] = React.useState({
-    city: props.city,
-    name: "",
-    comments: "",
-  });
+
   // Audio Control
   const audioRef = React.useRef(null);
   const playSound = () => {
@@ -53,12 +42,6 @@ export default function SimpleModal(props) {
       width: "50%",
       // minHeight: "90% !important",
       background: props.cardColor,
-    },
-    rootForm: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "25ch",
-      },
     },
     paper: {
       position: "absolute",
@@ -105,33 +88,7 @@ export default function SimpleModal(props) {
     audioRef.current.pause();
     setOpen(false);
   };
-  // Submit Form Comment to Server
-  // Make new Get Request to recieve updated comments
-  // setComments in App.js
-  // Comments passed back to location_popup
-  const postComment = (e) => {
-    console.log(commentForm);
-    e.preventDefault();
-    axios
-      .post(`${API_URL}`, { ...commentForm })
-      .then(function postedComment(res) {
-        // reset commentForm
-        // setCommentForm({ city: props.city, name: "", comments:"" })
-        // Call get again ( passed down from APP) to get new comment list
-        /*
-          axios.get(`${API_URL}`).then(function (res) {
-            props.setComments(res);
-          });
-          */
-      });
-  };
-  // Form Input HAndler
-  const handleFormChange = (e) => {
-    setCommentForm({
-      ...commentForm,
-      [e.target.name]: e.target.value,
-    });
-  };
+
   const body = (
     <Grid
       container
@@ -139,7 +96,7 @@ export default function SimpleModal(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid item xs={11} sm={9} md={8} lg={7} xl={6} className={classes.paper}>
+      <Grid item xs={11} sm={9} lg={8} xl={6} className={classes.paper}>
         <Hidden xsDown>
           <img
             style={{ width: "25%", height: "38%", paddingRight: "15px" }}
@@ -201,7 +158,7 @@ export default function SimpleModal(props) {
                 ) : (
                   <>
                     {props.comments.map((comment) => {
-                      comment.city === props.city ? (
+                      return comment.city === props.city ? (
                         <>
                           <PersonItem
                             name={comment.name}
@@ -217,32 +174,10 @@ export default function SimpleModal(props) {
                       Been to {props.city}? Or Just enjoying the journey? Leave
                       a comment!
                     </Typography>
-                    <form className={classes.rootForm}>
-                      <TextField
-                        id="standard-basic"
-                        required
-                        label="Name"
-                        name="name"
-                        style={{ fontSize: "0.6rem" }}
-                        onChange={(e) => handleFormChange(e)}
-                      />
-                      <TextField
-                        style={{ fontSize: "0.6rem" }}
-                        id="standard-basic"
-                        required
-                        label="Comments"
-                        name="comments"
-                        onChange={(e) => handleFormChange(e)}
-                      />
-                      <br />
-                      <button
-                        onClick={(e) => {
-                          postComment(e);
-                        }}
-                      >
-                        Submit
-                      </button>
-                    </form>
+                    <LogEntryForm
+                      setComments={props.setComments}
+                      city={props.city}
+                    />
                   </>
                 )}
               </CardContent>
