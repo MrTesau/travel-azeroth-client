@@ -38,15 +38,13 @@ import undercityEntrance from "./undercity/undercity.mp3";
 import telbg from "./teldrassil/telbg.png";
 import telcard from "./teldrassil/telcard1.jpg";
 import tel1 from "./teldrassil/tel2.png";
-//import tel2 from "./teldrassil/tel1.gif";
 import telEntrance from "./teldrassil/tel.mp3";
-// Travel Avatars
+// Travel Avatar
 // thumbnails
 import wooggy from "./Orgrimmar/woogy.gif";
 import diablo from "./Orgrimmar/diablo.gif";
 import starindas from "./Orgrimmar/starindas.png";
 import rimeria from "./Orgrimmar/rimeria.png";
-
 // crossraods
 import barrensBg from "./crossroads/barrensbg.png";
 import crosscard from "./crossroads/crossraodsCard.jpg";
@@ -62,22 +60,36 @@ import stv1 from "./ratchet/stv1.mp3";
 //STV
 import stvbg from "./stv/stvbg.jpg";
 import stvcard from "./stv/stvcard.jpg";
-// Object with Modal props:
-// background image
-// card header image
-// music
-// residentimg1
-//residentimg2
-// comment section -> internal API request, filter other card responses => display comments
-// avatars of toons (name,image,description of visit)
-// location on page (wrapper div) {string : absolute, top: num, left: num}
-// notCity Boolean
-// cityName
-// card color -> hexstring
-// faction "Horde" : alliance
+// ZA
+import zabg from "./za/zabg.gif";
+import zamusic from "./za/zamusic.mp3";
+import zacard from "./za/zacard.jpg";
+
 const locations_arr = [
-  // Stranglethorn Vale/Booty BAy
-  // Ratchet
+  {
+    city_name: "Zul'Aman",
+    description:
+      "Tucked away in between the Arathi Highlands and the High Elven kingdoms lies the ancient home of the forest trolls. Stay away from the voodoo.",
+    not_city: true,
+    background_img: zabg,
+    card_header_img: zacard,
+    card_color: "#2F4F4F",
+    city_music: zamusic,
+    resident_img_1: troll,
+    resident_img_2: tauren1,
+    avatar_img_1: wooggy,
+    avatar_img_2: starindas,
+    avatar_name_1: "Wooggy",
+    avatar_name_2: "Starindas",
+    avatar_description_1:
+      "Took on the spirit of the bear and battled the savage trolls for the Horde.",
+    avatar_description_2:
+      "A major raiding location. Topped many damage meters here.",
+    top_pos: 17,
+    left_pos: 99,
+    faction: "Horde",
+    rating: [1, 1, 1],
+  },
   {
     city_name: "Stranglethorn Vale",
     description:
@@ -122,7 +134,6 @@ const locations_arr = [
     faction: "Horde",
     rating: [1],
   },
-
   // daCrossroads
   {
     city_name: "The Crossroads",

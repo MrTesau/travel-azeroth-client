@@ -18,7 +18,7 @@ import { Button } from "@material-ui/core";
 import wood_desk from "./wood.jpg";
 import currentBG from "./azeroth1.jpg";
 import "./App.css";
-//"https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
+
 /*     
 To Do :
 Mobile responsive -> after Portfolio preview section
@@ -122,8 +122,6 @@ const App = () => {
               width: "110rem",
               position: "relative",
               border: "1px solid grey",
-              //padding: "100px",
-              //margin: "-100px",
             }}
           >
             {cities.map((location) => {
@@ -162,11 +160,6 @@ const App = () => {
                 </div>
               );
             })}
-            {/*extras: */}
-            {/*battle za */}
-            {/*Sunwell */}
-            {/*Battle: ZA */}
-            {/*Battle: path of the damned */}
             {battlesArr.map((battle) => (
               <div
                 style={{
