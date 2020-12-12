@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button } from "@material-ui/core";
-
 //import card
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -10,7 +9,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 //import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-
 //import PersonItem from "./orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
@@ -24,46 +22,21 @@ import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiStar } from "@mdi/js";
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
-
 import { mdiAlertCircle } from "@mdi/js";
 //import LogEntryForm from "./LogEntryForm.js";
 import paper from "./paper.jpg";
 //import tb1 from "./tb1.gif";
 import greetings from "./5.ogg";
-/*const wood_desk =
-  "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
-  */
-/*
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50; //+ rand();
-  const left = 50; //+ rand();
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-*/
-/* Mobile Responsive Modal
-Grid + Hidden seems easiest solution
-
-*/
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   //const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(true);
-  //const [displayComments, setDisplayComments] = React.useState(false);
-  //const [modalBG] = React.useState(example)[0];
   const useStyles = makeStyles((theme) => ({
     root: {
-      //maxWidth: "98%", //changed for grid old 98
+      // maxWidth: "98%", //changed for grid old 98
       // minHeight: "90% !important",
-      background: "#FFD6AE", //props.cardColor,
+      background: "#FFD6AE",
     },
     paper: {
       //position: "absolute",
@@ -74,13 +47,8 @@ export default function SimpleModal(props) {
       borderRadius: "15px",
       border: "1px solid #222426",
       boxShadow: "none",
-
-      //padding: theme.spacing(1, 0.5, 1), //paper padding for div, changed for grid
+      //padding: theme.spacing(1, 0.5, 1), // paper padding for div, changed for grid
       padding: theme.spacing(1, 1, 1),
-      // display: "flex",
-      // justifyContent: "center",
-      //  alignItems: "center",
-      //  outline: "none",
     },
     divider: {
       backgroundColor: "#a8964d",
@@ -111,13 +79,10 @@ export default function SimpleModal(props) {
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     if (props.volume) playAudio();
     setOpen(false);
   };
-
-  // Tab panel for Travel log/comments
   const body = (
     <Grid
       container
@@ -145,8 +110,9 @@ export default function SimpleModal(props) {
             <CardContent style={{ background: "#EEEADC" }}>
               <>
                 <Typography align="center" variant="body1" component="p">
-                  My Journey through Azeroth
+                  My Journey through Azeroth{" "}
                 </Typography>
+
                 <Divider variant={"top"} className={classes.divider} />
                 <Typography
                   variant="caption"
@@ -352,4 +318,8 @@ export default function SimpleModal(props) {
               transformative%E2%80%9D+purpose&oq=fair+use+is+any+copying+of+copyrighted
               +material+done+for+a+limited+and+%E2%80%9C
               transformative%E2%80%9D+purpose&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8
+               <img
+                  className="cachet"
+                  src="https://i.postimg.cc/4NBYNqCR/22.png"
+                />
               */

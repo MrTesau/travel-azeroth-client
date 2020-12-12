@@ -36,7 +36,6 @@ const App = () => {
   const [volume, setVolume] = React.useState(true);
   // container for comments
   const [comments, setComments] = React.useState([]);
-
   const offset = 1;
   const style = {
     position: "absolute",
@@ -45,10 +44,8 @@ const App = () => {
     width: `calc(100vw - ${offset}px)`,
     height: `calc(100vh - ${offset}px)`,
   };
-  // Grab comments from server
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
-      //console.log(res);
       setComments([...res.data]);
     });
   }, []);
@@ -111,7 +108,7 @@ const App = () => {
           }}
           defaultScale={1}
           defaultTranslation={{ x: 0, y: 0 }}
-          minScale={0.5} // 0.95 desktop min
+          minScale={0.9} // 0.95 desktop min
           maxScale={5}
           showControls
           /*

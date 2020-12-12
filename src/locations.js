@@ -86,7 +86,7 @@ const locations_arr = [
     avatar_description_2:
       "A major raiding location. Topped many damage meters here.",
     top_pos: 17,
-    left_pos: 99,
+    left_pos: 98,
     faction: "Horde",
     rating: [1, 1, 1],
   },

@@ -3,3 +3,11 @@
   justify-content: center !important;
   align-items: center !important;
 }
+.cachet {
+  /* image width = 210px and height = 250px */
+  /*  5 is the common denominator 210 = 5 * 42 */
+  position: absolute;
+  width: 5vw;
+  height: auto;
+  margin: 0px;
+}

@@ -38,17 +38,12 @@ const LogEntryForm = (props) => {
   const postComment = (e) => {
     console.log(commentForm);
     e.preventDefault();
-    axios
-      .post(`${API_URL}`, { ...commentForm })
-      .then(function postedComment(res) {
-        console.log(res);
-        // reset commentForm
-        // setCommentForm({ city: props.city, name: "", comments:"" })
-        // Call get again ( passed down from APP) to get new comment list
-        axios.get(`${API_URL}`).then(function (res) {
-          props.setComments([...res.data]);
-        });
+    axios.post(`${API_URL}`, { ...commentForm }).then(function postedComment() {
+      setCommentForm({ city: props.city, name: "", comments: "" });
+      axios.get(`${API_URL}`).then(function (res) {
+        props.setComments([...res.data]);
       });
+    });
   };
   return (
     <form className={classes.root}>
