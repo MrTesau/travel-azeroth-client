@@ -24,12 +24,10 @@ import LogEntryForm from "./LogEntryForm.js";
 // Responsive tools
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import TextField from "@material-ui/core/TextField";
 
 export default function SimpleModal(props) {
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-
   // Audio Control
   const audioRef = React.useRef(null);
   const playSound = () => {
@@ -96,7 +94,7 @@ export default function SimpleModal(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid item xs={11} sm={9} lg={8} xl={6} className={classes.paper}>
+      <Grid item xs={11} sm={9} lg={7} xl={6} className={classes.paper}>
         <Hidden xsDown>
           <img
             style={{ width: "25%", height: "38%", paddingRight: "15px" }}

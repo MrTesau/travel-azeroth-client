@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { createLogEntry } from "./API";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
@@ -18,10 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-// OnSubmit attack a unique ID of modal comment came from
-// pass in a prop.name from each modal
-
 const LogEntryForm = (props) => {
   // Form input state
   const [commentForm, setCommentForm] = React.useState({
@@ -30,7 +24,6 @@ const LogEntryForm = (props) => {
     comments: "",
   });
   const classes = useStyles();
-
   // Form Input HAndler
   const handleFormChange = (e) => {
     setCommentForm({
@@ -48,14 +41,13 @@ const LogEntryForm = (props) => {
     axios
       .post(`${API_URL}`, { ...commentForm })
       .then(function postedComment(res) {
+        console.log(res);
         // reset commentForm
         // setCommentForm({ city: props.city, name: "", comments:"" })
         // Call get again ( passed down from APP) to get new comment list
-        /*
-          axios.get(`${API_URL}`).then(function (res) {
-            props.setComments(res);
-          });
-          */
+        axios.get(`${API_URL}`).then(function (res) {
+          props.setComments([...res.data]);
+        });
       });
   };
   return (
@@ -89,17 +81,3 @@ const LogEntryForm = (props) => {
 };
 
 export default LogEntryForm;
-
-/*
-    <form onSubmit={handleSubmit(onSubmit)} className="entry-form">
-      {error ? <h3 className="error">{error}</h3> : null}
-      <label htmlFor="title">Name</label>
-      <input name="title" required ref={register} />
-    
-
-      <label htmlFor="comments">Comments</label>
-      <textarea name="comments" rows={2} ref={register}></textarea>
-
-      <button disabled={loading}>{loading ? "Loading..." : "Submit"}</button>
-    </form>
-    */

@@ -16,7 +16,7 @@ import Icon from "@mdi/react";
 import { Button } from "@material-ui/core";
 // Assets/styles
 import wood_desk from "./wood.jpg";
-import currentBG from "./azeroth1.jpg";
+import currentBG from "./map2.jpg";
 import "./App.css";
 import axios from "axios";
 // URL of server
@@ -28,9 +28,7 @@ const API_URL =
 /*     
 To Do :
 Mobile responsive -> after Portfolio preview section
-Server Comments handling
 Play with pan/translate map options for better layout
-
 */
 const App = () => {
   const [scale, setScale] = React.useState(1);
@@ -46,19 +44,14 @@ const App = () => {
     left: offset,
     width: `calc(100vw - ${offset}px)`,
     height: `calc(100vh - ${offset}px)`,
-    //border: "1px solid blue",
   };
-
   // Grab comments from server
-  /*
-React.useEffect(() => {
-  axios.get(`${API_URL}`).then(function (res) {
-    console.log(res); 
-
-}),[]});
-
-*/
-
+  React.useEffect(() => {
+    axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
+      //console.log(res);
+      setComments([...res.data]);
+    });
+  }, []);
   // Outer wood bg div -> custom added
   // inner wrapper div -> style object
   // MapInteractionCss
@@ -135,7 +128,7 @@ React.useEffect(() => {
             style={{
               backgroundImage: `url(${currentBG})`,
               backgroundBlendMode: "multiply",
-              backgroundSize: "100% 121%",
+              backgroundSize: "100% 120%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               height: "60rem",
@@ -192,6 +185,9 @@ React.useEffect(() => {
                 }}
               >
                 <BattleModal
+                  // comments
+                  comments={comments}
+                  setComments={setComments}
                   cardVid={battle.cardVid}
                   battleImage={battle.battleCardImg}
                   battleSounds={battle.battleSounds}
