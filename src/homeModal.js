@@ -269,14 +269,14 @@ export default function SimpleModal(props) {
                 <Icon
                   path={mdiVolumeHigh}
                   title="volume"
-                  size={0.6}
+                  size={0.72}
                   color={"white"}
                 />
               ) : (
                 <Icon
                   path={mdiVolumeOff}
                   title="volume"
-                  size={0.6}
+                  size={0.72}
                   color={"white"}
                 />
               )}
