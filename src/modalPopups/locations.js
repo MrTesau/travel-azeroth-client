@@ -1,69 +1,69 @@
-import durotarArt from "./locationCards/Orgrimmar/durotar.jpg";
-import orgSounds from "./locationCards/Orgrimmar/org.mp3";
-import orc2 from "./locationCards/Orgrimmar/orc.png";
-import orc1 from "./locationCards/Orgrimmar/orc3.png";
-import city from "./locationCards/Orgrimmar/gates.gif";
+import durotarArt from "../locationCards/Orgrimmar/durotar.jpg";
+import orgSounds from "../locationCards/Orgrimmar/org.mp3";
+import orc2 from "../locationCards/Orgrimmar/orc.png";
+import orc1 from "../locationCards/Orgrimmar/orc3.png";
+import city from "../locationCards/Orgrimmar/gates.gif";
 // Thunderbluff Resources
-import tbSounds from "./locationCards/tb/thebluff.mp3";
-import tauren1 from "./locationCards/tb/t2.png";
-import tauren2 from "./locationCards/tb/tauren.png";
-import tbbg from "./locationCards/tb/tbbg.jpg";
-import tb from "./locationCards/tb/tbluff.gif";
+import tbSounds from "../locationCards/tb/thebluff.mp3";
+import tauren1 from "../locationCards/tb/t2.png";
+import tauren2 from "../locationCards/tb/tauren.png";
+import tbbg from "../locationCards/tb/tbbg.jpg";
+import tb from "../locationCards/tb/tbluff.gif";
 // Ashenvale
-import forestbg from "./locationCards/ashenvale/magic2.jpg";
-//import forest from "./ashenvale/forestgif.gif";
-import forest from "./locationCards/ashenvale/magicAlt.jpg";
-import nelf1 from "./locationCards/ashenvale/n2.png";
-import nelf2 from "./locationCards/ashenvale/nelf.png";
-import magicForest from "./locationCards/ashenvale/magic.mp3";
+import forestbg from "../locationCards/ashenvale/magic2.jpg";
+//import forest from "../ashenvale/forestgif.gif";
+import forest from "../locationCards/ashenvale/magicAlt.jpg";
+import nelf1 from "../locationCards/ashenvale/n2.png";
+import nelf2 from "../locationCards/ashenvale/nelf.png";
+import magicForest from "../locationCards/ashenvale/magic.mp3";
 // Stormmwind
-import stormwindGates from "./locationCards/stormwind/gates2.gif";
-import stormwindBg from "./locationCards/stormwind/stormwindBg.jpg";
-import human from "./locationCards/stormwind/human.gif";
-import banner from "./locationCards/stormwind/banner.png";
-import entrance from "./locationCards/stormwind/entrance.mp3";
+import stormwindGates from "../locationCards/stormwind/gates2.gif";
+import stormwindBg from "../locationCards/stormwind/stormwindBg.jpg";
+import human from "../locationCards/stormwind/human.gif";
+import banner from "../locationCards/stormwind/banner.png";
+import entrance from "../locationCards/stormwind/entrance.mp3";
 // IronForge
-import ironforgeBg from "./locationCards/ironforge/ironforge.jpg";
-import ironforgeInside from "./locationCards/ironforge/ironforgeInside.jpg";
-import dwarf2 from "./locationCards/ironforge/dw2.png";
-import dwarf1 from "./locationCards/ironforge/dwarf.gif";
-import ironEntrance from "./locationCards/ironforge/ironentrance.mp3";
+import ironforgeBg from "../locationCards/ironforge/ironforge.jpg";
+import ironforgeInside from "../locationCards/ironforge/ironforgeInside.jpg";
+import dwarf2 from "../locationCards/ironforge/dw2.png";
+import dwarf1 from "../locationCards/ironforge/dwarf.gif";
+import ironEntrance from "../locationCards/ironforge/ironentrance.mp3";
 // undercity
-import undercityBg from "./locationCards/undercity/undercitybg21.jpg";
-import undercard from "./locationCards/undercity/undercard.jpg";
-import forsaken from "./locationCards/undercity/sylv.png";
-import forsaken2 from "./locationCards/undercity/forasken2.gif";
-import undercityEntrance from "./locationCards/undercity/undercity.mp3";
+import undercityBg from "../locationCards/undercity/undercitybg21.jpg";
+import undercard from "../locationCards/undercity/undercard.jpg";
+import forsaken from "../locationCards/undercity/sylv.png";
+import forsaken2 from "../locationCards/undercity/forasken2.gif";
+import undercityEntrance from "../locationCards/undercity/undercity.mp3";
 //teldrassil
-import telbg from "./locationCards/teldrassil/telbg.png";
-import telcard from "./locationCards/teldrassil/telcard1.jpg";
-import tel1 from "./locationCards/teldrassil/tel2.png";
-import telEntrance from "./locationCards/teldrassil/tel.mp3";
+import telbg from "../locationCards/teldrassil/telbg.png";
+import telcard from "../locationCards/teldrassil/telcard1.jpg";
+import tel1 from "../locationCards/teldrassil/tel2.png";
+import telEntrance from "../locationCards/teldrassil/tel.mp3";
 // Travel Avatar
 // thumbnails
-import wooggy from "./locationCards/Orgrimmar/woogy.gif";
-import diablo from "./locationCards/Orgrimmar/diablo.gif";
-import starindas from "./locationCards/Orgrimmar/starindas.png";
-import rimeria from "./locationCards/Orgrimmar/rimeria.png";
+import wooggy from "../locationCards/Orgrimmar/woogy.gif";
+import diablo from "../locationCards/Orgrimmar/diablo.gif";
+import starindas from "../locationCards/Orgrimmar/starindas.png";
+import rimeria from "../locationCards/Orgrimmar/rimeria.png";
 // crossraods
-import barrensBg from "./locationCards/crossroads/barrensbg.png";
-import crosscard from "./locationCards/crossroads/crossraodsCard.jpg";
-import troll from "./locationCards/crossroads/troll.gif";
-import quill from "./locationCards/crossroads/quill.png";
-import bones from "./locationCards/crossroads/bones.mp3";
+import barrensBg from "../locationCards/crossroads/barrensbg.png";
+import crosscard from "../locationCards/crossroads/crossraodsCard.jpg";
+import troll from "../locationCards/crossroads/troll.gif";
+import quill from "../locationCards/crossroads/quill.png";
+import bones from "../locationCards/crossroads/bones.mp3";
 // Ratchet
-import ratbgBg from "./locationCards/ratchet/ratchetbg.jpg";
-import ratcard from "./locationCards/ratchet/ratchetCard.jpg";
-import pirate from "./locationCards/ratchet/pirate.png";
-import pirate2 from "./locationCards/ratchet/pirate2.png";
-import stv1 from "./locationCards/ratchet/stv1.mp3";
+import ratbgBg from "../locationCards/ratchet/ratchetbg.jpg";
+import ratcard from "../locationCards/ratchet/ratchetCard.jpg";
+import pirate from "../locationCards/ratchet/pirate.png";
+import pirate2 from "../locationCards/ratchet/pirate2.png";
+import stv1 from "../locationCards/ratchet/stv1.mp3";
 //STV
-import stvbg from "./locationCards/stv/stvbg.jpg";
-import stvcard from "./locationCards/stv/stvcard.jpg";
+import stvbg from "../locationCards/stv/stvbg.jpg";
+import stvcard from "../locationCards/stv/stvcard.jpg";
 // ZA
-import zabg from "./locationCards/za/zabg.gif";
-import zamusic from "./locationCards/za/zamusic.mp3";
-import zacard from "./locationCards/za/zacard.jpg";
+import zabg from "../locationCards/za/zabg.gif";
+import zamusic from "../locationCards/za/zamusic.mp3";
+import zacard from "../locationCards/za/zacard.jpg";
 
 const locations_arr = [
   {

@@ -1,20 +1,20 @@
 // Wrathgate
-import gate from "./locationCards/wrathgate/wrathgate.jpg";
-import wrath from "./locationCards/wrathgate/wrath.mp3";
+import gate from "../locationCards/wrathgate/wrathgate.jpg";
+import wrath from "../locationCards/wrathgate/wrath.mp3";
 // Gurubashi
-import gurubashi from "./locationCards/gurubashi/gurubashi.gif";
-import stv from "./locationCards/gurubashi/stv.mp3";
-import stvbg from "./locationCards/stv/stvbg.jpg";
+import gurubashi from "../locationCards/gurubashi/gurubashi.gif";
+import stv from "../locationCards/gurubashi/stv.mp3";
+import stvbg from "../locationCards/stv/stvbg.jpg";
 // thumbnails
-import wooggy from "./locationCards/Orgrimmar/woogy.gif";
-import diablo from "./locationCards/Orgrimmar/diablo.gif";
-import starindas from "./locationCards/Orgrimmar/starindas.png";
-import rimeria from "./locationCards/Orgrimmar/rimeria.png";
+import wooggy from "../locationCards/Orgrimmar/woogy.gif";
+import diablo from "../locationCards/Orgrimmar/diablo.gif";
+import starindas from "../locationCards/Orgrimmar/starindas.png";
+import rimeria from "../locationCards/Orgrimmar/rimeria.png";
 
-import syl from "./locationCards/undercity/syl.mp3";
-import scar from "./locationCards/undercity/sc.webp";
-import cull from "./locationCards/undercity/maxresdefault.gif";
-import flood from "./locationCards/undercity/flood.mp3";
+import syl from "../locationCards/undercity/syl.mp3";
+import scar from "../locationCards/undercity/sc.webp";
+import cull from "../locationCards/undercity/maxresdefault.gif";
+import flood from "../locationCards/undercity/flood.mp3";
 
 const battlesArr = [
   // Wrathgate

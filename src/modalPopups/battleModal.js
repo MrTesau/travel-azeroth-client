@@ -244,19 +244,13 @@ export default function SimpleModal(props) {
       </Hidden>
       {/* Small Screen Grid */}
       <Hidden mdUp>
-        <Grid
-          item
-          sm={7}
-          xs={11}
-          className={classes.paper}
-          // Need to add padding for larger screen sizes
-        >
+        <Grid item xs={11} className={classes.paper}>
           <Card className={classes.root} style={{ width: "95%" }}>
             <CardActionArea style={{ background: "white" }}>
               {!displayComments ? (
                 props.cardVid ? (
                   <>
-                    <CardMedia>
+                    <CardMedia className="card-picture">
                       <iframe
                         title={props.battleName}
                         width="100%"
@@ -345,13 +339,13 @@ export default function SimpleModal(props) {
                 size="small"
                 variant="contained"
                 onClick={() => handleClose()}
-                style={{ fontSize: "0.6rem" }}
+                style={{ fontSize: "0.5rem" }}
               >
                 {" "}
                 <Icon
                   path={mdiArrowLeftBold}
                   title="Orgrimmar"
-                  size={0.6}
+                  size={0.5}
                   color={"black"}
                 />{" "}
                 <span>&nbsp; Continue the Journey </span>

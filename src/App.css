@@ -12,9 +12,11 @@
 .intro-text {
   font-size: 0.7rem !important;
 }
-/* Hide Certain Modal Elements at very small screens */
+
+.description-text {
+  font-size: 0.7rem !important;
+}
 @media (max-width: 250px) {
-  /* City Modal extra small */
   .location-grid {
     padding: 2px !important;
   }
@@ -24,23 +26,69 @@
   .btn-comments {
     display: none !important;
   }
+  .home-heading {
+    font-size: 0.75rem !important;
+  }
 }
-@media (max-width: 320px) {
-  /* Home Modal Hidden */
+.description-text {
+  font-size: 0.7rem !important;
+}
+.card-picture {
+  height: 110px !important;
+}
+@media (min-width: 320px) {
   .home-heading {
     font-size: 0.7rem !important;
   }
   .main-text {
     display: none !important;
   }
-  .location-grid {
-    padding: 2px !important;
+  .card-picture {
+    height: 140px !important;
+  }
+}
+@media (min-width: 350px) {
+  .home-heading {
+    font-size: 0.7rem !important;
+  }
+  .main-text {
+    display: none !important;
   }
   .card-picture {
-    height: 130px !important;
+    height: 220px !important;
   }
 }
 
+/*
+@media (min-width: 1280px) {
+  .card-picture {
+    height: 250px !important;
+  }
+}
+@media (min-width: 700px) {
+  .card-picture {
+    height: 280px !important;
+  }
+}
+@media (min-width: 960px) {
+  .card-picture {
+    height: 220px !important;
+  }
+}
+@media (min-width: 1600px) {
+  .card-picture {
+    height: 330px !important;
+  }
+}
+*/
+.card-location {
+  background: #fff1e0;
+}
+.location-grid-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  outline: "none" !important;
+}
 .fixed-home-icon {
   position: fixed;
   left: 20px;

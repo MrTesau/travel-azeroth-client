@@ -3,8 +3,8 @@ import { MapInteractionCSS } from "react-map-interaction";
 import SimpleModal from "./modalPopups/location_popup.js";
 import BattleModal from "./modalPopups/battleModal.js";
 import HomeModal from "./modalPopups/homeModal.js";
-import cities from "./locations.js";
-import battlesArr from "./battles.js";
+import cities from "./modalPopups/locations.js";
+import battlesArr from "./modalPopups/battles.js";
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -22,26 +22,24 @@ const API_URL =
 const App = () => {
   const [scale, setScale] = React.useState(1);
   const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
-  const [volume, setVolume] = React.useState(true);
-  // container for comments
+  const [volume, setVolume] = React.useState(false);
   const [comments, setComments] = React.useState([]);
-  const offset = 1;
+  const offset = 2;
   const style = {
+    border: "1px solid grey",
     position: "absolute",
     top: offset,
     left: offset,
-    width: `calc(100vw - ${offset}px)`,
-    height: `calc(100vh - ${offset}px)`,
+    right: offset,
+    bottom: offset,
+    width: `calc(100vw - ${2 * offset}px)`,
+    height: `calc(100vh - ${2 * offset}px)`,
   };
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
       setComments([...res.data]);
     });
   }, []);
-  // Outer wood bg div -> custom added
-  // inner wrapper div -> style object
-  // MapInteractionCss
-  // div with bg as map, pointers rendered here
   return (
     <div
       style={{
@@ -88,33 +86,25 @@ const App = () => {
             setScale(scale);
             setTranslation(translation);
           }}
-          defaultScale={1}
-          defaultTranslation={{ x: 0, y: 0 }}
-          minScale={0.9} // 0.95 desktop min
+          minScale={0.75}
           maxScale={5}
           showControls
+          defaultValue={{
+            scale: 1.15,
+            translation: { x: -20, y: -100 },
+          }}
           /*
+        
           translationBounds={{
-            xMin: 0, xmin at normal -(map height* zoom)
-            xMax: 1000, xmax at normal+(map height * zoom)(at 2X zoom you should be able to scroll 2x more)
-            yMin: 0,
-            yMax: 1000,
+            xMin: -500, //xmin at normal -(map height* zoom)
+            xMax: 500, //xmax at normal+(map height * zoom)(at 2X zoom you should be able to scroll 2x more)
+            yMin: -500,
+            yMax: 500,
           }}
           */
         >
-          <div
-            style={{
-              backgroundImage: `url(${currentBG})`,
-              backgroundBlendMode: "multiply",
-              backgroundSize: "100% 120%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              height: "60rem",
-              width: "110rem",
-              position: "relative",
-              border: "1px solid grey",
-            }}
-          >
+          <div>
+            <img style={{ width: "100rem" }} src={currentBG} alt=""></img>
             {cities.map((location) => {
               return (
                 <div

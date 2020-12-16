@@ -26,34 +26,34 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 export default function SimpleModal(props) {
-  const [open, setOpen] = React.useState(
-    props.city === "Orgrimmar" ? true : false
-  );
+  const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-  // Audio Control
   const audioRef = React.useRef(null);
   const playSound = () => {
     audioRef.current.currentTime = 0;
     audioRef.current.play();
   };
-  // Styles
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     root: {
-      width: "50%",
-      // minHeight: "90% !important",
+      maxWidth: "400px",
+      background: props.cardColor,
+    },
+    rootMobile: {
+      margin: "5px",
+      width: "auto",
+      maxWidth: "350px",
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      // width: 890, Using Grid
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: theme.spacing(1, 1, 1),
+      padding: "5px",
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-around",
       alignItems: "center",
       outline: "none",
     },
@@ -72,14 +72,8 @@ export default function SimpleModal(props) {
       fontSize: "1rem",
       color: "#122740",
     },
-    caption: {
-      fontSize: "0.875rem",
-      color: "#758392",
-      marginTop: -4,
-    },
   }));
   const classes = useStyles();
-  // Modal Controls
   const handleOpen = () => {
     if (props.volume) playSound();
     setOpen(true);
@@ -88,24 +82,163 @@ export default function SimpleModal(props) {
     audioRef.current.pause();
     setOpen(false);
   };
-
   const body = (
     <Grid
       container
       alignItems="center"
       justify="center"
-      style={{ width: "100vw", height: "100vh" }}
+      onClick={(event) => {
+        event.preventDefault();
+        // Make sure user clicked on outer grid to close
+        // otherwise clicking inner elements will close
+        if (event.target === event.currentTarget) {
+          handleClose();
+        }
+      }}
+      className="location-grid-container"
     >
-      <Grid
-        item
-        xs={12}
-        sm={7}
-        xl={6}
-        className={`${classes.paper} location-grid`}
-      >
-        <Hidden smDown>
+      <Hidden mdUp>
+        <Card className={classes.rootMobile}>
+          <CardActionArea>
+            {!displayComments ? (
+              <CardMedia
+                className="card-picture"
+                component="img"
+                alt="location"
+                height="230"
+                image={props.cityImage}
+                title="City"
+              />
+            ) : (
+              ""
+            )}
+            <CardContent style={{ background: "#fff1e0 " }}>
+              {!displayComments ? (
+                <>
+                  <Typography
+                    gutterBottom
+                    variant="subtitle1"
+                    component="h6"
+                    className="home-heading"
+                  >
+                    {props.city}&nbsp;
+                    {props.rating.map(() => (
+                      <Icon
+                        path={mdiStar}
+                        title={props.city}
+                        size={0.5}
+                        color={props.faction === "Horde" ? "red" : "blue"}
+                      />
+                    ))}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textPrimary"
+                    component="p"
+                    className="description-text"
+                  >
+                    {props.cityDescription}
+                    <Divider variant={"top"} className={classes.divider} />
+                    <div className="avatar-stories">
+                      <PersonItem
+                        name={props.avatarName}
+                        travelDescription={props.avatarDescription}
+                        src={props.avatarImg}
+                      />
+                      <Divider variant={"middle"} className={classes.divider} />
+                      <PersonItem
+                        name={props.avatarName2}
+                        travelDescription={props.avatarDescription2}
+                        src={props.avatarImg2}
+                      />
+                    </div>
+                  </Typography>
+                </>
+              ) : (
+                <>
+                  {props.comments.map((comment) => {
+                    return comment.city === props.city ? (
+                      <>
+                        <PersonItem
+                          name={comment.name}
+                          travelDescription={comment.comments}
+                        />
+                      </>
+                    ) : (
+                      ""
+                    );
+                  })}
+                  <Divider variant={"bottom"} className={classes.divider} />
+                  <Typography gutterBottom variant="subtitle2" component="h5">
+                    Been to {props.city}? Or Just enjoying the journey? Leave a
+                    comment!
+                  </Typography>
+                  <LogEntryForm
+                    setComments={props.setComments}
+                    city={props.city}
+                  />
+                </>
+              )}
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => {
+                setDisplayComments(false);
+                handleClose();
+              }}
+              style={{
+                fontSize: "0.6rem",
+              }}
+            >
+              <Icon
+                path={mdiArrowLeftBold}
+                title="Orgrimmar"
+                size={0.5}
+                color={"black"}
+              />{" "}
+              <span>&nbsp; Continue the Journey </span>
+            </Button>
+            <Button
+              className="btn-comments"
+              style={{
+                fontSize: "0.6rem",
+              }}
+              variant="contained"
+              size="small"
+              onClick={() => setDisplayComments(!displayComments)}
+            >
+              {displayComments ? (
+                <>
+                  <Icon
+                    path={mdiHome}
+                    title="Orgrimmar"
+                    size={0.5}
+                    color={"black"}
+                  />
+                  <span>&nbsp; {`Back to ${props.city}`} </span>
+                </>
+              ) : (
+                <>
+                  <Icon
+                    path={mdiCommentOutline}
+                    title="Orgrimmar"
+                    size={0.5}
+                    color={"black"}
+                  />
+                  <span>&nbsp; Comment </span>
+                </>
+              )}
+            </Button>
+          </CardActions>
+        </Card>
+      </Hidden>
+      <Hidden smDown>
+        <Grid item md={9} className={`${classes.paper}`}>
           <img
-            style={{ width: "25%", height: "38%", paddingRight: "15px" }}
+            style={{ width: "20%", height: "33%", paddingRight: "10px" }}
             src={props.residentImage1}
             alt="Orc Clipart"
           ></img>
@@ -113,25 +246,21 @@ export default function SimpleModal(props) {
             <CardActionArea>
               {!displayComments ? (
                 <CardMedia
+                  className="card-picture"
                   component="img"
                   alt="Contemplative Reptile"
-                  height="230"
+                  height="240"
                   image={props.cityImage}
                   title="City"
                 />
               ) : (
                 ""
               )}
-              <CardContent
-                style={{ background: "#fff1e0 " }}
-                className="card-location"
-              >
+              <CardContent className="card-location">
                 {!displayComments ? (
                   <>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {props.notCity
-                        ? `${props.city}`
-                        : `The City of ${props.city}`}{" "}
+                      {props.city}&nbsp;
                       {props.rating.map(() => (
                         <Icon
                           path={mdiStar}
@@ -145,12 +274,10 @@ export default function SimpleModal(props) {
                       variant="body2"
                       color="textSecondary"
                       component="p"
-                      style={{ display: "none" }}
                     >
                       {props.cityDescription}
                     </Typography>
                     <Divider variant={"top"} className={classes.divider} />
-
                     <PersonItem
                       name={props.avatarName}
                       travelDescription={props.avatarDescription}
@@ -162,7 +289,6 @@ export default function SimpleModal(props) {
                       travelDescription={props.avatarDescription2}
                       src={props.avatarImg2}
                     />
-
                     <Divider variant={"bottom"} className={classes.divider} />
                   </>
                 ) : (
@@ -246,168 +372,14 @@ export default function SimpleModal(props) {
             </CardActions>
           </Card>
           <img
-            style={{ width: "25%", height: "38%", paddingLeft: "15px" }}
+            style={{ width: "20%", height: "33%", paddingLeft: "10px" }}
             src={props.residentImage2}
             alt="Orc Clipart"
           ></img>
-        </Hidden>
-        {/******************  Mobile Card  ***************/}
-        <Hidden mdUp>
-          <Card className={classes.root} style={{ width: "95%" }}>
-            <CardActionArea>
-              {!displayComments ? (
-                <CardMedia
-                  className="card-picture"
-                  component="img"
-                  alt="Contemplative Reptile"
-                  height="230"
-                  image={props.cityImage}
-                  title="City"
-                />
-              ) : (
-                ""
-              )}
-              <CardContent style={{ background: "#fff1e0 " }}>
-                {!displayComments ? (
-                  <>
-                    <Typography
-                      gutterBottom
-                      variant="subtitle1"
-                      component="h6"
-                      style={{
-                        fontSize: "0.8rem", // changed for mobile-> remove
-                      }}
-                      className="home-heading"
-                    >
-                      {props.notCity
-                        ? `${props.city}`
-                        : `The City of ${props.city}`}{" "}
-                      {props.rating.map(() => (
-                        <Icon
-                          path={mdiStar}
-                          title={props.city}
-                          size={0.5}
-                          color={props.faction === "Horde" ? "red" : "blue"}
-                        />
-                      ))}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textPrimary"
-                      component="p"
-                      style={{
-                        fontSize: "0.7rem", // changed for mobile-> remove
-                      }}
-                    >
-                      {props.cityDescription}
-                    </Typography>
-                    <Divider variant={"top"} className={classes.divider} />
-                    <div className="avatar-stories">
-                      <PersonItem
-                        name={props.avatarName}
-                        travelDescription={props.avatarDescription}
-                        src={props.avatarImg}
-                      />
-                      <Divider variant={"middle"} className={classes.divider} />
-                      <PersonItem
-                        name={props.avatarName2}
-                        travelDescription={props.avatarDescription2}
-                        src={props.avatarImg2}
-                      />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <PersonItem
-                      name={"Anonymous"}
-                      travelDescription={"Great City 10/10"}
-                    />
-                    <Divider variant={"bottom"} className={classes.divider} />
-                    <Typography gutterBottom variant="subtitle2" component="h5">
-                      Been to {props.city}? Or Just enjoying the journey? Leave
-                      a comment!
-                    </Typography>
-                    <LogEntryForm
-                    //..pass a unique modal identifier to each form
-                    // submit identifier with form to db
-                    // use this to filter API response comments for each Modal
-                    />
-                  </>
-                )}
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() => {
-                  setDisplayComments(false);
-                  handleClose();
-                }}
-                style={{
-                  // background: props.cardColor,
-                  // filter: "brightness(115%)",
-                  fontSize: "0.6rem",
-                }}
-              >
-                <Icon
-                  path={mdiArrowLeftBold}
-                  title="Orgrimmar"
-                  size={0.5}
-                  color={"black"}
-                />{" "}
-                <span>&nbsp; Continue the Journey </span>
-              </Button>
-              <Button
-                className="btn-comments"
-                style={{
-                  fontSize: "0.6rem",
-                }}
-                variant="contained"
-                size="small"
-                onClick={() => setDisplayComments(!displayComments)}
-              >
-                {displayComments ? (
-                  <>
-                    <Icon
-                      path={mdiHome}
-                      title="Orgrimmar"
-                      size={0.5}
-                      color={"black"}
-                    />
-                    <span>&nbsp; {`Back to ${props.city}`} </span>
-                  </>
-                ) : (
-                  <>
-                    <Icon
-                      path={mdiCommentOutline}
-                      title="Orgrimmar"
-                      size={0.5}
-                      color={"black"}
-                    />
-                    <span>&nbsp; Comment </span>
-                  </>
-                )}
-              </Button>
-            </CardActions>
-          </Card>
-        </Hidden>
-      </Grid>
+        </Grid>
+      </Hidden>
     </Grid>
   );
-
   return (
     <div>
       <audio
@@ -415,7 +387,7 @@ export default function SimpleModal(props) {
         src={props.citySounds}
         style={{ display: "none" }}
       />
-      <div onClick={handleOpen}>
+      <div onClick={handleOpen} onTouchEnd={handleOpen}>
         <Icon
           path={mdiMapMarker}
           title={props.city}
