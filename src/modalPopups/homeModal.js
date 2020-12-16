@@ -2,52 +2,41 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button } from "@material-ui/core";
-//import card
+// import card components
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-//import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-//import PersonItem from "./orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-// Icons
+// icons
 import { mdiHome } from "@mdi/js";
 import { mdiMapMarker } from "@mdi/js";
 import Icon from "@mdi/react";
-//import { mdiCommentOutline } from "@mdi/js";
 import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiStar } from "@mdi/js";
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import { mdiAlertCircle } from "@mdi/js";
-//import LogEntryForm from "./LogEntryForm.js";
-import paper from "./paper.jpg";
-//import tb1 from "./tb1.gif";
-import greetings from "./5.ogg";
+import paper from "../assets/paper.jpg";
+import greetings from "../assets/5.ogg";
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
-  //const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const useStyles = makeStyles((theme) => ({
     root: {
-      // maxWidth: "98%", //changed for grid old 98
-      // minHeight: "90% !important",
       background: "#FFD6AE",
     },
     paper: {
-      //position: "absolute",
-      //width: "100%", // 55vs = larger
       backgroundImage: `url(${paper})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       borderRadius: "15px",
       border: "1px solid #222426",
       boxShadow: "none",
-      //padding: theme.spacing(1, 0.5, 1), // paper padding for div, changed for grid
       padding: theme.spacing(1, 1, 1),
     },
     divider: {
@@ -90,26 +79,17 @@ export default function SimpleModal(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid
-        item
-        xs={11}
-        md={6}
-        /* style={{
-          backgroundImage: `url(${paper})`,
-          backgroundBlendMode: "multiply",
-          backgroundSize: "cover",
-          padding: "10px",
-        }}
-        */
-        className={classes.paper}
-      >
-        {/*<div style={modalStyle}  className={classes.paper}>*/}
-
+      <Grid item xs={11} sm={10} md={8} lg={6} className={classes.paper}>
         <Card className={classes.root}>
           <CardActionArea>
             <CardContent style={{ background: "#EEEADC" }}>
               <>
-                <Typography align="center" variant="body1" component="p">
+                <Typography
+                  align="center"
+                  variant="body1"
+                  component="p"
+                  className="home-heading"
+                >
                   My Journey through Azeroth{" "}
                 </Typography>
 
@@ -117,15 +97,21 @@ export default function SimpleModal(props) {
                 <Typography
                   variant="caption"
                   display="block"
-                  style={{
-                    fontSize: "0.7rem", // changed for mobile-> remove
-                  }}
-                  gutterBottom
+                  className="intro-text"
                 >
                   Join me as I retrace my journey through azeroth and share why
                   I personally resonate with some of the wonderful locations
                   found here.
                   <br />
+                </Typography>
+                <Typography
+                  variant="caption"
+                  display="block"
+                  style={{
+                    fontSize: "0.7rem", // changed for mobile-> remove
+                  }}
+                  className="main-text"
+                >
                   <br />I assigned the marked locations with{" "}
                   <Icon
                     path={mdiStar}
@@ -146,6 +132,7 @@ export default function SimpleModal(props) {
                     style={{
                       fontSize: "0.7rem", // changed for mobile-> remove
                     }}
+                    className="main-text"
                   >
                     <Icon
                       path={mdiMapMarker}
@@ -240,7 +227,6 @@ export default function SimpleModal(props) {
               variant="contained"
               color="primary"
               onClick={() => {
-                //setDisplayComments(false);
                 handleClose();
               }}
               style={{
@@ -256,14 +242,13 @@ export default function SimpleModal(props) {
               <span>&nbsp; Take me to Azeroth </span>
             </Button>
             <Button
-              //variant="default"
               variant="contained"
               size="small"
               color="primary"
               onClick={() => {
                 props.setVolume(!props.volume);
-                // audio.muted = true;
               }}
+              className="main-text"
             >
               {props.volume ? (
                 <Icon
@@ -290,12 +275,7 @@ export default function SimpleModal(props) {
   return (
     <div>
       <div onClick={handleOpen}>
-        <Button
-          //variant="default"
-          variant="contained"
-          size="small"
-          color="primary"
-        >
+        <Button variant="contained" size="small" color="primary">
           <Icon path={mdiHome} title={props.city} size={0.8} color={"white"} />
         </Button>
       </div>
@@ -304,6 +284,7 @@ export default function SimpleModal(props) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        disableScrollLock
       >
         {body}
       </Modal>
@@ -312,7 +293,7 @@ export default function SimpleModal(props) {
 }
 
 /*
-              FaIr uSe:
+              Fair use:
               https://www.google.com/
               search?q=fair+use+is+any+copying+of+copyrighted+material+done+for+a+limited+and+%E2%80%9C
               transformative%E2%80%9D+purpose&oq=fair+use+is+any+copying+of+copyrighted

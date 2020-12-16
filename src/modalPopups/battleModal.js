@@ -10,10 +10,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // Charater Rows
-import PersonItem from "./orgimmarVisitors.js";
+import PersonItem from "../orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 // Comments Form
-import LogEntryForm from "./LogEntryForm.js";
+import LogEntryForm from "../LogEntryForm.js";
 // Modal bg
 // map marker Battle
 import { mdiHome } from "@mdi/js";

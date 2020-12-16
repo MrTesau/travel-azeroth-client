@@ -1,35 +1,24 @@
 import React from "react";
 import { MapInteractionCSS } from "react-map-interaction";
-//import { listLogEntries } from "./API";
-//import LogEntryForm from "./LogEntryForm";
-// City Modal
-import SimpleModal from "./location_popup.js";
-import BattleModal from "./battleModal.js";
-import HomeModal from "./homeModal.js";
-// Location data imports
+import SimpleModal from "./modalPopups/location_popup.js";
+import BattleModal from "./modalPopups/battleModal.js";
+import HomeModal from "./modalPopups/homeModal.js";
 import cities from "./locations.js";
 import battlesArr from "./battles.js";
-// Icons
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Button } from "@material-ui/core";
-// Assets/styles
-import wood_desk from "./wood.jpg";
-import currentBG from "./map2.jpg";
+import wood_desk from "./assets/wood.jpg";
+import currentBG from "./assets/map2.jpg";
 import "./App.css";
 import axios from "axios";
-// URL of server
+// To Do: seperate API calls
 const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:1337/api/logs"
     : "https://travel-log-hazel.vercel.app/api/logs";
 
-/*     
-To Do :
-Mobile responsive -> after Portfolio preview section
-Play with pan/translate map options for better layout
-*/
 const App = () => {
   const [scale, setScale] = React.useState(1);
   const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
@@ -62,23 +51,16 @@ const App = () => {
         backgroundSize: "cover",
       }}
     >
-      <div style={{ position: "fixed", left: 20, top: 45, zIndex: 99 }}>
-        <HomeModal
-          bg={wood_desk}
-          volume={volume}
-          disableScrollLock={true}
-          setVolume={setVolume}
-        />
+      <div className="fixed-home-icon">
+        <HomeModal bg={wood_desk} volume={volume} setVolume={setVolume} />
       </div>
-      <div style={{ position: "fixed", left: 20, top: 80, zIndex: 99 }}>
+      <div className="fixed-volume-icon">
         <Button
-          //variant="default"
           variant="contained"
           size="small"
           color="primary"
           onClick={() => {
             setVolume(!volume);
-            // audio.muted = true;
           }}
         >
           {volume ? (
@@ -119,7 +101,6 @@ const App = () => {
             yMax: 1000,
           }}
           */
-          //disablePan={true}
         >
           <div
             style={{

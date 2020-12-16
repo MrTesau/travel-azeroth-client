@@ -10,7 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // Character Rows
-import PersonItem from "./orgimmarVisitors.js";
+import PersonItem from "../orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 // Icons
 import { mdiMapMarker } from "@mdi/js";
@@ -20,13 +20,15 @@ import { mdiArrowLeftBold } from "@mdi/js";
 import { mdiHome } from "@mdi/js";
 import { mdiStar } from "@mdi/js";
 // Comments Form
-import LogEntryForm from "./LogEntryForm.js";
+import LogEntryForm from "../LogEntryForm.js";
 // Responsive tools
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 export default function SimpleModal(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(
+    props.city === "Orgrimmar" ? true : false
+  );
   const [displayComments, setDisplayComments] = React.useState(false);
   // Audio Control
   const audioRef = React.useRef(null);
@@ -94,8 +96,14 @@ export default function SimpleModal(props) {
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
     >
-      <Grid item xs={11} sm={9} lg={7} xl={6} className={classes.paper}>
-        <Hidden xsDown>
+      <Grid
+        item
+        xs={12}
+        sm={7}
+        xl={6}
+        className={`${classes.paper} location-grid`}
+      >
+        <Hidden smDown>
           <img
             style={{ width: "25%", height: "38%", paddingRight: "15px" }}
             src={props.residentImage1}
@@ -114,7 +122,10 @@ export default function SimpleModal(props) {
               ) : (
                 ""
               )}
-              <CardContent style={{ background: "#fff1e0 " }}>
+              <CardContent
+                style={{ background: "#fff1e0 " }}
+                className="card-location"
+              >
                 {!displayComments ? (
                   <>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -134,6 +145,7 @@ export default function SimpleModal(props) {
                       variant="body2"
                       color="textSecondary"
                       component="p"
+                      style={{ display: "none" }}
                     >
                       {props.cityDescription}
                     </Typography>
@@ -183,8 +195,6 @@ export default function SimpleModal(props) {
             <CardActions>
               <Button
                 style={{
-                  // background: props.cardColor,
-                  // filter: "brightness(135%)",
                   fontSize: "0.6rem",
                 }}
                 variant="contained"
@@ -204,7 +214,6 @@ export default function SimpleModal(props) {
               </Button>
               <Button
                 style={{
-                  // background: props.cardColor,
                   // filter: "brightness(135%)",
                   fontSize: "0.6rem",
                 }}
@@ -242,15 +251,16 @@ export default function SimpleModal(props) {
             alt="Orc Clipart"
           ></img>
         </Hidden>
-        {/* Mobile Card */}
-        <Hidden smUp>
+        {/******************  Mobile Card  ***************/}
+        <Hidden mdUp>
           <Card className={classes.root} style={{ width: "95%" }}>
             <CardActionArea>
               {!displayComments ? (
                 <CardMedia
+                  className="card-picture"
                   component="img"
                   alt="Contemplative Reptile"
-                  height="130"
+                  height="230"
                   image={props.cityImage}
                   title="City"
                 />
@@ -267,6 +277,7 @@ export default function SimpleModal(props) {
                       style={{
                         fontSize: "0.8rem", // changed for mobile-> remove
                       }}
+                      className="home-heading"
                     >
                       {props.notCity
                         ? `${props.city}`
@@ -291,17 +302,19 @@ export default function SimpleModal(props) {
                       {props.cityDescription}
                     </Typography>
                     <Divider variant={"top"} className={classes.divider} />
-                    <PersonItem
-                      name={props.avatarName}
-                      travelDescription={props.avatarDescription}
-                      src={props.avatarImg}
-                    />
-                    <Divider variant={"middle"} className={classes.divider} />
-                    <PersonItem
-                      name={props.avatarName2}
-                      travelDescription={props.avatarDescription2}
-                      src={props.avatarImg2}
-                    />
+                    <div className="avatar-stories">
+                      <PersonItem
+                        name={props.avatarName}
+                        travelDescription={props.avatarDescription}
+                        src={props.avatarImg}
+                      />
+                      <Divider variant={"middle"} className={classes.divider} />
+                      <PersonItem
+                        name={props.avatarName2}
+                        travelDescription={props.avatarDescription2}
+                        src={props.avatarImg2}
+                      />
+                    </div>
                   </>
                 ) : (
                   <>
@@ -358,9 +371,8 @@ export default function SimpleModal(props) {
                 <span>&nbsp; Continue the Journey </span>
               </Button>
               <Button
+                className="btn-comments"
                 style={{
-                  //background: props.cardColor,
-                  //filter: "brightness(115%)",
                   fontSize: "0.6rem",
                 }}
                 variant="contained"
