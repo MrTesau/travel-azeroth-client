@@ -26,7 +26,6 @@ const App = () => {
   const [comments, setComments] = React.useState([]);
   const offset = 2;
   const style = {
-    //border: "1px solid grey",
     position: "absolute",
     top: offset,
     left: offset,
@@ -94,8 +93,12 @@ const App = () => {
             translation: { x: -20, y: -100 },
           }}
         >
-          <div>
-            <img style={{ width: "100rem" }} src={currentBG} alt=""></img>
+          <>
+            <img
+              style={{ width: "100rem" }}
+              src={currentBG}
+              alt="Azeroth"
+            ></img>
             {cities.map((location) => {
               return (
                 <div
@@ -108,30 +111,10 @@ const App = () => {
                   }}
                 >
                   <SimpleModal
-                    // comments
+                    volume={volume}
                     comments={comments}
                     setComments={setComments}
-                    //Avatar Props
-                    avatarName={location.avatar_name_1}
-                    avatarDescription={location.avatar_description_1}
-                    avatarImg={location.avatar_img_1}
-                    avatarName2={location.avatar_name_2}
-                    avatarDescription2={location.avatar_description_2}
-                    avatarImg2={location.avatar_img_2}
-                    // Faction and city
-                    faction={location.faction}
-                    city={location.city_name}
-                    notCity={location.not_city}
-                    bg={location.background_img}
-                    citySounds={location.city_music}
-                    cardColor={location.card_color}
-                    cityDescription={location.description}
-                    // Images
-                    residentImage1={location.resident_img_1}
-                    residentImage2={location.resident_img_2}
-                    cityImage={location.card_header_img}
-                    rating={location.rating}
-                    volume={volume}
+                    {...location}
                   />
                 </div>
               );
@@ -149,21 +132,12 @@ const App = () => {
                   // comments
                   comments={comments}
                   setComments={setComments}
-                  cardVid={battle.cardVid}
-                  battleImage={battle.battleCardImg}
-                  battleSounds={battle.battleSounds}
-                  battleName={battle.battleName}
-                  cardColor={battle.cardColor}
-                  bg={battle.battleBg}
-                  battleDescription={battle.battleDescription}
-                  avatarName={battle.avatar_name}
-                  avatarDescription={battle.avatar_description}
-                  avatarImg={battle.avatar_img}
                   volume={volume}
+                  {...battle}
                 />
               </div>
             ))}
-          </div>
+          </>
         </MapInteractionCSS>
       </div>
     </div>

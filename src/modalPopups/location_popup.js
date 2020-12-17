@@ -26,6 +26,27 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 export default function SimpleModal(props) {
+  const {
+    volume,
+    comments,
+    setComments,
+    card_color,
+    description,
+    resident_img_1,
+    resident_img_2,
+    card_header_img,
+    rating,
+    avatar_name_1,
+    avatar_description_1,
+    avatar_img_1,
+    avatar_name_2,
+    avatar_description_2,
+    avatar_img_2,
+    faction,
+    city_name,
+    background_img,
+    city_music,
+  } = props;
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
   const audioRef = React.useRef(null);
@@ -36,17 +57,17 @@ export default function SimpleModal(props) {
   const useStyles = makeStyles(() => ({
     root: {
       maxWidth: "400px",
-      background: props.cardColor,
+      background: card_color,
     },
     rootMobile: {
       margin: "3px",
       width: "auto",
       maxWidth: "350px",
-      background: props.cardColor,
+      background: card_color,
     },
     paper: {
       position: "absolute",
-      backgroundImage: `url(${props.bg})`,
+      backgroundImage: `url(${background_img})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       border: "1px solid #222426",
@@ -77,7 +98,7 @@ export default function SimpleModal(props) {
   }));
   const classes = useStyles();
   const handleOpen = () => {
-    if (props.volume) playSound();
+    if (volume) playSound();
     setOpen(true);
   };
   const handleClose = () => {
@@ -108,13 +129,13 @@ export default function SimpleModal(props) {
                 component="img"
                 alt="location"
                 height="230"
-                image={props.cityImage}
+                image={card_header_img}
                 title="City"
               />
             ) : (
               ""
             )}
-            <CardContent style={{ background: "#fff1e0 " }}>
+            <CardContent className="card-content">
               {!displayComments ? (
                 <>
                   <Typography
@@ -123,13 +144,13 @@ export default function SimpleModal(props) {
                     component="h6"
                     className="home-heading"
                   >
-                    {props.city}&nbsp;
+                    {city_name}&nbsp;
                     {props.rating.map(() => (
                       <Icon
                         path={mdiStar}
-                        title={props.city}
+                        title={city_name}
                         size={0.5}
-                        color={props.faction === "Horde" ? "red" : "blue"}
+                        color={faction === "Horde" ? "red" : "blue"}
                       />
                     ))}
                   </Typography>
@@ -139,20 +160,20 @@ export default function SimpleModal(props) {
                     component="p"
                     className="description-text"
                   >
-                    {props.cityDescription}
+                    {description}
                     <Divider variant={"top"} className={classes.divider} />
                     <div className="avatar-stories">
                       <PersonItem
-                        name={props.avatarName}
-                        travelDescription={props.avatarDescription}
-                        src={props.avatarImg}
+                        name={avatar_name_1}
+                        travelDescription={avatar_description_1}
+                        src={avatar_img_1}
                         avatarSize={37}
                       />
                       <Divider variant={"middle"} className={classes.divider} />
                       <PersonItem
-                        name={props.avatarName2}
-                        travelDescription={props.avatarDescription2}
-                        src={props.avatarImg2}
+                        name={avatar_name_2}
+                        travelDescription={avatar_description_2}
+                        src={avatar_img_2}
                         avatarSize={37}
                       />
                     </div>
@@ -160,8 +181,8 @@ export default function SimpleModal(props) {
                 </>
               ) : (
                 <>
-                  {props.comments.map((comment) => {
-                    return comment.city === props.city ? (
+                  {comments.map((comment) => {
+                    return comment.city === city_name ? (
                       <>
                         <PersonItem
                           name={comment.name}
@@ -174,13 +195,10 @@ export default function SimpleModal(props) {
                   })}
                   <Divider variant={"bottom"} className={classes.divider} />
                   <Typography gutterBottom variant="subtitle2" component="h5">
-                    Been to {props.city}? Or Just enjoying the journey? Leave a
+                    Been to {city_name}? Or Just enjoying the journey? Leave a
                     comment!
                   </Typography>
-                  <LogEntryForm
-                    setComments={props.setComments}
-                    city={props.city}
-                  />
+                  <LogEntryForm setComments={setComments} city={city_name} />
                 </>
               )}
             </CardContent>
@@ -222,7 +240,7 @@ export default function SimpleModal(props) {
                     size={0.5}
                     color={"black"}
                   />
-                  <span>&nbsp; {`Back to ${props.city}`} </span>
+                  <span>&nbsp; {`Back to ${city_name}`} </span>
                 </>
               ) : (
                 <>
@@ -243,18 +261,18 @@ export default function SimpleModal(props) {
         <Grid item md={9} className={`${classes.paper}`}>
           <img
             style={{ width: "20%", height: "33%", paddingRight: "10px" }}
-            src={props.residentImage1}
+            src={resident_img_1}
             alt="Orc Clipart"
           ></img>
           <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className="card-content">
               {!displayComments ? (
                 <CardMedia
                   className="card-picture"
                   component="img"
                   alt="Contemplative Reptile"
                   height="240"
-                  image={props.cityImage}
+                  image={card_header_img}
                   title="City"
                 />
               ) : (
@@ -264,13 +282,13 @@ export default function SimpleModal(props) {
                 {!displayComments ? (
                   <>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {props.city}&nbsp;
-                      {props.rating.map(() => (
+                      {city_name}&nbsp;
+                      {rating.map((star) => (
                         <Icon
                           path={mdiStar}
-                          title={props.city}
+                          title={city_name}
                           size={0.5}
-                          color={props.faction === "Horde" ? "red" : "blue"}
+                          color={faction === "Horde" ? "red" : "blue"}
                         />
                       ))}
                     </Typography>
@@ -279,26 +297,26 @@ export default function SimpleModal(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      {props.cityDescription}
+                      {description}
                     </Typography>
                     <Divider variant={"top"} className={classes.divider} />
                     <PersonItem
-                      name={props.avatarName}
-                      travelDescription={props.avatarDescription}
-                      src={props.avatarImg}
+                      name={avatar_name_1}
+                      travelDescription={avatar_description_1}
+                      src={avatar_img_1}
                     />
                     <Divider variant={"middle"} className={classes.divider} />
                     <PersonItem
-                      name={props.avatarName2}
-                      travelDescription={props.avatarDescription2}
-                      src={props.avatarImg2}
+                      name={avatar_name_2}
+                      travelDescription={avatar_description_2}
+                      src={avatar_img_2}
                     />
                     <Divider variant={"bottom"} className={classes.divider} />
                   </>
                 ) : (
                   <>
-                    {props.comments.map((comment) => {
-                      return comment.city === props.city ? (
+                    {comments.map((comment) => {
+                      return comment.city === city_name ? (
                         <>
                           <PersonItem
                             name={comment.name}
@@ -311,13 +329,10 @@ export default function SimpleModal(props) {
                     })}
                     <Divider variant={"bottom"} className={classes.divider} />
                     <Typography gutterBottom variant="subtitle2" component="h5">
-                      Been to {props.city}? Or Just enjoying the journey? Leave
-                      a comment!
+                      Been to {city_name}? Or Just enjoying the journey? Leave a
+                      comment!
                     </Typography>
-                    <LogEntryForm
-                      setComments={props.setComments}
-                      city={props.city}
-                    />
+                    <LogEntryForm setComments={setComments} city={city_name} />
                   </>
                 )}
               </CardContent>
@@ -359,7 +374,7 @@ export default function SimpleModal(props) {
                       size={0.6}
                       color={"black"}
                     />
-                    <span>&nbsp; {`Back to ${props.city}`} </span>
+                    <span>&nbsp; {`Back to ${city_name}`} </span>
                   </>
                 ) : (
                   <>
@@ -377,7 +392,7 @@ export default function SimpleModal(props) {
           </Card>
           <img
             style={{ width: "20%", height: "33%", paddingLeft: "10px" }}
-            src={props.residentImage2}
+            src={resident_img_2}
             alt="Orc Clipart"
           ></img>
         </Grid>
@@ -386,17 +401,13 @@ export default function SimpleModal(props) {
   );
   return (
     <div>
-      <audio
-        ref={audioRef}
-        src={props.citySounds}
-        style={{ display: "none" }}
-      />
+      <audio ref={audioRef} src={city_music} style={{ display: "none" }} />
       <div onClick={handleOpen} onTouchEnd={handleOpen}>
         <Icon
           path={mdiMapMarker}
-          title={props.city}
+          title={city_name}
           size={1.5}
-          color={props.faction === "Horde" ? "red" : "blue"}
+          color={faction === "Horde" ? "red" : "blue"}
         />
       </div>
       <Modal

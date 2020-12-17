@@ -10,15 +10,31 @@ import wooggy from "../locationCards/Orgrimmar/woogy.gif";
 import diablo from "../locationCards/Orgrimmar/diablo.gif";
 import starindas from "../locationCards/Orgrimmar/starindas.png";
 import rimeria from "../locationCards/Orgrimmar/rimeria.png";
-
 import syl from "../locationCards/undercity/syl.mp3";
 import scar from "../locationCards/undercity/sc.webp";
 import cull from "../locationCards/undercity/maxresdefault.gif";
 import flood from "../locationCards/undercity/flood.mp3";
 import tocbg from "../locationCards/toc/tocbg.jpg";
 import tocmusic from "../locationCards/toc/toc.mp3";
+import tbcbg from "../assets/tbc.jpg";
 
 const battlesArr = [
+  {
+    battleName: "Through the Dark Portal",
+    battleBg: tbcbg,
+    battleCardImg: "",
+    battleSounds: "",
+    battleDescription:
+      "Going through the Dark Portal transports heroes to World of Warcrafts first expansion: The Burning Crusade. Here you battle Illidan Stormrage on the Shattered remains of the planet Draenor.",
+    cardColor: "#330033",
+    posTop: 55,
+    posLeft: 83,
+    cardVid: "https://www.youtube.com/embed/IBHL_-biMrQ",
+    avatar_name: "Starindas",
+    avatar_description:
+      "The first of my characters to venture through and do battle in this expansion.",
+    avatar_img: starindas,
+  },
   {
     battleName: "The Fall of the Lich king",
     battleBg: gate,

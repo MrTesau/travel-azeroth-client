@@ -24,6 +24,21 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 export default function SimpleModal(props) {
+  const {
+    cardVid,
+    battleCardImg,
+    battleSounds,
+    battleName,
+    cardColor,
+    battleBg,
+    battleDescription,
+    avatar_name,
+    avatar_description,
+    avatar_img,
+    volume,
+    comments,
+    setComments,
+  } = props;
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
   const audioRef = React.useRef(null);
@@ -32,7 +47,7 @@ export default function SimpleModal(props) {
     audioRef.current.play();
   };
   const handleOpen = () => {
-    if (props.volume) playSound();
+    if (volume) playSound();
     setOpen(true);
   };
 
@@ -45,18 +60,18 @@ export default function SimpleModal(props) {
       margin: "10px",
       width: "auto",
       maxWidth: "330px",
-      background: props.cardColor,
+      background: cardColor,
     },
     media: {
       border: "none",
     },
     root: {
       maxWidth: "400px",
-      background: props.cardColor,
+      background: cardColor,
     },
     paper: {
       position: "absolute",
-      backgroundImage: `url(${props.bg})`,
+      backgroundImage: `url(${battleBg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       border: "1px solid #222426",
@@ -99,14 +114,14 @@ export default function SimpleModal(props) {
           {!displayComments ? (
             <CardMedia
               className={`${classes.media} card-picture`}
-              component={props.cardVid ? "iframe" : "img"}
-              image={props.cardVid ? props.cardVid : props.battleImage}
+              component={cardVid ? "iframe" : "img"}
+              image={cardVid ? cardVid : battleCardImg}
               height="230"
             />
           ) : (
             ""
           )}
-          <CardContent style={{ background: "#F8F9F9" }}>
+          <CardContent className="card-content">
             {!displayComments ? (
               <>
                 {/* Standard Card */}
@@ -115,7 +130,7 @@ export default function SimpleModal(props) {
                   variant="subtitle1"
                   component="h6"
                 >
-                  {`${props.battleName}`}
+                  {`${battleName}`}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -123,14 +138,14 @@ export default function SimpleModal(props) {
                   component="p"
                   className="description-text"
                 >
-                  {props.battleDescription}
+                  {battleDescription}
                 </Typography>
                 <Divider variant={"top"} className={classes.divider} />
                 <div className="avatar-stories">
                   <PersonItem
-                    name={props.avatarName}
-                    travelDescription={props.avatarDescription}
-                    src={props.avatarImg}
+                    name={avatar_name}
+                    travelDescription={avatar_description}
+                    src={avatar_img}
                     avatarSize={42}
                   />{" "}
                 </div>
@@ -138,8 +153,8 @@ export default function SimpleModal(props) {
             ) : (
               <>
                 {/* Comment Card */}
-                {props.comments.map((comment) => {
-                  return comment.city === props.battleName ? (
+                {comments.map((comment) => {
+                  return comment.city === battleName ? (
                     <>
                       <PersonItem
                         name={comment.name}
@@ -160,14 +175,11 @@ export default function SimpleModal(props) {
                   Fought at this battle? Or Just enjoying the journey? Leave a
                   comment!
                 </Typography>
-                <LogEntryForm
-                  city={props.battleName}
-                  setComments={props.setComments}
-                />
+                <LogEntryForm city={battleName} setComments={setComments} />
               </>
             )}
           </CardContent>
-          <CardActions style={{ background: props.cardColor }}>
+          <CardActions style={{ background: cardColor }}>
             <Button
               size="small"
               variant="contained"
@@ -224,23 +236,18 @@ export default function SimpleModal(props) {
               {!displayComments ? (
                 <CardMedia
                   className={`${classes.media}`}
-                  component={props.cardVid ? "iframe" : "img"}
-                  image={props.cardVid ? props.cardVid : props.battleImage}
+                  component={cardVid ? "iframe" : "img"}
+                  image={cardVid ? cardVid : battleCardImg}
                   height="280"
                 />
               ) : (
                 ""
               )}
-              <CardContent style={{ background: "#F8F9F9" }}>
+              <CardContent className="card-content">
                 {!displayComments ? (
                   <>
-                    <Typography
-                      gutterBottom
-                      variant="h6"
-                      component="h6"
-                      // style={{ fontSize: "0.8rem" }}
-                    >
-                      {`${props.battleName}`}
+                    <Typography gutterBottom variant="h6" component="h6">
+                      {battleName}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -248,19 +255,19 @@ export default function SimpleModal(props) {
                       component="p"
                       style={{ fontSize: "0.9rem" }}
                     >
-                      {props.battleDescription}
+                      {battleDescription}
                     </Typography>
                     <Divider variant={"top"} className={classes.divider} />
                     <PersonItem
-                      name={props.avatarName}
-                      travelDescription={props.avatarDescription}
-                      src={props.avatarImg}
+                      name={avatar_name}
+                      travelDescription={avatar_description}
+                      src={avatar_img}
                     />
                   </>
                 ) : (
                   <>
-                    {props.comments.map((comment) => {
-                      return comment.city === props.battleName ? (
+                    {comments.map((comment) => {
+                      return comment.city === battleName ? (
                         <>
                           <PersonItem
                             name={comment.name}
@@ -281,15 +288,12 @@ export default function SimpleModal(props) {
                       Fought at this battle? Or Just enjoying the journey? Leave
                       a comment!
                     </Typography>
-                    <LogEntryForm
-                      city={props.battleName}
-                      setComments={props.setComments}
-                    />
+                    <LogEntryForm city={battleName} setComments={setComments} />
                   </>
                 )}
               </CardContent>
             </CardActionArea>
-            <CardActions style={{ background: props.cardColor }}>
+            <CardActions style={{ background: cardColor }}>
               <Button
                 size="small"
                 variant="contained"
@@ -343,13 +347,9 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <audio
-        ref={audioRef}
-        src={props.battleSounds}
-        style={{ display: "none" }}
-      />
+      <audio ref={audioRef} src={battleSounds} style={{ display: "none" }} />
       <div onClick={handleOpen} onTouchEnd={handleOpen}>
-        <Icon path={mdiAlertCircle} title="Orgrimmar" size={1.5} color="red" />
+        <Icon path={mdiAlertCircle} title="Orgrimmar" size={1} color="orange" />
       </div>
       <Modal
         open={open}

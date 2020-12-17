@@ -108,7 +108,7 @@ export default function SimpleModal(props) {
                   variant="caption"
                   display="block"
                   style={{
-                    fontSize: "0.7rem", // changed for mobile-> remove
+                    fontSize: "0.7rem",
                   }}
                   className="main-text"
                 >
@@ -271,7 +271,7 @@ export default function SimpleModal(props) {
       </Grid>
     </Grid>
   );
-  // Playing with grid layout
+
   return (
     <div>
       <div onClick={handleOpen}>

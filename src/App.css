@@ -99,3 +99,6 @@ Need To Check Home Modal on Small Screens
   top: 50px;
   z-index: 99;
 }
+.card-content {
+  background: #fff1e0 !important;
+}
