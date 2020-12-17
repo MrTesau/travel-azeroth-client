@@ -10,12 +10,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // Charater Rows
-import PersonItem from "../orgimmarVisitors.js";
+import PersonItem from "./orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 // Comments Form
 import LogEntryForm from "../LogEntryForm.js";
-// Modal bg
-// map marker Battle
 import { mdiHome } from "@mdi/js";
 import { mdiCommentOutline } from "@mdi/js";
 import { mdiArrowLeftBold } from "@mdi/js";
@@ -26,30 +24,46 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 export default function SimpleModal(props) {
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  // const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [displayComments, setDisplayComments] = React.useState(false);
-  //const [modalBG] = React.useState(example)[0];
   const audioRef = React.useRef(null);
   const playSound = () => {
     audioRef.current.currentTime = 0;
     audioRef.current.play();
   };
+  const handleOpen = () => {
+    if (props.volume) playSound();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    audioRef.current.pause();
+    setOpen(false);
+  };
   const useStyles = makeStyles((theme) => ({
+    rootMobile: {
+      margin: "10px",
+      width: "auto",
+      maxWidth: "330px",
+      background: props.cardColor,
+    },
+    media: {
+      border: "none",
+    },
     root: {
-      // maxWidth: 400,
+      maxWidth: "400px",
       background: props.cardColor,
     },
     paper: {
       position: "absolute",
-      // width: 850,
       backgroundImage: `url(${props.bg})`,
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: theme.spacing(1, 1, 1),
+      padding: "250px",
+      paddingTop: "20px",
+      paddingBottom: "20px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -65,73 +79,155 @@ export default function SimpleModal(props) {
       textOverflow: "ellipsis",
       overflow: "hidden",
     },
-    name: {
-      fontWeight: 600,
-      fontSize: "1rem",
-      color: "#122740",
-    },
-    caption: {
-      fontSize: "0.875rem",
-      color: "#758392",
-      marginTop: -4,
-    },
   }));
   const classes = useStyles();
-
-  const handleOpen = () => {
-    if (props.volume) playSound();
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    audioRef.current.pause();
-    setOpen(false);
-  };
-
   const body = (
     <Grid
       container
       alignItems="center"
       justify="center"
-      style={{ width: "100vw", height: "100vh" }}
+      onClick={(event) => {
+        event.preventDefault();
+        if (event.target === event.currentTarget) {
+          handleClose();
+        }
+      }}
+      className="location-grid-container"
     >
+      <Hidden mdUp>
+        <Card className={classes.rootMobile}>
+          {!displayComments ? (
+            <CardMedia
+              className={`${classes.media} card-picture`}
+              component={props.cardVid ? "iframe" : "img"}
+              image={props.cardVid ? props.cardVid : props.battleImage}
+              height="230"
+            />
+          ) : (
+            ""
+          )}
+          <CardContent style={{ background: "#F8F9F9" }}>
+            {!displayComments ? (
+              <>
+                {/* Standard Card */}
+                <Typography
+                  className="home-heading"
+                  variant="subtitle1"
+                  component="h6"
+                >
+                  {`${props.battleName}`}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textPrimary"
+                  component="p"
+                  className="description-text"
+                >
+                  {props.battleDescription}
+                </Typography>
+                <Divider variant={"top"} className={classes.divider} />
+                <div className="avatar-stories">
+                  <PersonItem
+                    name={props.avatarName}
+                    travelDescription={props.avatarDescription}
+                    src={props.avatarImg}
+                    avatarSize={42}
+                  />{" "}
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Comment Card */}
+                {props.comments.map((comment) => {
+                  return comment.city === props.battleName ? (
+                    <>
+                      <PersonItem
+                        name={comment.name}
+                        travelDescription={comment.comments}
+                      />
+                    </>
+                  ) : (
+                    ""
+                  );
+                })}
+                <Divider variant={"bottom"} className={classes.divider} />
+                <Typography
+                  gutterBottom
+                  variant="subtitle2"
+                  component="p"
+                  color="textPrimary"
+                >
+                  Fought at this battle? Or Just enjoying the journey? Leave a
+                  comment!
+                </Typography>
+                <LogEntryForm
+                  city={props.battleName}
+                  setComments={props.setComments}
+                />
+              </>
+            )}
+          </CardContent>
+          <CardActions style={{ background: props.cardColor }}>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => handleClose()}
+              style={{ fontSize: "0.5rem" }}
+            >
+              {" "}
+              <Icon
+                path={mdiArrowLeftBold}
+                title="Orgrimmar"
+                size={0.5}
+                color={"black"}
+              />{" "}
+              <span>&nbsp; Continue the Journey </span>
+            </Button>
+            <Button
+              className="btn-comments"
+              size="small"
+              variant="contained"
+              onClick={() => setDisplayComments(!displayComments)}
+              style={{ fontSize: "0.5rem" }}
+            >
+              {" "}
+              {!displayComments ? (
+                <>
+                  <Icon
+                    path={mdiCommentOutline}
+                    title="Orgrimmar"
+                    size={0.6}
+                    color={"black"}
+                  />
+                  <span>&nbsp; Comment </span>
+                </>
+              ) : (
+                <>
+                  <Icon
+                    path={mdiHome}
+                    title="Orgrimmar"
+                    size={0.6}
+                    color={"black"}
+                  />
+                  <span>&nbsp; {`Back `} </span>
+                </>
+              )}
+            </Button>
+          </CardActions>
+        </Card>
+      </Hidden>
+      {/* Larger Screens View */}
       <Hidden smDown>
-        <Grid
-          item
-          md={7}
-          lg={7}
-          xl={7}
-          className={classes.paper}
-          style={{ padding: "100px" }}
-        >
-          <Card className={classes.root} style={{ width: "65%" }}>
+        <Grid item md={9} className={classes.paper}>
+          <Card className={classes.root}>
             <CardActionArea style={{ background: "white" }}>
               {!displayComments ? (
-                props.cardVid ? (
-                  <>
-                    <CardMedia>
-                      <iframe
-                        title={props.battleName}
-                        width="101%"
-                        height="280"
-                        src={props.cardVid}
-                        frameborder="none"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      ></iframe>
-                    </CardMedia>
-                  </>
-                ) : (
-                  <>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      height="230"
-                      image={props.battleImage}
-                      title="City"
-                    />
-                  </>
-                )
+                <CardMedia
+                  className={`${classes.media}`}
+                  component={props.cardVid ? "iframe" : "img"}
+                  image={props.cardVid ? props.cardVid : props.battleImage}
+                  height="280"
+                />
               ) : (
                 ""
               )}
@@ -232,147 +328,6 @@ export default function SimpleModal(props) {
                       path={mdiHome}
                       title="Orgrimmar"
                       size={0.7}
-                      color={"black"}
-                    />
-                    <span>&nbsp; {`Back `} </span>
-                  </>
-                )}
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Hidden>
-      {/* Small Screen Grid */}
-      <Hidden mdUp>
-        <Grid item xs={11} className={classes.paper}>
-          <Card className={classes.root} style={{ width: "95%" }}>
-            <CardActionArea style={{ background: "white" }}>
-              {!displayComments ? (
-                props.cardVid ? (
-                  <>
-                    <CardMedia className="card-picture">
-                      <iframe
-                        title={props.battleName}
-                        width="100%"
-                        height="180"
-                        src={props.cardVid}
-                        frameborder="none"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      ></iframe>
-                    </CardMedia>
-                  </>
-                ) : (
-                  <>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      height="230"
-                      image={props.battleImage}
-                      title="City"
-                    />
-                  </>
-                )
-              ) : (
-                ""
-              )}
-              <CardContent style={{ background: "#F8F9F9" }}>
-                {!displayComments ? (
-                  <>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="h2"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      {`${props.battleName}`}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      style={{ fontSize: "0.7rem" }}
-                    >
-                      {props.battleDescription}
-                    </Typography>
-                    <Divider variant={"top"} className={classes.divider} />
-                    <PersonItem
-                      name={props.avatarName}
-                      travelDescription={props.avatarDescription}
-                      src={props.avatarImg}
-                    />{" "}
-                  </>
-                ) : (
-                  <>
-                    {props.comments.map((comment) => {
-                      return comment.city === props.battleName ? (
-                        <>
-                          <PersonItem
-                            name={comment.name}
-                            travelDescription={comment.comments}
-                          />
-                        </>
-                      ) : (
-                        ""
-                      );
-                    })}
-                    <Divider variant={"bottom"} className={classes.divider} />
-                    <Typography
-                      gutterBottom
-                      variant="subtitle2"
-                      component="p"
-                      color="textPrimary"
-                    >
-                      Fought at this battle? Or Just enjoying the journey? Leave
-                      a comment!
-                    </Typography>
-                    <LogEntryForm
-                      city={props.battleName}
-                      setComments={props.setComments}
-                    />
-                  </>
-                )}
-              </CardContent>
-            </CardActionArea>
-            <CardActions style={{ background: props.cardColor }}>
-              <Button
-                size="small"
-                variant="contained"
-                onClick={() => handleClose()}
-                style={{ fontSize: "0.5rem" }}
-              >
-                {" "}
-                <Icon
-                  path={mdiArrowLeftBold}
-                  title="Orgrimmar"
-                  size={0.5}
-                  color={"black"}
-                />{" "}
-                <span>&nbsp; Continue the Journey </span>
-              </Button>
-              <Button
-                size="small"
-                variant="contained"
-                onClick={() => setDisplayComments(!displayComments)}
-                style={{ fontSize: "0.6rem" }}
-              >
-                {" "}
-                {!displayComments ? (
-                  <>
-                    <Icon
-                      path={mdiCommentOutline}
-                      title="Orgrimmar"
-                      size={0.6}
-                      color={"black"}
-                    />
-                    <span>&nbsp; Comment </span>
-                  </>
-                ) : (
-                  <>
-                    <Icon
-                      path={mdiHome}
-                      title="Orgrimmar"
-                      size={0.6}
                       color={"black"}
                     />
                     <span>&nbsp; {`Back `} </span>

@@ -19,13 +19,13 @@ const usePersonStyles = makeStyles(() => ({
   },
   name: {
     fontWeight: 500,
-    fontSize: "0.8rem",
+    fontSize: "0.75rem",
     color: "#122740",
   },
   caption: {
-    fontSize: "0.75rem",
+    fontSize: "0.7rem",
     color: "#122740",
-    marginTop: 1,
+    marginTop: 2,
     fontFamily: "Arial",
   },
   btn: {
@@ -36,8 +36,10 @@ const usePersonStyles = makeStyles(() => ({
   },
 }));
 
-const PersonItem = ({ src, name, travelDescription }) => {
-  const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+const PersonItem = ({ src, name, travelDescription, avatarSize }) => {
+  const avatarStyles = useDynamicAvatarStyles({
+    size: avatarSize ? avatarSize : 56,
+  });
   const styles = usePersonStyles();
   return (
     <Row gap={2} p={0.1}>

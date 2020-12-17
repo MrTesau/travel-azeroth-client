@@ -26,7 +26,7 @@ const App = () => {
   const [comments, setComments] = React.useState([]);
   const offset = 2;
   const style = {
-    border: "1px solid grey",
+    //border: "1px solid grey",
     position: "absolute",
     top: offset,
     left: offset,
@@ -87,21 +87,12 @@ const App = () => {
             setTranslation(translation);
           }}
           minScale={0.75}
-          maxScale={5}
+          maxScale={window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
           showControls
           defaultValue={{
             scale: 1.15,
             translation: { x: -20, y: -100 },
           }}
-          /*
-        
-          translationBounds={{
-            xMin: -500, //xmin at normal -(map height* zoom)
-            xMax: 500, //xmax at normal+(map height * zoom)(at 2X zoom you should be able to scroll 2x more)
-            yMin: -500,
-            yMax: 500,
-          }}
-          */
         >
           <div>
             <img style={{ width: "100rem" }} src={currentBG} alt=""></img>

@@ -17,9 +17,6 @@
   font-size: 0.7rem !important;
 }
 @media (max-width: 250px) {
-  .location-grid {
-    padding: 2px !important;
-  }
   .avatar-stories {
     display: none !important;
   }
@@ -31,7 +28,7 @@
   }
 }
 .description-text {
-  font-size: 0.7rem !important;
+  font-size: 0.65rem !important;
 }
 .card-picture {
   height: 110px !important;
@@ -40,11 +37,14 @@
   .home-heading {
     font-size: 0.7rem !important;
   }
+  .description-text {
+    font-size: 0.7rem !important;
+  }
   .main-text {
     display: none !important;
   }
   .card-picture {
-    height: 140px !important;
+    height: 150px !important;
   }
 }
 @media (min-width: 350px) {
@@ -91,13 +91,13 @@
 }
 .fixed-home-icon {
   position: fixed;
-  left: 20px;
-  top: 45px;
+  left: 15px;
+  top: 15px;
   z-index: 99;
 }
 .fixed-volume-icon {
   position: fixed;
-  left: 20px;
-  top: 80px;
+  left: 15px;
+  top: 50px;
   z-index: 99;
 }

@@ -10,7 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // Character Rows
-import PersonItem from "../orgimmarVisitors.js";
+import PersonItem from "./orgimmarVisitors.js";
 import Divider from "@material-ui/core/Divider";
 // Icons
 import { mdiMapMarker } from "@mdi/js";
@@ -39,7 +39,7 @@ export default function SimpleModal(props) {
       background: props.cardColor,
     },
     rootMobile: {
-      margin: "5px",
+      margin: "3px",
       width: "auto",
       maxWidth: "350px",
       background: props.cardColor,
@@ -61,6 +61,7 @@ export default function SimpleModal(props) {
       backgroundColor: "#a8964d",
       margin: "10px 10px",
     },
+    /*
     text: {
       fontFamily: "Barlow, san-serif",
       whiteSpace: "nowrap",
@@ -72,6 +73,7 @@ export default function SimpleModal(props) {
       fontSize: "1rem",
       color: "#122740",
     },
+    */
   }));
   const classes = useStyles();
   const handleOpen = () => {
@@ -144,12 +146,14 @@ export default function SimpleModal(props) {
                         name={props.avatarName}
                         travelDescription={props.avatarDescription}
                         src={props.avatarImg}
+                        avatarSize={37}
                       />
                       <Divider variant={"middle"} className={classes.divider} />
                       <PersonItem
                         name={props.avatarName2}
                         travelDescription={props.avatarDescription2}
                         src={props.avatarImg2}
+                        avatarSize={37}
                       />
                     </div>
                   </Typography>
