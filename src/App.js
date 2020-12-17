@@ -104,6 +104,7 @@ const App = () => {
                     left: `${location.left_pos}rem`,
                     top: `${location.top_pos}rem`,
                     zIndex: 99,
+                    cursor: "pointer",
                   }}
                 >
                   <SimpleModal
@@ -141,6 +142,7 @@ const App = () => {
                   position: "absolute",
                   top: `${battle.posTop}rem`,
                   left: `${battle.posLeft}rem`,
+                  cursor: "pointer",
                 }}
               >
                 <BattleModal

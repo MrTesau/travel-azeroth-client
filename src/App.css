@@ -60,16 +60,14 @@
 }
 
 /*
-@media (min-width: 1280px) {
-  .card-picture {
-    height: 250px !important;
-  }
-}
+Need To Check Home Modal on Small Screens
+*/
 @media (min-width: 700px) {
-  .card-picture {
-    height: 280px !important;
+  .main-text {
+    display: block !important;
   }
 }
+/*
 @media (min-width: 960px) {
   .card-picture {
     height: 220px !important;

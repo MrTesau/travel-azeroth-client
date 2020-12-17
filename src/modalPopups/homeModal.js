@@ -248,7 +248,7 @@ export default function SimpleModal(props) {
               onClick={() => {
                 props.setVolume(!props.volume);
               }}
-              className="main-text"
+              className="btn-comments"
             >
               {props.volume ? (
                 <Icon

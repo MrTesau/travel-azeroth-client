@@ -15,8 +15,42 @@ import syl from "../locationCards/undercity/syl.mp3";
 import scar from "../locationCards/undercity/sc.webp";
 import cull from "../locationCards/undercity/maxresdefault.gif";
 import flood from "../locationCards/undercity/flood.mp3";
+import tocbg from "../locationCards/toc/tocbg.jpg";
+import tocmusic from "../locationCards/toc/toc.mp3";
 
 const battlesArr = [
+  {
+    battleName: "The Fall of the Lich king",
+    battleBg: gate,
+    battleCardImg: false,
+    battleSounds: tocmusic,
+    battleDescription:
+      "One of the greatest fantasy characters, Arthas the Lich King finally fell due to the combined efforts of Horde and Alliance heroes.",
+    cardColor: "#2F4F4F",
+    posTop: 7,
+    posLeft: 44,
+    cardVid: "https://www.youtube.com/embed/qAIrj_Vqdfc",
+    avatar_name: "Wooggy",
+    avatar_description:
+      "Battled half way to the Frozen Throne only to be cruelly pulled away by real world obligations.",
+    avatar_img: wooggy,
+  },
+  {
+    battleName: "Trial of the Crusader",
+    battleBg: tocbg,
+    battleCardImg: false,
+    battleSounds: tocmusic,
+    battleDescription:
+      "At the frozen roof of the world the pinnacle of my raiding career was reached. Here I battled beasts and heroes of the Alliance in the crusade against the Lich King.",
+    cardColor: "#c19a6b",
+    posTop: 4,
+    posLeft: 49,
+    cardVid: "https://www.youtube.com/embed/q2ktWXdeh4Y",
+    avatar_name: "Wooggy",
+    avatar_description:
+      "Led groups of adventurers against the foul beasts of Northrend.",
+    avatar_img: wooggy,
+  },
   // Wrathgate
   {
     battleName: "Battle Of the Wrathgate",
