@@ -87,7 +87,7 @@
 .location-grid-container {
   width: 100vw !important;
   height: 100vh !important;
-  outline: "none" !important;
+  outline: none !important;
 }
 .fixed-home-icon {
   position: fixed;
