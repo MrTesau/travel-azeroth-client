@@ -218,7 +218,7 @@ export default function SimpleModal(props) {
       </Hidden>
       {/* Larger Screens View */}
       <Hidden smDown>
-        <Grid item md={9} className={classes.paper}>
+        <Grid item md={11} className={classes.paper}>
           <Card className={classes.root}>
             <CardActionArea style={{ background: "white" }}>
               {!displayComments ? (
