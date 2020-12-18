@@ -17,7 +17,7 @@ import flood from "../locationCards/undercity/flood.mp3";
 import tocbg from "../locationCards/toc/tocbg.jpg";
 import tocmusic from "../locationCards/toc/toc.mp3";
 import tbcbg from "../assets/tbc.jpg";
-
+import icc from "../assets/icc.jpg";
 const battlesArr = [
   {
     battleName: "Through the Dark Portal",
@@ -37,12 +37,12 @@ const battlesArr = [
   },
   {
     battleName: "The Fall of the Lich king",
-    battleBg: gate,
+    battleBg: icc,
     battleCardImg: false,
     battleSounds: tocmusic,
     battleDescription:
       "One of the greatest fantasy characters, Arthas the Lich King finally fell due to the combined efforts of Horde and Alliance heroes.",
-    cardColor: "#2F4F4F",
+    cardColor: "#282828",
     posTop: 7,
     posLeft: 44,
     cardVid: "https://www.youtube.com/embed/qAIrj_Vqdfc",

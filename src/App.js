@@ -9,7 +9,6 @@ import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Button } from "@material-ui/core";
-import wood_desk from "./assets/wood.jpg";
 import currentBG from "./assets/map2.jpg";
 import "./App.css";
 import axios from "axios";
@@ -40,16 +39,9 @@ const App = () => {
     });
   }, []);
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        backgroundImage: `url(${wood_desk})`,
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="desk-container">
       <div className="fixed-home-icon">
-        <HomeModal bg={wood_desk} volume={volume} setVolume={setVolume} />
+        <HomeModal volume={volume} setVolume={setVolume} />
       </div>
       <div className="fixed-volume-icon">
         <Button
@@ -129,7 +121,6 @@ const App = () => {
                 }}
               >
                 <BattleModal
-                  // comments
                   comments={comments}
                   setComments={setComments}
                   volume={volume}

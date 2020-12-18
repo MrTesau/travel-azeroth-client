@@ -78,6 +78,12 @@ export default function SimpleModal(props) {
       alignItems="center"
       justify="center"
       style={{ width: "100vw", height: "100vh" }}
+      onClick={(event) => {
+        event.preventDefault();
+        if (event.target === event.currentTarget) {
+          handleClose();
+        }
+      }}
     >
       <Grid item xs={11} sm={10} md={8} lg={6} className={classes.paper}>
         <Card className={classes.root}>

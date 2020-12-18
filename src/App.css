@@ -102,3 +102,9 @@ Need To Check Home Modal on Small Screens
 .card-content {
   background: #fff1e0 !important;
 }
+.desk-container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./assets/wood.jpg);
+  background-size: cover;
+}

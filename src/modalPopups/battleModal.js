@@ -76,7 +76,7 @@ export default function SimpleModal(props) {
       backgroundSize: "cover",
       border: "1px solid #222426",
       boxShadow: "none",
-      padding: "250px",
+      padding: "280px",
       paddingTop: "20px",
       paddingBottom: "20px",
       display: "flex",
