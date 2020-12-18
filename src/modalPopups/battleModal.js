@@ -349,7 +349,12 @@ export default function SimpleModal(props) {
     <div>
       <audio ref={audioRef} src={battleSounds} style={{ display: "none" }} />
       <div onClick={handleOpen} onTouchEnd={handleOpen}>
-        <Icon path={mdiAlertCircle} title="Orgrimmar" size={1} color="orange" />
+        <Icon
+          path={mdiAlertCircle}
+          title={battleName}
+          size={1}
+          color="orange"
+        />
       </div>
       <Modal
         open={open}

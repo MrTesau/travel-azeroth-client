@@ -18,7 +18,24 @@ import tocbg from "../locationCards/toc/tocbg.jpg";
 import tocmusic from "../locationCards/toc/toc.mp3";
 import tbcbg from "../assets/tbc.jpg";
 import icc from "../assets/icc.jpg";
+import ony from "../assets/ony.jpg";
 const battlesArr = [
+  {
+    battleName: "Onyxia's Lair",
+    battleBg: ony,
+    battleCardImg: "",
+    battleSounds: "",
+    battleDescription:
+      "The first major raid boss of Vanilla Warcraft, Onyxia is a great black dragon. She has recently escaped from Stormwind and brave heroes must track down and slay the dangerous beast.",
+    cardColor: "#282828",
+    posTop: 48,
+    posLeft: 24,
+    cardVid: "https://www.youtube.com/embed/Wz9Rt-NElnM",
+    avatar_name: "Wooggy",
+    avatar_description:
+      "In a rare moment of failure the great bear tank allowed Onyxia to kill an entire raid with fire breath. Shameful.",
+    avatar_img: wooggy,
+  },
   {
     battleName: "Through the Dark Portal",
     battleBg: tbcbg,
@@ -26,7 +43,7 @@ const battlesArr = [
     battleSounds: "",
     battleDescription:
       "Going through the Dark Portal transports heroes to World of Warcrafts first expansion: The Burning Crusade. Here you battle Illidan Stormrage on the Shattered remains of the planet Draenor.",
-    cardColor: "#330033",
+    cardColor: "#282828",
     posTop: 55,
     posLeft: 83,
     cardVid: "https://www.youtube.com/embed/IBHL_-biMrQ",
@@ -92,7 +109,7 @@ const battlesArr = [
       "As the rules of a PvE world are no players from opposing factions may attack each other without prior warning, peace is common. Unfortunately entering the Gurubashi Arena forgoes such rules. Bloodshed between Horde and Alliance quickly entails.",
     cardColor: "#719964",
     posTop: 57,
-    posLeft: 73,
+    posLeft: 75,
     cardVid: "",
     avatar_name: "Starindas",
     avatar_description: "Mercilessly attacked by Horde savages",
