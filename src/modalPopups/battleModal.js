@@ -133,8 +133,8 @@ export default function SimpleModal(props) {
                   {`${battleName}`}
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textPrimary"
+                  variant="body1"
+                  color="primary"
                   component="p"
                   className="description-text"
                 >
@@ -250,8 +250,8 @@ export default function SimpleModal(props) {
                       {battleName}
                     </Typography>
                     <Typography
-                      variant="body2"
-                      color="textSecondary"
+                      variant="body1"
+                      color="textPrimary"
                       component="p"
                       style={{ fontSize: "0.9rem" }}
                     >

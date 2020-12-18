@@ -43,7 +43,7 @@ const battlesArr = [
     battleSounds: "",
     battleDescription:
       "Going through the Dark Portal transports heroes to World of Warcrafts first expansion: The Burning Crusade. Here you battle Illidan Stormrage on the Shattered remains of the planet Draenor.",
-    cardColor: "#282828",
+    cardColor: "#001300",
     posTop: 55,
     posLeft: 83,
     cardVid: "https://www.youtube.com/embed/IBHL_-biMrQ",
