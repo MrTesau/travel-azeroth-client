@@ -28,7 +28,7 @@ const App = () => {
   //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
   const [value, setValue] = React.useState({
     scale: 1,
-    translation: { x: 0, y: 0 },
+    translation: { x: -10, y: -90 },
   });
 
   const offset = 2;
@@ -93,10 +93,12 @@ const App = () => {
           onChange={({ scale, translation }) => {
             setValue({ scale, translation });
           }}
+          /*
           defaultValue={{
-            scale: 1,
+            scale: 1.15,
             translation: { x: -20, y: -100 },
           }}
+          */
         >
           <>
             <img
