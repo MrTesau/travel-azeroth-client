@@ -31,16 +31,16 @@ class MainMap extends React.Component {
     };
     const smallStyle = {
       zIndex: 90,
-      width: "240px",
-      height: "140px",
+      width: "250px",
+      height: "150px",
       backgroundImage: `url(${currentBG})`,
       backgroundBlendMode: "normal",
       backgroundSize: "100% 100%",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       position: "absolute",
-      top: "77vh",
-      left: "82vw",
+      top: "74vh",
+      left: "80vw",
       border: "1px solid black",
       overflow: "hidden",
     };
@@ -123,8 +123,8 @@ class MainMap extends React.Component {
 
                   zIndex: 99,
                   border: "1px solid red",
-                  width: "200px", //`${180 * (1 / scale)}px`,
-                  height: "95px", //`${75 * (1 / scale)}px`,
+                  width: "210px", //`${180 * (1 / scale)}px`,
+                  height: "105px", //`${75 * (1 / scale)}px`,
                   //position: "absolute",
                   //top: "80vh",
 
