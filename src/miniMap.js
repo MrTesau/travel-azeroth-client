@@ -35,11 +35,11 @@ const MiniMap = (props) => {
             position: "absolute",
             top:
               // (props.translation.y * -1) / 10 < 100 ?
-              `${(props.translation.y * -1) / 50}vh`,
+              `${(props.translation.y * -1) / 90}vh`,
             //  : "90vh",
             left:
               //(props.translation.x * -1) / 10 < 100 ?
-              `${(props.translation.x * -1) / 50}vw`,
+              `${(props.translation.x * -1) / 90}vw`,
             //  : "90vw",
           }}
         />

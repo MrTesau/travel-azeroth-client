@@ -6,7 +6,7 @@ import BattleModal from "./modalPopups/battleModal.js";
 import cities from "./modalPopups/locations.js";
 import battlesArr from "./modalPopups/battles.js";
 import { Hidden } from "@material-ui/core";
-import MiniMap from "./miniMap.js";
+//import MiniMap from "./miniMap.js";
 
 class MainMap extends React.Component {
   constructor(props) {
@@ -29,8 +29,26 @@ class MainMap extends React.Component {
       width: `calc(100vw - ${2 * offset}px)`,
       height: `calc(100vh - ${2 * offset}px)`,
     };
-
+    const smallStyle = {
+      zIndex: 90,
+      width: "240px",
+      height: "140px",
+      backgroundImage: `url(${currentBG})`,
+      backgroundBlendMode: "normal",
+      backgroundSize: "100% 100%",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      position: "absolute",
+      top: "77vh",
+      left: "82vw",
+      border: "1px solid black",
+      overflow: "hidden",
+    };
     const { scale, translation } = this.state.value;
+    //const scaleMini = scale > 1.5 || scale < 0.9 ? scale : 1;
+    const minS = 1 / scale;
+    const minT = { x: (translation.x * -1) / 10, y: (translation.y * -1) / 10 };
+    const minV = { scale: minS, translation: minT };
     return (
       <>
         <div style={style}>
@@ -41,11 +59,11 @@ class MainMap extends React.Component {
             onChange={(value) => this.setState({ value })}
             // defaultScale={1}
             //defaultTranslation={{ x: 0, y: 0 }}
-            minScale={0.05}
-            maxScale={3}
+            minScale={0.85}
+            maxScale={2}
             showControls
           >
-            <>
+            <div>
               <img
                 style={{ width: "100rem" }}
                 src={currentBG}
@@ -88,11 +106,38 @@ class MainMap extends React.Component {
                   />
                 </div>
               ))}
-            </>
+            </div>
           </MapInteractionCSS>
         </div>
         <Hidden mdDown>
-          <MiniMap scale={scale} translation={translation} />
+          <div style={smallStyle}>
+            <MapInteractionCSS
+              scale={minS}
+              translation={minT}
+              value={minV}
+              onChange={(value) => this.setState({ value })}
+            >
+              <div
+                style={{
+                  // This is the moving square
+
+                  zIndex: 99,
+                  border: "1px solid red",
+                  width: "200px", //`${180 * (1 / scale)}px`,
+                  height: "95px", //`${75 * (1 / scale)}px`,
+                  //position: "absolute",
+                  //top: "80vh",
+
+                  //`${(translation.y * -1) / 90}vh`,
+                  //  : "90vh",
+                  //left: "80vw",
+                  //(props.translation.x * -1) / 10 < 100 ?
+                  // `${(translation.x * -1) / 90}vw`,
+                  //  : "90vw",
+                }}
+              />
+            </MapInteractionCSS>
+          </div>
         </Hidden>
       </>
     );
