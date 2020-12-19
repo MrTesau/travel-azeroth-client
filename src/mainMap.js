@@ -12,7 +12,7 @@ class MainMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: { scale: 1.1, translation: { x: 0, y: 0 } },
+      value: { scale: 1.1, translation: { x: -30, y: -90 } },
     };
   }
   render() {
@@ -28,7 +28,7 @@ class MainMap extends React.Component {
     };
     const smallStyle = {
       zIndex: 90,
-      width: "245px",
+      width: "250px",
       height: "145px",
       backgroundImage: `url(${currentBG})`,
       backgroundBlendMode: "normal",
@@ -38,7 +38,7 @@ class MainMap extends React.Component {
       position: "absolute",
       top: "76vh",
       left: "80vw",
-      border: "1px solid black",
+      border: "1px solid grey",
       overflow: "hidden",
     };
     const { scale, translation } = this.state.value;
