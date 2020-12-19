@@ -27,7 +27,7 @@ const App = () => {
   //const [miniScale, setScale] = React.useState(160 - translation.y);
   //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
   const [value, setValue] = React.useState({
-    scale: 1,
+    scale: 1.1,
     translation: { x: -10, y: -90 },
   });
 
@@ -85,7 +85,7 @@ const App = () => {
       <div style={style}>
         <MapInteractionCSS
           minScale={0.85}
-          maxScale={1.1} //{window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
+          maxScale={1.3} //{window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
           showControls
           scale={value.scale}
           translation={value.translation}
