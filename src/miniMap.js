@@ -1,10 +1,46 @@
 import React from "react";
 import currentBG from "./assets/map2.jpg";
-
+import { MapInteractionCSS } from "react-map-interaction";
 // Test implementation.. not the greatest way to do it
 // Doesnt properly track large map movement..only KINDA follows it
 // breaks on zoom
 
+const MiniMap = ({ ...value }) => {
+  //const smallOffset = 5;
+  const smallStyle = {
+    zIndex: 90,
+    width: "260px",
+    height: "160px",
+    backgroundImage: `url(${currentBG})`,
+    backgroundBlendMode: "normal",
+    backgroundSize: "100% 100%",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    position: "absolute",
+    top: "75vh",
+    left: "80vw",
+    border: "1px solid black",
+    overflow: "hidden",
+  };
+  return (
+    <div style={smallStyle}>
+      <MapInteractionCSS>
+        <div
+          style={{
+            zIndex: 99,
+            border: "1px solid red",
+            width: `180px`,
+            height: `75px`,
+            position: "absolute",
+          }}
+        />
+      </MapInteractionCSS>
+    </div>
+  );
+};
+export default MiniMap;
+
+/*
 const MiniMap = ({ ...value }) => {
   //const smallOffset = 5;
   const smallStyle = {
@@ -52,3 +88,4 @@ const MiniMap = ({ ...value }) => {
   );
 };
 export default MiniMap;
+*/

@@ -87,6 +87,7 @@ const App = () => {
           minScale={0.85}
           maxScale={1.3} //{window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
           showControls
+          /*
           scale={value.scale}
           translation={value.translation}
           value={value}
