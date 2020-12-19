@@ -1,23 +1,18 @@
 import { MapInteractionCSS } from "react-map-interaction";
 import React from "react";
 import currentBG from "./assets/map2.jpg";
-
 import SimpleModal from "./modalPopups/location_popup.js";
 import BattleModal from "./modalPopups/battleModal.js";
-import HomeModal from "./modalPopups/homeModal.js";
 import cities from "./modalPopups/locations.js";
 import battlesArr from "./modalPopups/battles.js";
-import { mdiVolumeOff } from "@mdi/js";
-import { mdiVolumeHigh } from "@mdi/js";
-import Icon from "@mdi/react";
-import { Button, Hidden } from "@material-ui/core";
+import { Hidden } from "@material-ui/core";
 import MiniMap from "./miniMap.js";
 
 class MainMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: { scale: 1, translation: { x: 0, y: 0 } },
+      value: { scale: 1.1, translation: { x: 0, y: 0 } },
     };
   }
 
@@ -44,10 +39,10 @@ class MainMap extends React.Component {
             translation={translation}
             value={this.state.value}
             onChange={(value) => this.setState({ value })}
-            defaultScale={1}
-            defaultTranslation={{ x: 0, y: 0 }}
+            // defaultScale={1}
+            //defaultTranslation={{ x: 0, y: 0 }}
             minScale={0.05}
-            maxScale={5}
+            maxScale={3}
             showControls
           >
             <>

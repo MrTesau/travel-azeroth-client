@@ -1,20 +1,12 @@
 import React from "react";
-import { MapInteractionCSS } from "react-map-interaction";
-import SimpleModal from "./modalPopups/location_popup.js";
-import BattleModal from "./modalPopups/battleModal.js";
 import HomeModal from "./modalPopups/homeModal.js";
-import cities from "./modalPopups/locations.js";
-import battlesArr from "./modalPopups/battles.js";
 import { mdiVolumeOff } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
 import Icon from "@mdi/react";
-import { Button, Hidden } from "@material-ui/core";
-import currentBG from "./assets/map2.jpg";
+import { Button } from "@material-ui/core";
 import "./App.css";
 import axios from "axios";
-import MiniMap from "./miniMap.js";
 import MainMap from "./mainMap.js";
-
 // To Do: seperate API calls
 const API_URL =
   window.location.hostname === "localhost"
@@ -22,19 +14,13 @@ const API_URL =
     : "https://travel-log-hazel.vercel.app/api/logs";
 
 const App = () => {
-  //const [scale, setScale] = React.useState(1);
-  //const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
   const [volume, setVolume] = React.useState(false);
   const [comments, setComments] = React.useState([]);
-  //const [miniScale, setScale] = React.useState(160 - translation.y);
-  //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
-
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
       setComments([...res.data]);
     });
   }, []);
-
   return (
     <div className="desk-container">
       <div className="fixed-home-icon">
@@ -70,7 +56,6 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
 
 /*

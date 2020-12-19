@@ -31,22 +31,16 @@ const MiniMap = (props) => {
             zIndex: 99,
             border: "1px solid red",
             width: `${180 * (1 / props.scale)}px`,
-            // 180 / Math.ceil(value.scale) > 50
-            //  ? `${180 / Math.ceil(value.scale)}px`
-            // : "50px",
             height: `${75 * (1 / props.scale)}px`,
-            // 75 / Math.ceil(value.scale) > 25
-            // ? `${75 / Math.ceil(value.scale)}px`
-            //  : "25px",
             position: "absolute",
             top:
-              (props.translation.y * -1) / 10 < 100
-                ? `${(props.translation.y * -1) / 50}vh`
-                : "90vh",
+              // (props.translation.y * -1) / 10 < 100 ?
+              `${(props.translation.y * -1) / 50}vh`,
+            //  : "90vh",
             left:
-              (props.translation.x * -1) / 10 < 100
-                ? `${(props.translation.x * -1) / 50}vw`
-                : "90vw",
+              //(props.translation.x * -1) / 10 < 100 ?
+              `${(props.translation.x * -1) / 50}vw`,
+            //  : "90vw",
           }}
         />
       </MapInteractionCSS>
