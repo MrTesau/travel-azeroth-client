@@ -6,7 +6,7 @@ import BattleModal from "./modalPopups/battleModal.js";
 import cities from "./modalPopups/locations.js";
 import battlesArr from "./modalPopups/battles.js";
 import { Hidden } from "@material-ui/core";
-//import MiniMap from "./miniMap.js";
+//import MiniMap from "../assets/miniMap.js";
 
 class MainMap extends React.Component {
   constructor(props) {
@@ -15,10 +15,7 @@ class MainMap extends React.Component {
       value: { scale: 1.1, translation: { x: 0, y: 0 } },
     };
   }
-
   render() {
-    // set container node at an origin other than client 0,0 to make sure we handle this case
-    // import background and play with it here..when I have time
     const offset = 2;
     const style = {
       position: "absolute",
@@ -45,7 +42,7 @@ class MainMap extends React.Component {
       overflow: "hidden",
     };
     const { scale, translation } = this.state.value;
-    //const scaleMini = scale > 1.5 || scale < 0.9 ? scale : 1;
+    // Minimap conversions
     const minS = 1 / scale;
     const minT = { x: (translation.x * -1) / 10, y: (translation.y * -1) / 10 };
     const minV = { scale: minS, translation: minT };
@@ -63,7 +60,7 @@ class MainMap extends React.Component {
             maxScale={2}
             showControls
           >
-            <div>
+            <>
               <img
                 style={{ width: "100rem" }}
                 src={currentBG}
@@ -106,7 +103,7 @@ class MainMap extends React.Component {
                   />
                 </div>
               ))}
-            </div>
+            </>
           </MapInteractionCSS>
         </div>
         <Hidden mdDown>
@@ -119,21 +116,10 @@ class MainMap extends React.Component {
             >
               <div
                 style={{
-                  // This is the moving square
-
                   zIndex: 99,
                   border: "1px solid red",
-                  width: "210px", //`${180 * (1 / scale)}px`,
-                  height: "105px", //`${75 * (1 / scale)}px`,
-                  //position: "absolute",
-                  //top: "80vh",
-
-                  //`${(translation.y * -1) / 90}vh`,
-                  //  : "90vh",
-                  //left: "80vw",
-                  //(props.translation.x * -1) / 10 < 100 ?
-                  // `${(translation.x * -1) / 90}vw`,
-                  //  : "90vw",
+                  width: "210px",
+                  height: "105px",
                 }}
               />
             </MapInteractionCSS>
