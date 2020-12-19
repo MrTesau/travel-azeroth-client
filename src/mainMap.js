@@ -28,15 +28,15 @@ class MainMap extends React.Component {
     };
     const smallStyle = {
       zIndex: 90,
-      width: "250px",
-      height: "150px",
+      width: "245px",
+      height: "145px",
       backgroundImage: `url(${currentBG})`,
       backgroundBlendMode: "normal",
       backgroundSize: "100% 100%",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       position: "absolute",
-      top: "74vh",
+      top: "76vh",
       left: "80vw",
       border: "1px solid black",
       overflow: "hidden",
@@ -119,7 +119,7 @@ class MainMap extends React.Component {
                   zIndex: 99,
                   border: "1px solid red",
                   width: "210px",
-                  height: "105px",
+                  height: "95px",
                 }}
               />
             </MapInteractionCSS>
