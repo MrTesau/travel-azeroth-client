@@ -28,10 +28,6 @@ const App = () => {
   const [comments, setComments] = React.useState([]);
   //const [miniScale, setScale] = React.useState(160 - translation.y);
   //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
-  const [value, setValue] = React.useState({
-    scale: 1.1,
-    translation: { x: -10, y: -90 },
-  });
 
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {

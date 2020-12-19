@@ -35,7 +35,7 @@ class MainMap extends React.Component {
       height: `calc(100vh - ${2 * offset}px)`,
     };
 
-    const { scale, translation } = this.state;
+    const { scale, translation } = this.state.value;
     return (
       <>
         <div style={style}>
@@ -97,10 +97,7 @@ class MainMap extends React.Component {
           </MapInteractionCSS>
         </div>
         <Hidden mdDown>
-          <MiniMap
-            scale={this.state.value.scale}
-            translation={this.state.value.translation}
-          />
+          <MiniMap scale={scale} translation={translation} />
         </Hidden>
       </>
     );
