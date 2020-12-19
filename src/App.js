@@ -13,6 +13,8 @@ import currentBG from "./assets/map2.jpg";
 import "./App.css";
 import axios from "axios";
 import MiniMap from "./miniMap.js";
+import MainMap from "./mainMap.js";
+
 // To Do: seperate API calls
 const API_URL =
   window.location.hostname === "localhost"
@@ -31,17 +33,6 @@ const App = () => {
     translation: { x: -10, y: -90 },
   });
 
-  const offset = 2;
-  const style = {
-    position: "absolute",
-    top: offset,
-    left: offset,
-    right: offset,
-    bottom: offset,
-    width: `calc(100vw - ${2 * offset}px)`,
-    height: `calc(100vh - ${2 * offset}px)`,
-  };
-
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
       setComments([...res.data]);
@@ -50,12 +41,10 @@ const App = () => {
 
   return (
     <div className="desk-container">
-      <Hidden mdDown>
-        <MiniMap {...value} />
-      </Hidden>
       <div className="fixed-home-icon">
         <HomeModal volume={volume} setVolume={setVolume} />
       </div>
+      <MainMap volume={volume} comments={comments} setComments={setComments} />
       <div className="fixed-volume-icon">
         <Button
           variant="contained"
@@ -82,7 +71,83 @@ const App = () => {
           )}
         </Button>
       </div>
+    </div>
+  );
+};
+
+export default App;
+
+/*
+    <img
+            style={{ width: "220px", border: "1px solid grey" }}
+            src={currentBG}
+            alt="Azeroth"
+          ></img>
+import React, { Component } from "react";
+
+// See ../copy-to-example.sh
+import { MapInteractionCSS } from "react-map-interaction";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scale: 1,
+      translation: { x: 0, y: 0 },
+    };
+  }
+
+  render() {
+    // set container node at an origin other than client 0,0 to make sure we handle this case
+    // import background and play with it here..when I have time
+    const offset = 10;
+
+    const style = {
+      position: "absolute",
+      top: offset,
+      left: offset,
+      width: `calc(100vw - ${offset}px)`,
+      height: `calc(100vh - ${offset}px)`,
+      border: "1px solid blue",
+    };
+
+    const { scale, translation } = this.state;
+    return (
       <div style={style}>
+        <MapInteractionCSS
+          scale={scale}
+          translation={translation}
+          onChange={({ scale, translation }) =>
+            this.setState({ scale, translation })
+          }
+          defaultScale={1}
+          defaultTranslation={{ x: 0, y: 0 }}
+          minScale={0.05}
+          maxScale={5}
+          showControls
+        >
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", left: 30, top: 30 }}>
+              <button
+                onClick={() => console.log("Click")}
+                onTouchEnd={() => console.log("TouchEnd")}
+                onTouchStart={() => console.log("TouchStart")}
+              >
+                Touch/Click Test
+              </button>
+            </div>
+            <img src="/grid.png" style={{ pointerEvents: "none" }} alt="" />
+          </div>
+        </MapInteractionCSS>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+<div style={style}>
         <MapInteractionCSS
           minScale={0.85}
           maxScale={1.3} //{window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
@@ -100,63 +165,25 @@ const App = () => {
             translation: { x: -20, y: -100 },
           }}
           */
+/*
         >
-          <>
-            <img
-              style={{ width: "100rem" }}
-              src={currentBG}
-              alt="Azeroth"
-            ></img>
-            {cities.map((location) => {
-              return (
-                <div
-                  style={{
-                    position: "absolute",
-                    left: `${location.left_pos}rem`,
-                    top: `${location.top_pos}rem`,
-                    zIndex: 99,
-                    cursor: "pointer",
-                  }}
-                >
-                  <SimpleModal
-                    volume={volume}
-                    comments={comments}
-                    setComments={setComments}
-                    {...location}
-                  />
-                </div>
-              );
-            })}
-            {battlesArr.map((battle) => (
-              <div
-                style={{
-                  position: "absolute",
-                  top: `${battle.posTop}rem`,
-                  left: `${battle.posLeft}rem`,
-                  cursor: "pointer",
-                }}
-              >
-                <BattleModal
-                  comments={comments}
-                  setComments={setComments}
-                  volume={volume}
-                  {...battle}
-                />
-              </div>
-            ))}
-          </>
+       
         </MapInteractionCSS>
       </div>
-    </div>
-  );
-};
 
-export default App;
 
-/*
-    <img
-            style={{ width: "220px", border: "1px solid grey" }}
-            src={currentBG}
-            alt="Azeroth"
-          ></img>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
