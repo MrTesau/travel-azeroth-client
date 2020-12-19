@@ -12,6 +12,7 @@ import { Button, Hidden } from "@material-ui/core";
 import currentBG from "./assets/map2.jpg";
 import "./App.css";
 import axios from "axios";
+import MiniMap from "./miniMap.js";
 // To Do: seperate API calls
 const API_URL =
   window.location.hostname === "localhost"
@@ -19,16 +20,16 @@ const API_URL =
     : "https://travel-log-hazel.vercel.app/api/logs";
 
 const App = () => {
-  const [scale, setScale] = React.useState(1);
+  //const [scale, setScale] = React.useState(1);
   //const [translation, setTranslation] = React.useState({ x: 0, y: 0 });
   const [volume, setVolume] = React.useState(false);
   const [comments, setComments] = React.useState([]);
+  //const [miniScale, setScale] = React.useState(160 - translation.y);
+  //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
   const [value, setValue] = React.useState({
     scale: 1,
     translation: { x: 0, y: 0 },
   });
-  //const [miniScale, setScale] = React.useState(160 - translation.y);
-  //const [miniTranslation, setMiniTranslation] = React.useState({ x: 0, y: 0 });
 
   const offset = 2;
   const style = {
@@ -40,69 +41,18 @@ const App = () => {
     width: `calc(100vw - ${2 * offset}px)`,
     height: `calc(100vh - ${2 * offset}px)`,
   };
-  //const smallOffset = 5;
-  const smallStyle = {
-    zIndex: 90,
-    width: "265px",
-    height: "170px",
-    backgroundImage: `url(${currentBG})`,
-    backgroundBlendMode: "normal",
-    backgroundSize: "100% 100%",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    position: "absolute",
-    top: "73vh",
-    left: "80vw",
-    border: "1px solid black",
-  };
+
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {
       setComments([...res.data]);
     });
   }, []);
 
-  // red sq is big map
-  // minimap is wood desk
-  // wrapper div is what red sq mini and big moving map move in
-
-  /* setting image as bg: maybe static wrapper could contain it
-   backgroundImage: 
-      backgroundImage: `url(${currentBG})`,
-              backgroundBlendMode: "multiply",
-        
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-
-          */
-
   return (
     <div className="desk-container">
-      <Hidden smDown>
-        <div style={smallStyle}>
-          <MapInteractionCSS
-            id="mini"
-            //scale={scale}
-            //translation={miniTranslation}
-
-            defaultValue={{
-              scale: 1,
-              translation: { x: 2, y: 10 },
-            }}
-          >
-            <div
-              style={{
-                // This is the moving peice
-                zIndex: 99,
-                border: "1px solid red",
-                width: "185px",
-                height: "70px",
-              }}
-            ></div>
-          </MapInteractionCSS>
-        </div>
+      <Hidden mdDown>
+        <MiniMap {...value} />
       </Hidden>
-
       <div className="fixed-home-icon">
         <HomeModal volume={volume} setVolume={setVolume} />
       </div>
@@ -134,11 +84,17 @@ const App = () => {
       </div>
       <div style={style}>
         <MapInteractionCSS
-          minScale={0.75}
-          maxScale={window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
+          minScale={0.85}
+          maxScale={1.1} //{window.innerWidth <= 600 ? 1.5 : 5} // find best scale bounds for mobiles
           showControls
+          scale={value.scale}
+          translation={value.translation}
+          value={value}
+          onChange={({ scale, translation }) => {
+            setValue({ scale, translation });
+          }}
           defaultValue={{
-            scale: 1.15,
+            scale: 1,
             translation: { x: -20, y: -100 },
           }}
         >
