@@ -1,6 +1,7 @@
 import { MapInteractionCSS } from "react-map-interaction";
 import React from "react";
-import currentBG from "./assets/map2.jpg";
+import currentBG from "./assets/map21.jpg";
+import currentBG1 from "./assets/map3.jpg";
 import SimpleModal from "./modalPopups/location_popup.js";
 import BattleModal from "./modalPopups/battleModal.js";
 import cities from "./modalPopups/locations.js";
@@ -30,7 +31,7 @@ class MainMap extends React.Component {
       zIndex: 90,
       width: "250px",
       height: "145px",
-      backgroundImage: `url(${currentBG})`,
+      backgroundImage: `url(${currentBG1})`,
       backgroundBlendMode: "normal",
       backgroundSize: "100% 100%",
       backgroundRepeat: "no-repeat",
