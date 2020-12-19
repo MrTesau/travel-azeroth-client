@@ -9,6 +9,38 @@ import battlesArr from "./modalPopups/battles.js";
 import { Hidden } from "@material-ui/core";
 //import MiniMap from "../assets/miniMap.js";
 
+const offset = 2;
+const style = {
+  position: "absolute",
+  top: offset,
+  left: offset,
+  right: offset,
+  bottom: offset,
+  width: `calc(100vw - ${2 * offset}px)`,
+  height: `calc(100vh - ${2 * offset}px)`,
+};
+const smallStyle = {
+  zIndex: 90,
+  width: "250px",
+  height: "145px",
+  backgroundImage: `url(${currentBG1})`,
+  backgroundBlendMode: "normal",
+  backgroundSize: "100% 100%",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  position: "absolute",
+  top: "76vh",
+  left: "80vw",
+  border: "1px solid grey",
+  overflow: "hidden",
+};
+const miniMapView = {
+  zIndex: 99,
+  border: "1px solid red",
+  width: "210px",
+  height: "95px",
+};
+
 class MainMap extends React.Component {
   constructor(props) {
     super(props);
@@ -17,42 +49,11 @@ class MainMap extends React.Component {
     };
   }
   render() {
-    const offset = 2;
-    const style = {
-      position: "absolute",
-      top: offset,
-      left: offset,
-      right: offset,
-      bottom: offset,
-      width: `calc(100vw - ${2 * offset}px)`,
-      height: `calc(100vh - ${2 * offset}px)`,
-    };
-    const smallStyle = {
-      zIndex: 90,
-      width: "250px",
-      height: "145px",
-      backgroundImage: `url(${currentBG1})`,
-      backgroundBlendMode: "normal",
-      backgroundSize: "100% 100%",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-      position: "absolute",
-      top: "76vh",
-      left: "80vw",
-      border: "1px solid grey",
-      overflow: "hidden",
-    };
     const { scale, translation } = this.state.value;
-    // Minimap conversions
-    const minS = 1 / scale;
-    const minT = { x: (translation.x * -1) / 10, y: (translation.y * -1) / 10 };
-    const minV = { scale: minS, translation: minT };
     return (
       <>
         <div style={style}>
           <MapInteractionCSS
-            scale={scale}
-            translation={translation}
             value={this.state.value}
             onChange={(value) => this.setState({ value })}
             // defaultScale={1}
@@ -62,11 +63,7 @@ class MainMap extends React.Component {
             showControls
           >
             <>
-              <img
-                style={{ width: "100rem" }}
-                src={currentBG}
-                alt="Azeroth"
-              ></img>
+              <img className="main-map" src={currentBG} alt="Azeroth"></img>
               {cities.map((location) => {
                 return (
                   <div
@@ -110,19 +107,15 @@ class MainMap extends React.Component {
         <Hidden mdDown>
           <div style={smallStyle}>
             <MapInteractionCSS
-              scale={minS}
-              translation={minT}
-              value={minV}
-              onChange={(value) => this.setState({ value })}
+              value={{
+                scale: 1 / scale,
+                translation: {
+                  x: (translation.x * -1) / 10,
+                  y: (translation.y * -1) / 10,
+                },
+              }}
             >
-              <div
-                style={{
-                  zIndex: 99,
-                  border: "1px solid red",
-                  width: "210px",
-                  height: "95px",
-                }}
-              />
+              <div style={miniMapView} />
             </MapInteractionCSS>
           </div>
         </Hidden>

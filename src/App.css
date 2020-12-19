@@ -108,3 +108,6 @@ Need To Check Home Modal on Small Screens
   background-image: url(./assets/wood.jpg);
   background-size: cover;
 }
+.main-map {
+  width: 100rem;
+}
