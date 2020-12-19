@@ -48,8 +48,9 @@ class MainMap extends React.Component {
       value: { scale: 1.1, translation: { x: -30, y: -90 } },
     };
   }
+
   render() {
-    const { scale, translation } = this.state.value;
+    // const { scale, translation } = this.state.value;
     return (
       <>
         <div style={style}>
@@ -62,7 +63,7 @@ class MainMap extends React.Component {
             maxScale={2}
             showControls
           >
-            <>
+            <div>
               <img className="main-map" src={currentBG} alt="Azeroth"></img>
               {cities.map((location) => {
                 return (
@@ -101,17 +102,17 @@ class MainMap extends React.Component {
                   />
                 </div>
               ))}
-            </>
+            </div>
           </MapInteractionCSS>
         </div>
         <Hidden mdDown>
           <div style={smallStyle}>
             <MapInteractionCSS
               value={{
-                scale: 1 / scale,
+                scale: 1 / this.state.value.scale,
                 translation: {
-                  x: (translation.x * -1) / 10,
-                  y: (translation.y * -1) / 10,
+                  x: (this.state.value.translation.x * -1) / 5,
+                  y: (this.state.value.translation.y * -1) / 5,
                 },
               }}
             >
