@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/travel-azeroth-client/precache-manifest.18ddd2d1d25bdc9f62ef52a16b653a37.js"
+  "/travel-azeroth-client/precache-manifest.e643325f13fece86c57ef10c13558740.js"
 );
 
 self.addEventListener('message', (event) => {

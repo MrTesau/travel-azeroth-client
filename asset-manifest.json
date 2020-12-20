@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/travel-azeroth-client/static/css/main.0f8254b3.chunk.css",
-    "main.js": "/travel-azeroth-client/static/js/main.b3376ace.chunk.js",
-    "main.js.map": "/travel-azeroth-client/static/js/main.b3376ace.chunk.js.map",
+    "main.js": "/travel-azeroth-client/static/js/main.ee967bd2.chunk.js",
+    "main.js.map": "/travel-azeroth-client/static/js/main.ee967bd2.chunk.js.map",
     "runtime-main.js": "/travel-azeroth-client/static/js/runtime-main.0c96d3e3.js",
     "runtime-main.js.map": "/travel-azeroth-client/static/js/runtime-main.0c96d3e3.js.map",
     "static/js/2.1673bf11.chunk.js": "/travel-azeroth-client/static/js/2.1673bf11.chunk.js",
     "static/js/2.1673bf11.chunk.js.map": "/travel-azeroth-client/static/js/2.1673bf11.chunk.js.map",
     "index.html": "/travel-azeroth-client/index.html",
-    "precache-manifest.18ddd2d1d25bdc9f62ef52a16b653a37.js": "/travel-azeroth-client/precache-manifest.18ddd2d1d25bdc9f62ef52a16b653a37.js",
+    "precache-manifest.e643325f13fece86c57ef10c13558740.js": "/travel-azeroth-client/precache-manifest.e643325f13fece86c57ef10c13558740.js",
     "service-worker.js": "/travel-azeroth-client/service-worker.js",
     "static/css/main.0f8254b3.chunk.css.map": "/travel-azeroth-client/static/css/main.0f8254b3.chunk.css.map",
     "static/js/2.1673bf11.chunk.js.LICENSE.txt": "/travel-azeroth-client/static/js/2.1673bf11.chunk.js.LICENSE.txt",
@@ -86,6 +86,6 @@
     "static/js/runtime-main.0c96d3e3.js",
     "static/js/2.1673bf11.chunk.js",
     "static/css/main.0f8254b3.chunk.css",
-    "static/js/main.b3376ace.chunk.js"
+    "static/js/main.ee967bd2.chunk.js"
   ]
 }
