@@ -31,7 +31,9 @@ const smallStyle = {
   position: "absolute",
   top: "76vh",
   left: "80vw",
-  border: "1px solid grey",
+  border: "1px solid black",
+  boxShadow:
+    "0.25em 0.25em 0.75em rgba(0, 0, 0, 0.5),0.125em 0.125em 0.125em rgba(0, 0, 0, 0.5)",
   overflow: "hidden",
 };
 const miniMapView = {
