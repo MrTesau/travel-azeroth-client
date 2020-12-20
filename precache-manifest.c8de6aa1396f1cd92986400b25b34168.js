@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "516a26543aa5774c4497f2b1fbf1c436",
+    "revision": "07965b0291c5e35bc8cdb9f08ff6a16a",
     "url": "/travel-azeroth-client/index.html"
   },
   {
-    "revision": "04c0162bee2d70926e0f",
+    "revision": "e61647d8fb2b48562081",
     "url": "/travel-azeroth-client/static/css/main.0f8254b3.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/travel-azeroth-client/static/js/2.1673bf11.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "04c0162bee2d70926e0f",
-    "url": "/travel-azeroth-client/static/js/main.ee967bd2.chunk.js"
+    "revision": "e61647d8fb2b48562081",
+    "url": "/travel-azeroth-client/static/js/main.235c8141.chunk.js"
   },
   {
     "revision": "f5db04a5a33ab40b0d2c",
