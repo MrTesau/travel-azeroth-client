@@ -14,7 +14,7 @@ const API_URL =
     : "https://travel-log-hazel.vercel.app/api/logs";
 
 const App = () => {
-  const [volume, setVolume] = React.useState(false);
+  const [volume, setVolume] = React.useState(true);
   const [comments, setComments] = React.useState([]);
   React.useEffect(() => {
     axios.get(`${API_URL}`).then(function setRetrievedComments(res) {

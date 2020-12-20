@@ -25,7 +25,7 @@ import greetings from "../assets/5.ogg";
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [open, setOpen] = React.useState(false); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const [open, setOpen] = React.useState(true); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const useStyles = makeStyles((theme) => ({
     root: {
       background: "#FFD6AE",
